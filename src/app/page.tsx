@@ -1,6 +1,4 @@
 import React from 'react'
-// import OfferHeader from './components/OfferHead';
-// import OfferFooter from './components/OfferFooter';
 import PagesMain from './pages/PagesMain';
 
 function OfferPage() {

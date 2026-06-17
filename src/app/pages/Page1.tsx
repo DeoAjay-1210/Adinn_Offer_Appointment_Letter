@@ -47,7 +47,7 @@ function Page1({ data, setData }) {
 
             {/* "Mr." is STATIC — only the name after it is editable */}
             <div className="offerBoldLetters offerPage1Name">
-              Mr.{' '}
+              {' '}
               <EditableField
                 value={data.employeeName}
                 onChange={(val) => update('employeeName', val)}

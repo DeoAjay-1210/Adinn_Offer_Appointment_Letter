@@ -13,7 +13,7 @@ import './Page1.css';
 // ── DEFAULT DATA ─────────────────────────────────────────────
 // Change these defaults to pre-fill the letter for a new employee.
 const DEFAULT_DATA = {
-  employeeName:    'Veerasanjay V',
+  employeeName:    'Mr. Veerasanjay V',
   offerDate:       '01/07/2026',
   addressLine1:    '3/232A, Star Street,',
   addressLine2:    'Krishna Nagar, Thiruppalai,',
