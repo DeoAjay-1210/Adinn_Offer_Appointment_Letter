@@ -1,0 +1,311 @@
+/* --- Global font --- */
+* {
+    font-family: "Inter", sans-serif;
+    font-size: 17px;
+    box-sizing: border-box;
+    letter-spacing: 2%;
+}
+
+/* ============================================================
+   A4 PAGE WRAPPER — SCREEN
+   Use px here so screen padding matches what prints
+   ============================================================ */
+.a4-page {
+    width: 820px;
+    /* 210mm at 96dpi ≈ 794px */
+    min-height: 1143px;
+    /* 297mm at 96dpi ≈ 1123px */
+    margin: 20px auto;
+    /* 
+    SCREEN PADDING in px — tweak these to get the look you want on screen.
+    These same values are mirrored in @media print below as mm.
+    Top:40px=~10mm | LR:75px=~20mm | Bottom:38px=~10mm
+  */
+    /* padding: 40px 75px 38px 75px; */
+    padding: 30px 20px 30px 20px;
+
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: 1px solid blue; */
+}
+
+/* ============================================================
+   EDITABLE FIELD HOVER EFFECT
+   ============================================================ */
+.editable-field:hover {
+    border-bottom: 1.5px dashed #c0392b !important;
+    background: rgba(192, 57, 43, 0.04);
+}
+
+/* ============================================================
+   PRINT / PDF STYLES
+   
+   @page { margin: 0 } — removes browser date/time/URL/page-number
+   Then restore document padding in mm on  itself.
+   ============================================================ */
+@media print {
+
+    @page {
+        margin: 0;
+        /* removes browser header (date/time) and footer (URL, page no.) */
+        size: A4;
+    }
+
+    body {
+        margin: 0;
+        background: white;
+    }
+
+    /* Hide the step wizard and preview banner during print */
+    .step-wizard,
+    .preview-banner {
+        display: none !important;
+    }
+
+    .a4-page {
+        /* Switch back to mm for accurate A4 printing */
+        width: 820px;
+        /* 210mm → 794px */
+        height: 1143px;
+        /* 297mm → 1123px */
+        min-height: unset;
+        margin: 0;
+        /*
+      PRINT PADDING in mm — must visually match the px values above.
+      40px≈10mm | 75px≈20mm | 38px≈10mm
+      Adjust here if PDF spacing still feels off.
+    */
+        padding: 30px 0px 30px 0px;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+        /* border: 1px solid red; */
+    }
+
+    /* No hover highlight in PDF */
+    .editable-field:hover {
+        border-bottom: none !important;
+        background: none !important;
+    }
+}
+
+/* ============================================================
+   CONTENT STYLES — margins use px (not mm) for screen consistency
+   ============================================================ */
+.OfferMainHeading {
+    text-align: center;
+    margin: 4% auto;
+}
+
+.offerBoldLetters {
+    font-weight: 700;
+}
+
+.offerDateSection {
+    text-align: end;
+    margin-bottom: 12px;
+}
+
+/* PAGE 1 */
+.offerPage1OverallMain {
+    flex: 1;
+}
+
+.offerPage1To {
+    margin: 10px 0 4px 0;
+}
+
+.offerPage1Name {
+    margin: 2% 0;
+}
+
+.offerPage1PersonAddress {
+    margin: 2% 0;
+}
+
+.offerPage1Subject {
+    margin: 4% 0;
+}
+
+.offerPagePersonContents {
+    margin: 4% 0;
+}
+
+.offerPersonContentsName {
+    margin: 3% 0;
+}
+
+.offerPersonContentsPara {
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+.offerPage1EmpDetails {
+    margin: 10px 0;
+}
+
+/* Employment details table */
+.offerPageEmployeeDetailsContent td {
+    padding: 6px 0px;
+    vertical-align: top;
+}
+
+.offerPageEmployeeDetailsContent td:first-child {
+    min-width: 180px;
+}
+
+.offerPageEmployeeDetailsContent td:nth-child(2) {
+    padding: 6px 12px;
+}
+
+/* PAGE 2+ */
+.pageSideHeadingsMain {
+    margin: 16px 0;
+}
+
+.pagesSideHeading {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.pagesParaContent {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.offerDocsList {
+    list-style-type: disc;
+    margin-left: 24px;
+    line-height: 1.9;
+}
+
+.offerDocsSubList {
+    list-style-type: circle;
+    margin-left: 24px;
+}
+
+
+/* PAGES 3 CSS  */
+.offerPage3Acceptance1 {
+    border-bottom: 1px solid black;
+    width: 300px;
+
+}
+
+.offerPage3CmpyName {
+    margin: 5% auto;
+}
+
+.offerPage3HrDetails {
+    margin: 20% 0 20% auto;
+
+}
+
+.offerPage3Acceptance1Main {
+    margin: 5% auto;
+}
+
+.offerPageEmployeeDetailsContentPg35 td {
+    padding: 10px 0px;
+    vertical-align: top;
+}
+
+.offerPageEmployeeDetailsContentPg35 td:first-child {
+    min-width: 180px;
+}
+
+.offerPageEmployeeDetailsContentPg35 td:nth-child(2) {
+    padding: 10px 12px;
+}
+
+/* Page 4 css */
+.offerPage4TCMain ol li {
+    line-height: 30px;
+}
+
+/* Page 5 css */
+.offerPagePersonContentsPg5 {
+    margin: 8% 0;
+
+}
+
+.offerPage5HrDetails {
+    margin: 25% 0 40% auto;
+
+}
+
+.offerPage5Acceptance1Main {
+    margin: 8% auto;
+
+}
+
+.offerPage5Acceptance1Main {
+    margin: 2% auto;
+
+}
+
+/* ============================================================
+   STEP WIZARD BAR — always px, never printed
+   ============================================================ */
+.step-wizard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 24px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+}
+
+.step-btn {
+    padding: 7px 16px;
+    border: 1.5px solid #c0392b;
+    border-radius: 4px;
+    background: white;
+    color: #c0392b;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    transition: all 0.2s;
+}
+
+.step-btn:hover {
+    background: #c0392b;
+    color: white;
+}
+
+.step-btn.active {
+    background: #c0392b;
+    color: white;
+}
+
+.step-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.step-btn-download {
+    padding: 7px 16px;
+    border: 1.5px solid #27ae60;
+    border-radius: 4px;
+    background: #27ae60;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    transition: all 0.2s;
+}
+
+.step-btn-download:hover {
+    background: #219a52;
+}
