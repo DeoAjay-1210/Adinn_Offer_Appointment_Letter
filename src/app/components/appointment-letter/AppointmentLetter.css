@@ -1,0 +1,173 @@
+/* Appointment page extra styles only.
+   Common A4, heading, paragraph, table and wizard styles come from Page1.css. */
+
+.appointmentContent90 {
+  width: 90%;
+  margin: 0 auto;
+  flex: 1;
+}
+
+/* Footer full width without touching OfferFooter.jsx */
+.appointmentFooterFull {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.appointmentFooterFull > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+.appointmentFooterFull .flex {
+  width: 100% !important;
+}
+
+.appointmentFooterFull .FooterContents,
+.appointmentFooterFull .FooterHeading {
+  font-size: 10.5px !important;
+}
+
+/* Ordered list for appointment terms */
+.appointmentNumberList {
+  list-style-type: number;
+  padding-left: 6%;
+  margin: 0;
+}
+
+.appointmentNumberList li {
+  line-height: 30px;
+  margin-bottom: 6px;
+  text-align: justify;
+}
+
+/* Page 3 spacing */
+.appointmentHrDetails {
+  margin: 12% 0 10% auto;
+}
+
+.appointmentAcceptanceMain {
+  margin: 6% auto;
+}
+
+/* Page 5 spacing */
+.appointmentSalaryHrDetails {
+  margin: 12% 0 18% auto;
+}
+
+.appointmentSalaryAcceptanceMain {
+  margin: 8% auto;
+}
+
+/* Salary table only - keep this special because you said it looks good */
+.appointmentSalaryTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.appointmentSalaryTable th {
+  background: #4c4c4c;
+  color: #ffffff;
+  text-align: left;
+  padding: 5px 6px;
+  font-size: 12px;
+}
+
+.appointmentSalaryTable td {
+  border: 1px solid #d0d0d0;
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+.appointmentSalaryTable th:nth-child(2),
+.appointmentSalaryTable th:nth-child(3),
+.appointmentSalaryTable td:nth-child(2),
+.appointmentSalaryTable td:nth-child(3) {
+  text-align: right;
+}
+
+.appointmentSalaryTable .editable-field {
+  font-size: 12px;
+}
+
+.salaryHeadingRow td {
+  background: #4c4c4c;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.salaryTotalRow td {
+  background: #e5e5e5;
+  font-weight: 700;
+}
+
+/* Extra button for Chrome preview */
+.appointment-print-btn {
+  padding: 7px 16px;
+  border: 1.5px solid #111;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #111;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s;
+}
+
+.appointment-print-btn:hover {
+  background: #111;
+  color: #ffffff;
+}
+
+.appointment-print-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Direct PDF cleanup */
+.appointment-pdf-downloading .step-wizard {
+  display: none !important;
+}
+
+.appointment-pdf-downloading .editable-field,
+.appointment-pdf-downloading .editable-field:hover {
+  border-bottom: none !important;
+  background: transparent !important;
+}
+
+.appointment-print-preview-pages .a4-page {
+  page-break-after: always;
+  break-after: page;
+}
+
+.appointment-print-preview-pages .a4-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* Print preview cleanup */
+@media print {
+  .appointment-print-preview-pages {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .appointment-print-preview-pages .a4-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .appointment-print-preview-pages .a4-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+}

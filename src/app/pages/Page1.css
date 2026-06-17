@@ -309,3 +309,115 @@
 .step-btn-download:hover {
     background: #219a52;
 }
+
+
+
+
+
+
+
+
+/* PDF preview wrapper */
+.offer-pdf-preview {
+  width: 820px;
+  margin: 0 auto;
+}
+
+/* While exporting, remove editable hover/input look */
+.offer-exporting .editable-field,
+.offer-exporting .editable-field:hover {
+  border-bottom: none !important;
+  background: transparent !important;
+}
+
+/* Hide wizard/banner from html2pdf capture if accidentally included */
+.offer-exporting .step-wizard,
+.offer-exporting .preview-banner {
+  display: none !important;
+}
+
+/* Direct PDF export page break support */
+.offer-pdf-preview .a4-page {
+  page-break-after: always;
+  break-after: page;
+}
+
+/* Last page should not create extra blank page */
+.offer-pdf-preview .a4-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+
+
+
+
+
+
+/* Direct PDF download cleanup */
+.offer-pdf-downloading .step-wizard,
+.offer-pdf-downloading .preview-banner {
+  display: none !important;
+}
+
+.offer-pdf-downloading .editable-field,
+.offer-pdf-downloading .editable-field:hover {
+  border-bottom: none !important;
+  background: transparent !important;
+}
+
+.print-preview-pages .a4-page {
+  page-break-after: always;
+  break-after: page;
+}
+
+.print-preview-pages .a4-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .step-wizard,
+  .preview-banner {
+    display: none !important;
+  }
+
+  .print-preview-pages {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .a4-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .a4-page:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .editable-field,
+  .editable-field:hover {
+    border-bottom: none !important;
+    background: transparent !important;
+  }
+}
