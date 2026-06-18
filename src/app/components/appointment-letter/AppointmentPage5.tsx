@@ -7,7 +7,9 @@ import React from "react";
 import "../appointment-letter/AppointmentLetter.css";
 import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
-import EditableField from "../appointment-letter/AppointmentEditableField";
+// import EditableField from "../appointment-letter/AppointmentEditableField";
+import EditableField from "../EditableField";
+
 function AppointmentPage5({ data, setData }) {
   const update = (field, value) =>
     setData((prev) => ({ ...prev, [field]: value }));
@@ -16,7 +18,7 @@ function AppointmentPage5({ data, setData }) {
     <div className="a4-page appointment-a4-page">
       <OfferHeader />
 
-      <div className="appointmentContent90">
+      <div className="">
         <div className="pageSideHeadingsMain">
           <div className="offerBoldLetters pagesSideHeading">
             Terms & Conditions

@@ -1,14 +1,3 @@
-// /* eslint-disable */
-// // @ts-nocheck
-// "use client";
-
-// import AppointmentLetterMain from "../components/appointment-letter/AppointmentLetterMain";
-// import "../components/appointment-letter/AppointmentLetter.css";
-
-// export default function AdinnAppointmentLetterPage() {
-//   return <AppointmentLetterMain />;
-// }
-
 import React from "react";
 import AppointmentPagesMain from "../components/appointment-letter/AppointmentLetterMain";
 

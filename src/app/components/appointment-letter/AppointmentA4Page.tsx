@@ -1,17 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
 import React from "react";
-
-/*
-  IMPORTANT:
-  Change only these 2 import paths based on your current folder structure.
-
-  You already have:
-  OfferHead.jsx
-  OfferFooter.jsx
-
-  So reuse those same files.
-*/
 import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
 

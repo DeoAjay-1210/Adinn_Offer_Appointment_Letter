@@ -7,14 +7,16 @@ import "../../pages/Page1.css";
 import "../appointment-letter/AppointmentLetter.css";
 import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
-import EditableField from "../appointment-letter/AppointmentEditableField";
+// import EditableField from "../appointment-letter/AppointmentEditableField";
+import EditableField from "../EditableField";
+
 
 function AppointmentPage2() {
   return (
     <div className="a4-page appointment-a4-page">
       <OfferHeader />
 
-      <div className="appointmentContent90" style={{ flex: 1 }}>
+      <div className="" style={{ flex: 1 }}>
         <div className="pageSideHeadingsMain">
           <div className="offerBoldLetters pagesSideHeading">
             Terms of Employment

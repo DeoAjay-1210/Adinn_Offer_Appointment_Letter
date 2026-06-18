@@ -7,7 +7,9 @@ import "../../pages/Page1.css";
 import "../appointment-letter/AppointmentLetter.css";
 import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
-import EditableField from "../appointment-letter/AppointmentEditableField";
+// import EditableField from "../appointment-letter/AppointmentEditableField";
+import EditableField from "../EditableField";
+
 
 function AppointmentPage3({ data, setData }) {
   const update = (field, value) =>
@@ -17,7 +19,7 @@ function AppointmentPage3({ data, setData }) {
     <div className="a4-page appointment-a4-page">
       <OfferHeader />
 
-      <div className="appointmentContent90">
+      <div className="">
         <div className="pageSideHeadingsMain">
           <div className="pagesParaContent">
             suspension, or termination in cases of misconduct, policy violation,

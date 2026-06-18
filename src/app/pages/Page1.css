@@ -1,6 +1,7 @@
 /* --- Global font --- */
 * {
     font-family: "Inter", sans-serif;
+    /* font-family: 'Times New Roman', Times, serif; */
     font-size: 17px;
     box-sizing: border-box;
     letter-spacing: 2%;
@@ -73,6 +74,7 @@
         height: 1143px;
         /* 297mm → 1123px */
         min-height: unset;
+        /* border: 1px solid red; */
         margin: 0;
         /*
       PRINT PADDING in mm — must visually match the px values above.
@@ -107,7 +109,8 @@
 
 .offerDateSection {
     text-align: end;
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
+    margin: 3% auto;
 }
 
 /* PAGE 1 */
@@ -201,7 +204,8 @@
 }
 
 .offerPage3HrDetails {
-    margin: 20% 0 20% auto;
+    /* margin: 20% 0 20% auto; */
+        margin: 23% 0 17% auto;
 
 }
 
@@ -375,7 +379,7 @@
   page-break-after: auto;
   break-after: auto;
 }
-
+/* 
 @media print {
   @page {
     size: A4;
@@ -420,4 +424,4 @@
     border-bottom: none !important;
     background: transparent !important;
   }
-}
+} */

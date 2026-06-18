@@ -12,6 +12,9 @@
   width: 100%;
   flex-shrink: 0;
 }
+.offerPagePersonContentsAppPg1 {
+    margin: 2% 0;
+}
 
 .appointmentFooterFull > div {
   width: 100% !important;
@@ -36,8 +39,8 @@
 }
 
 .appointmentNumberList li {
-  line-height: 30px;
-  margin-bottom: 6px;
+  /* line-height: 25px; */
+  /* margin-bottom: 6px; */
   text-align: justify;
 }
 
