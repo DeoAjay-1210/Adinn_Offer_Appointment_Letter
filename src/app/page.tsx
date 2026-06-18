@@ -8,7 +8,7 @@ function OfferPage() {
 
     <div 
     style={{
-        maxWidth: "900px", margin: "0 auto", padding: "32px 24px", fontFamily: "system-ui, sans-serif", height: 'max-content',
+        maxWidth: "820px", margin: "0 auto", padding: "32px 24px", fontFamily: "system-ui, sans-serif", height: 'max-content',
         //  border: '1px solid red',
       }}
       >

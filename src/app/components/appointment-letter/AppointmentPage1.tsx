@@ -17,7 +17,7 @@ function AppointmentPage1({ data, setData }) {
         <div className="a4-page appointment-a4-page">
             <OfferHeader />
             <div className="" style={{ flex: 1 }}>
-                <div className="">
+                {/* <div className=""> */}
                     {/* <h1 className="offerBoldLetters OfferMainHeading">
                         APPOINTMENT LETTER -{" "}
                         <EditableField
@@ -157,11 +157,9 @@ function AppointmentPage1({ data, setData }) {
                         </table>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
             {/* <div className="offerPageFooterMain appointmentFooterFull"> */}
-            <div>
-                <OfferFooter />
-            </div>
+            <div> <OfferFooter /> </div>
         </div>
     );
 }
