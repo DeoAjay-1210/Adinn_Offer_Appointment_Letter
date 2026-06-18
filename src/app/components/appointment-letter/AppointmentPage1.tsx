@@ -187,14 +187,14 @@ function AppointmentPage1({ data, setData }) {
             <OfferHeader />
             <div className="" style={{ flex: 1 }}>
                 <div className="appointmentPageContent">
-                    <h1 className="offerBoldLetters OfferMainHeading">
+                    {/* <h1 className="offerBoldLetters OfferMainHeading">
                         APPOINTMENT LETTER -{" "}
                         <EditableField
                             value={data.employeeName}
                             onChange={(val) => update("employeeName", val)}
                             bold
                         />
-                    </h1>
+                    </h1> */}
 
                     <div className="offerDateSection">
                         <span className="offerBoldLetters">Date: </span>

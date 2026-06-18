@@ -171,3 +171,136 @@
     break-after: auto;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Salary input section - only for editing screen */
+.salaryInputPanel {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  gap: 10px;
+  margin: 8px 0 12px;
+  padding: 8px 10px;
+  background: #f8f9fa;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+}
+
+.salaryInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.salaryInputGroup label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #244898;
+}
+
+.salaryInputGroup input,
+.salaryInputGroup select {
+  height: 30px;
+  min-width: 130px;
+  border: 1px solid #bfc7d5;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  outline: none;
+  background: #fff;
+}
+
+.salaryInputGroup input:focus,
+.salaryInputGroup select:focus {
+  border-color: #244898;
+}
+
+/* Salary table */
+.appointmentSalaryTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+  margin-top: 10px;
+}
+
+.appointmentSalaryTable th {
+  background: #244898;
+  color: #ffffff;
+  text-align: left;
+  padding: 4px 5px;
+  font-size: 10.5px;
+  font-weight: 800;
+  border: 1px solid #d5dce9;
+}
+
+.appointmentSalaryTable td {
+  border: 1px solid #d5dce9;
+  padding: 3px 5px;
+  font-size: 10.5px;
+  line-height: 1.25;
+}
+
+.appointmentSalaryTable th:nth-child(3),
+.appointmentSalaryTable th:nth-child(4),
+.appointmentSalaryTable td:nth-child(3),
+.appointmentSalaryTable td:nth-child(4) {
+  text-align: right;
+}
+
+.salaryRuleCell {
+  color: #5c6573;
+  font-style: italic;
+}
+
+.salaryHeadingRow td {
+  background: #47586d;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.salaryTotalRow td {
+  background: #eaf2ff;
+  font-weight: 800;
+  color: #0f233d;
+}
+
+.salaryNetRow td {
+  background: #d8f5e4;
+  color: #0a7a3b;
+  font-weight: 900;
+  border-top: 2px solid #65b38a;
+  border-bottom: 2px solid #65b38a;
+}
+
+/* Hide edit controls during direct PDF and Chrome print */
+.appointment-pdf-downloading .no-print {
+  display: none !important;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

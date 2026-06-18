@@ -22,14 +22,14 @@ function Page1({ data, setData }) {
         <div className="offerPage1OverallMain">
 
           {/* Title — "Mr." is static, name is editable */}
-          <h1 className="offerBoldLetters OfferMainHeading">
+          {/* <h1 className="offerBoldLetters OfferMainHeading">
             Offer Letter -{' '}
             <EditableField
               value={data.employeeName}
               onChange={(val) => update('employeeName', val)}
               bold
             />
-          </h1>
+          </h1> */}
 
           {/* Date — right aligned */}
           <div className="offerDateSection">
