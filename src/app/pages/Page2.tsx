@@ -73,7 +73,7 @@ function Page2({ data }) {
                     <ul className="offerDocsList">
                         <li>Aadhaar Card</li>
                         <li>PAN Card</li>
-                        <li>Educational Certificates (12th, UG, PG)</li>
+                        <li>Educational Certificates (12<sup style={{fontSize:'12px', paddingTop:'2px'}}>th</sup>, UG, PG)</li>
                         <li>Passport Size Photographs</li>
                         <li>Bank Account Details</li>
                         <li>

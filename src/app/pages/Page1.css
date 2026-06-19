@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
 }
 
 html,
@@ -48,8 +49,8 @@ body {
 }
 
 .offer-header-logo {
-  width: 35mm;
-  height: auto;
+  /* width: 35mm;
+  height: auto; */
   max-height: 18mm;
   object-fit: contain;
 }
@@ -108,7 +109,7 @@ body {
 }
 
 .offer-footer-divider {
-  width: 1px;
+  width: 1.5px;
   height: 10mm;
   background: #000;
   flex-shrink: 0;
@@ -116,12 +117,12 @@ body {
 
 .offer-footer-address {
   flex: 1;
-  font-size: 7.4px;
+  font-size: 8.5px !important;
   line-height: 1.35;
 }
 
 .offer-footer-address strong {
-  font-size: 7.4px;
+  font-size: 8.5px !important;
   font-weight: 700;
 }
 
@@ -148,13 +149,14 @@ body {
 
 .OfferMainHeading {
   text-align: center;
-  margin: 5mm auto 6mm;
+  margin: 5px auto;
   font-size: 15px;
 }
 
 .offerDateSection {
   text-align: right;
-  margin-bottom: 8mm;
+ margin: 3% auto;
+ margin-bottom: 4%;
 }
 
 .offerPage1To {
@@ -170,11 +172,11 @@ body {
 }
 
 .offerPage1Subject {
-  margin: 7mm 0 6mm;
+  margin: 6% 0;
 }
 
 .offerPagePersonContents {
-  margin: 6mm 0;
+  margin: 6% 0;
 }
 
 .offerPersonContentsName {
@@ -210,21 +212,21 @@ body {
 }
 
 .pagesSideHeading {
-  font-size: 14px;
+  /* font-size: 14px; */
   margin: 2mm 0;
 }
 
 .pagesParaContent {
-  margin: 2.5mm 0;
-  line-height: 1.55;
+  margin: 10px 0;
+  line-height: 1.5;
   text-align: justify;
 }
 
 .offerDocsList {
   list-style-type: disc;
-  margin: 2mm 0 0 6mm;
+  margin: 0px 0 0 15px;
   padding-left: 5mm;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 
 .offerDocsSubList {
@@ -235,21 +237,23 @@ body {
 
 /* Page 3 */
 .offerPage3CmpyName {
-  margin: 8mm 0;
+  margin-top: 8%;
 }
 
 .offerPage3HrDetails {
-  margin: 32mm 0 24mm auto;
+    margin: 19% 0 18% auto;
 }
 
 .offerPage3Acceptance1Main {
-  margin: 6mm 0;
+  margin-bottom: 5%;
 }
 
 .offerPage3Acceptance1 {
   border-bottom: 1px solid black;
   width: 70mm;
   display: inline-block;
+  line-height: 1;
+  vertical-align: baseline;
 }
 
 .offerPageEmployeeDetailsContentPg35 td {
@@ -265,24 +269,86 @@ body {
   padding: 3mm 4mm;
 }
 
-/* Page 4 */
-.offerPage4TCMain {
-  margin-top: 8mm;
+
+
+
+.offerAcceptancePara {
+  font-size: 16px;
+  line-height: 1.55;
+  text-align: left;
 }
 
-.offerPage4TCMain ol {
-  margin-top: 3mm;
+.offerPage3AcceptanceBlankLine {
+  display: inline-block;
+  width: 70mm;
+  height: 16px;
+  border-bottom: 1px solid #000;
+  vertical-align: bottom;
+  margin: 0 2mm;
+    position: relative;
+  /* top: -4px;  Add this */
+}
+
+
+/* Page 4 */
+.offerDateSectionPg4 {
+  text-align: right;
+  margin-bottom: 2%;
+}
+.offerPagePersonContentsPg4 {
+  margin: 10px 0;
+}
+
+
+.offerPageEmployeeDetailsContentPg4 td {
+  padding: 8px 0;
+  vertical-align: top;
+}
+
+.offerPageEmployeeDetailsContentPg4 td:first-child {
+  min-width: 45mm;
+}
+
+.offerPageEmployeeDetailsContentPg4 td:nth-child(2) {
+  padding: 8px 4mm;
+}
+
+
+.offerPage4TCMain {
+  margin-top: 4mm !important;
+}
+
+.offerPage4TCMain .pagesSideHeading {
+  /* font-size: 13px !important; */
+  margin-bottom: 2mm !important;
+}
+
+.offerTermsList {
+  list-style: none !important;
+  counter-reset: offerTermsCounter var(--term-start, 0);
+  margin: 2mm 0 0 !important;
   padding-left: 9mm !important;
 }
 
-.offerPage4TCMain ol li {
-  line-height: 1.65;
-  margin-bottom: 2mm;
+.offerTermsList > li {
+  counter-increment: offerTermsCounter;
+  position: relative;
+  line-height: 1.55 !important;
+  margin-bottom: 2.2mm !important;
+  /* font-size: 13px !important; */
+  text-align: justify;
 }
 
+.offerTermsList > li::before {
+  content: counter(offerTermsCounter) ".";
+  position: absolute;
+  left: -6mm;
+  top: 0;
+  line-height: inherit;
+}
 /* Page 5 */
 .offerPage5HrDetails {
-  margin: 38mm 0 42mm auto;
+  margin: 26% 0 22% auto;
 }
 
 .offerPage5Acceptance1Main {
@@ -392,4 +458,231 @@ body {
     border-bottom: none !important;
     background: transparent !important;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Export cleanup */
+.offer-exporting .step-wizard {
+  display: none !important;
+}
+
+.offer-exporting .editable-field,
+.offer-exporting .editable-field:hover {
+  border-bottom: none !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+/* Important:
+   Do not display:none salaryInputPanel.
+   Hide the controls but keep the same height, so table does not jump. */
+.offer-exporting .salaryInputPanel.no-print {
+  display: flex !important;
+  visibility: hidden !important;
+}
+
+.offer-exporting .salaryInputPanel.no-print * {
+  visibility: hidden !important;
+}
+
+/* Other no-print items can hide normally */
+.offer-exporting .no-print:not(.salaryInputPanel) {
+  display: none !important;
+}
+
+/* Same behavior for Chrome print */
+@media print {
+  .salaryInputPanel.no-print {
+    display: flex !important;
+    visibility: hidden !important;
+  }
+
+  .salaryInputPanel.no-print * {
+    visibility: hidden !important;
+  }
+
+  .no-print:not(.salaryInputPanel) {
+    display: none !important;
+  }
+}
+
+
+
+
+
+
+
+.offerDocsList,
+.offerDocsSubList {
+  list-style: none;
+}
+
+.offerDocsList > li,
+.offerDocsSubList > li {
+  position: relative;
+}
+
+.offerDocsList > li::before {
+  content: "•";
+  position: absolute;
+  left: -5mm;
+  top: 0;
+  line-height: inherit;
+}
+
+.offerDocsSubList > li::before {
+  content: "◦";
+  position: absolute;
+  left: -4mm;
+  top: 0;
+  line-height: inherit;
+}
+
+
+
+
+
+.salaryRuleCell {
+  color: #5c6573 !important;
+  font-style: italic !important;
+}
+
+
+.offerSalaryTable .salaryHeadingRow td {
+  background: #47586d !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  padding: 4px 5px !important;    
+}
+
+.salaryTotalRow td {
+  background: #eaf2ff !important;
+  color: #0f233d !important;
+  font-weight: 800 !important;
+}
+
+.salaryNetRow td {
+  background: #d8f5e4 !important;
+  color: #0a7a3b !important;
+  font-weight: 900 !important;
+  border-top: 2px solid #65b38a !important;
+  border-bottom: 2px solid #65b38a !important;
+}
+/* Hide salary input panel properly during PDF/print */
+.offer-exporting .salaryInputPanel.no-print,
+.appointment-pdf-downloading .salaryInputPanel.no-print {
+  display: none !important;
+}
+
+@media print {
+  .salaryInputPanel.no-print {
+    display: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Offer salary table - stable for browser + html2canvas PDF ---------- */
+
+.offerSalaryTable {
+  width: 100% !important;
+  table-layout: fixed !important;
+  border-collapse: collapse !important;
+  margin: 2mm 0 4mm !important;
+  font-size: 8.8px !important;
+  line-height: 1.2 !important;
+}
+
+.offerSalaryTable th,
+.offerSalaryTable td {
+  border: 1px solid #d5dce9 !important;
+  padding: 4px 5px !important;        /* slightly more padding top/bottom */
+  font-size: 8.8px !important;
+  line-height: 1.2 !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  vertical-align: top !important;     /* ← changed from middle to top */
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+.offerSalaryTable th {
+  background: #244898 !important;
+  color: #ffffff !important;
+  font-size: 8.6px !important;
+  font-weight: 800 !important;
+  text-align: left !important;
+}
+
+.offerSalaryTable td:nth-child(1),
+.offerSalaryTable td:nth-child(2) {
+  text-align: left !important;
+}
+
+.offerSalaryTable th:nth-child(3),
+.offerSalaryTable th:nth-child(4),
+.offerSalaryTable td:nth-child(3),
+.offerSalaryTable td:nth-child(4) {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.offerSalaryTable .salaryRuleCell {
+  color: #5c6573 !important;
+  font-style: italic !important;
+}
+
+.offerSalaryTable .salaryHeadingRow td {
+  background: #47586d !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.offerSalaryTable .salaryTotalRow td {
+  background: #eaf2ff !important;
+  color: #0f233d !important;
+  font-weight: 800 !important;
+}
+
+.offerSalaryTable .salaryNetRow td {
+  background: #d8f5e4 !important;
+  color: #0a7a3b !important;
+  font-weight: 900 !important;
+  border-top: 2px solid #65b38a !important;
+  border-bottom: 2px solid #65b38a !important;
 }

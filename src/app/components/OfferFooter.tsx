@@ -35,22 +35,22 @@ import "./OfferFooter.css";
 function OfferFooterPage() {
   return (
     <footer className="offer-page-footer">
-      <div className="offer-footer-inner">
+      <div className="offer-footer-inner" style={{alignItems:'center'}}>
         <div className="offer-footer-logos">
-          <img src="/Images/Adinn_INSLogo1.png" alt="INS" />
-          <img src="/Images/Adinn_RuralLogo1.png" alt="Rural" />
-          <img src="/Images/Adinn_IndianOutdoorLogo1.jpg" alt="Indian Outdoor" />
-          <img src="/Images/Adinn_3mLogo1.png" alt="3M" />
+          <img src="/Images/Adinn_INSLogo1.png" alt="INS" style={{ width: '50px', height: '40px' }} />
+          <img src="/Images/Adinn_RuralLogo1.png" alt="Rural" style={{ width: '50px', height: '30px' }} />
+          <img src="/Images/Adinn_IndianOutdoorLogo1.jpg" alt="Indian Outdoor" style={{ width: 'auto', height: '40px' }} />
+          <img src="/Images/Adinn_3mLogo1.png" alt="3M"  style={{ width: '30px', height: '25px' }}/>
         </div>
 
         <div className="offer-footer-divider" />
 
-        <div className="offer-footer-address">
-          <div>
+        <div className="offer-footer-address" >
+          <div style={{fontSize: '8.8px'}}>
             <strong>REGISTERED OFFICE :</strong> 29, 1st Cross street,
             Vanamamalai nagar, Bypass road, Madurai - 625016.
           </div>
-          <div>
+          <div style={{fontSize: '8.8px'}}>
             <strong>BRANCH OFFICE :</strong> Chennai | Bengaluru | Kerala |
             Tel: 91 452 4344800 - 801. Email: info@adinn.co.in. www.adinn.com
           </div>

@@ -66,7 +66,7 @@ function EditableField({ value, onChange, bold = false, className = '', style = 
           background: 'transparent',
           fontFamily: 'inherit',
           fontSize: 'inherit',
-          width: Math.max(value.length * 10, 81) + 'px', // auto-size roughly
+          width: Math.max(value.length * 10, 82) + 'px', // auto-size roughly
           padding: '0',
           margin: '0',
           color: 'inherit',
