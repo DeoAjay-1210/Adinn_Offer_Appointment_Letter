@@ -21,7 +21,7 @@ function AppointmentPage3({ data, setData }) {
 
       <div className="">
         <div className="pageSideHeadingsMain">
-          <div className="pagesParaContent">
+          <div className=" pagesParaContentAppPg3">
             suspension, or termination in cases of misconduct, policy violation,
             fraud, breach of confidentiality, unauthorised disclosure of
             information, or any act prejudicial to the interests of the Company.
@@ -60,7 +60,7 @@ function AppointmentPage3({ data, setData }) {
           </div>
         </div>
 
-        <div className="offerPage3CmpyName">
+        <div className="offerPage3CmpyNameAppPg3">
           For Adinn Advertising Services Limited
         </div>
 
@@ -75,7 +75,7 @@ function AppointmentPage3({ data, setData }) {
         </div>
 
         <div className="appointmentAcceptanceMain">
-          <div className="offerBoldLetters pagesSideHeading">
+          <div className="offerBoldLetters pagesSideHeadingAppPg3">
             Employee Acceptance
           </div>
 
@@ -97,19 +97,19 @@ function AppointmentPage3({ data, setData }) {
 
           <table>
             <tbody>
-              <tr className="offerPageEmployeeDetailsContentPg35">
+              <tr className="offerPageEmployeeDetailsContentPg35AppPg3">
                 <td className="offerBoldLetters">Employee Name</td>
                 <td>:</td>
                 <td></td>
               </tr>
 
-              <tr className="offerPageEmployeeDetailsContentPg35">
+              <tr className="offerPageEmployeeDetailsContentPg35AppPg3">
                 <td className="offerBoldLetters">Signature</td>
                 <td>:</td>
                 <td></td>
               </tr>
 
-              <tr className="offerPageEmployeeDetailsContentPg35">
+              <tr className="offerPageEmployeeDetailsContentPg35AppPg3">
                 <td className="offerBoldLetters">Date</td>
                 <td>:</td>
                 <td></td>

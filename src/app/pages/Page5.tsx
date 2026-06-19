@@ -109,7 +109,9 @@ function Page5({ data, setData }) {
 
       <div className="offer-page-body offerPage5Body">
         <div className="offerPage4TCMain">
-          <ol className="offerTermsList" style={{ "--term-start": 2 }}>
+          <ol className="offerTermsList" style={{ "--term-start": 1 }}>
+                        <li>Statutory deductions such as PF, ESI, Professional Tax, Income Tax, or any other applicable deductions shall be made as per prevailing laws.</li>
+
             <li>
               Salary structure and benefits are confidential and should not be
               disclosed to unauthorized persons.

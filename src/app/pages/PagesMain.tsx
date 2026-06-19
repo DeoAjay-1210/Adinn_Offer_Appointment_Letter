@@ -755,13 +755,13 @@ function PagesMain() {
           Next
         </button>
 
-        <button
+        {/* <button
           className="step-btn-download"
           onClick={openChromePrintPreview}
           disabled={isPdfDownloading || isDocxDownloading}
         >
           Chrome Preview / Save PDF
-        </button>
+        </button> */}
 
         <button
           className="step-btn-download"
@@ -771,7 +771,7 @@ function PagesMain() {
           {isPdfDownloading ? "Preparing PDF..." : "Download PDF"}
         </button>
 
-        <button
+        {/* <button
           // className="step-btn-download"
           // onClick={downloadDOCX}
           // disabled={isPdfDownloading || isDocxDownloading}
@@ -780,7 +780,7 @@ function PagesMain() {
           onClick={() => generateOfferDocx(data)}
         >
           {isDocxDownloading ? "Preparing DOCX..." : "Download DOCX"}
-        </button>
+        </button> */}
       </div>
     </div>
   );

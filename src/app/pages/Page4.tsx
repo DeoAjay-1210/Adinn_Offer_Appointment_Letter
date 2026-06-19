@@ -488,12 +488,7 @@ function Page4({ data, setData }) {
 
                     <ol className="offerTermsList" style={{ "--term-start": 0 }}>
                         <li>Salary shall be paid on or before the scheduled salary disbursement date as per company policy.</li>
-                        <li>Statutory deductions such as PF, ESI, Professional Tax, Income Tax, or any other applicable deductions shall be made as per prevailing laws.</li>
-                        {/* <li>Salary structure and benefits are confidential and should not be disclosed to unauthorized persons.</li>
-                        <li>The Company reserves the right to revise, restructure, or modify compensation components in accordance with business requirements and applicable laws.</li>
-                        <li>Any excess payment, erroneous payment, or policy-related recovery may be adjusted from future salary or final settlement.</li> */}
-
-                    
+                        {/* <li>Statutory deductions such as PF, ESI, Professional Tax, Income Tax, or any other applicable deductions shall be made as per prevailing laws.</li> */}
                     </ol>
 
                 </div>

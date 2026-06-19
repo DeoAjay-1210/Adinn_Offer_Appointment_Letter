@@ -591,13 +591,13 @@ function AppointmentPagesMain() {
           Next →
         </button>
 
-        <button
+        {/* <button
           className="appointment-print-btn"
           onClick={openChromePrintPreview}
           disabled={isPdfDownloading}
         >
           Chrome Preview / Save PDF
-        </button>
+        </button> */}
 
         <button
           className="step-btn-download"

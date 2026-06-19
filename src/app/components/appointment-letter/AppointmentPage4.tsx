@@ -266,7 +266,7 @@ function AppointmentPage4({ data, setData }) {
           REVISED SALARY ANNEXURE
         </h1>
 
-        <div className="offerDateSection">
+        <div className="offerDateSectionAppPg4">
           <span className="offerBoldLetters">Date: </span>
           <EditableField
             value={data.letterDate}
@@ -274,7 +274,7 @@ function AppointmentPage4({ data, setData }) {
           />
         </div>
 
-        <div className="offerPagePersonContents">
+        <div className="offerPagePersonContentsAppPg4">
           <table>
             <tbody>
               {[
@@ -287,7 +287,7 @@ function AppointmentPage4({ data, setData }) {
                 ["Date of Joining", "dateOfJoining"],
                 ["Confirmation Date", "confirmationDate"],
               ].map(([label, field]) => (
-                <tr className="offerPageEmployeeDetailsContent" key={field}>
+                <tr className="offerPageEmployeeDetailsContentAppPg4" key={field}>
                   <td className="offerBoldLetters">{label}</td>
                   <td>:</td>
                   <td>
@@ -302,13 +302,13 @@ function AppointmentPage4({ data, setData }) {
           </table>
         </div>
 
-        <div className="offerPage1Subject">
+        <div className="offerPage1SubjectAppPg4">
           <span className="offerBoldLetters">Subject:</span> Revision of
           Compensation upon Confirmation of Employment
         </div>
 
-        <div className="offerPagePersonContents">
-          <div className="offerPersonContentsName">
+        <div className="offerPagePersonContentsAppPg4">
+          <div className="offerPersonContentsNameAppPg4">
             Dear {" "}
             <span className="offerBoldLetters">
               <EditableField
@@ -319,14 +319,14 @@ function AppointmentPage4({ data, setData }) {
             </span>
           </div>
 
-          <div className="offerPersonContentsPara">
+          <div className="offerPersonContentsParaAppPg4">
             We are pleased to inform you that upon successful completion of your
             probation period and confirmation of your employment with Adinn
             Advertising Services Limited, your compensation has been revised as
             detailed below.
           </div>
 
-          <div className="offerPersonContentsPara">
+          <div className="offerPersonContentsParaAppPg4">
             The revised compensation shall be effective from{" "}
             <span className="offerBoldLetters">
               <EditableField
@@ -341,7 +341,6 @@ function AppointmentPage4({ data, setData }) {
         {/* Salary input section - hidden in print/PDF */}
         <div className="salaryInputPanel no-print">
           <div className="salaryInputGroup">
-            <label>Salary Type</label>
             <select
               value={data.salaryType}
               onChange={(e) => update("salaryType", e.target.value)}
@@ -354,7 +353,6 @@ function AppointmentPage4({ data, setData }) {
           </div>
 
           <div className="salaryInputGroup">
-            <label>Monthly CTC</label>
             <input
               type="number"
               value={data.monthlyCTC}
@@ -376,7 +374,7 @@ function AppointmentPage4({ data, setData }) {
           )}
         </div>
 
-        <table className="appointmentSalaryTable">
+        <table className="appointmentSalaryTableAppPg4">
           <thead>
             <tr>
               <th>SALARY COMPONENTS</th>

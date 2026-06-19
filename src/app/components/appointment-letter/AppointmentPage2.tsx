@@ -22,7 +22,7 @@ function AppointmentPage2() {
             Terms of Employment
           </div>
 
-          <ol className="appointmentNumberList">
+          <ol className="appointmentNumberList" style={{ "--term-start": 0 }}>
             <li>
               Your employment shall continue subject to satisfactory performance,
               conduct, attendance, discipline, and compliance with Company

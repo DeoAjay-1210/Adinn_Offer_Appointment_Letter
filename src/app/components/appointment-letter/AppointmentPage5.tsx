@@ -55,11 +55,11 @@ function AppointmentPage5({ data, setData }) {
           </ol>
         </div>
 
-        <div className="offerPage3CmpyName">
+        <div className="offerPage3CmpyNameAppPg5">
           For Adinn Advertising Services Limited
         </div>
 
-        <div className="appointmentSalaryHrDetails">
+        <div className="appointmentSalaryHrDetailsAppPg5">
           <div className="offerBoldLetters">
             <EditableField
               value={data.hrName}
