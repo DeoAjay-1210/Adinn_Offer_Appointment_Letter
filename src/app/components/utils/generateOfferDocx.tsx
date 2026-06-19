@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 // generateOfferDocx.js  — v2  (real header/footer images, matching layout)
 // Place in:  src/components/utils/generateOfferDocx.js
 // Usage:     import { generateOfferDocx } from ".../generateOfferDocx";

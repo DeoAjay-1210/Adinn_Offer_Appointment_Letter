@@ -1,3 +1,286 @@
+// /* eslint-disable */
+// // @ts-nocheck
+// "use client";
+
+// import React, { useEffect, useRef, useState } from "react";
+// import { flushSync } from "react-dom";
+
+// import AppointmentPage1 from "./AppointmentPage1";
+// import AppointmentPage2 from "./AppointmentPage2";
+// import AppointmentPage3 from "./AppointmentPage3";
+// import AppointmentPage4 from "./AppointmentPage4";
+// import AppointmentPage5 from "./AppointmentPage5";
+
+// import "../../pages/Page1.css";
+// import "../appointment-letter/AppointmentLetter.css";
+
+// const DEFAULT_APPOINTMENT_DATA = {
+//   letterDate: "01/07/2026",
+//   employeeName: "Mr. Soundarapandian M",
+//   employeeId: "1449",
+
+//   addressLine1: "1A, Thiyagarajan Nagar,",
+//   addressLine2: "Sourashtra Teachers colony,",
+//   addressLine3: "Anuppaady, Madurai.",
+
+//   designation: "Senior Graphic Designer",
+//   department: "Arts & Creative",
+//   branch: "Head Office",
+//   reportingTo: "Sathish Kumar L",
+//   dateOfJoining: "02-08-2023",
+//   confirmationDate: "01-07-2026",
+//   employmentType: "Full-Time",
+//   effectiveDateText: "1st July 2026",
+//   hrName: "Gayathri S",
+
+//   salaryType: "WITH_PF",
+//   monthlyCTC: "31808",
+//   variablePay: "0",
+// };
+
+// const STEPS = [
+//   "Page 1 — Details",
+//   "Page 2 — Terms",
+//   "Page 3 — Acceptance",
+//   "Page 4 — Salary Annexure",
+//   "Page 5 — Salary T&C",
+//   "Preview",
+// ];
+
+// function AppointmentPagesMain() {
+//   const [data, setData] = useState(DEFAULT_APPOINTMENT_DATA);
+//   const [currentStep, setCurrentStep] = useState(0);
+//   const [isPdfDownloading, setIsPdfDownloading] = useState(false);
+
+//   const pdfRef = useRef(null);
+
+//   useEffect(() => {
+//     const savedOfferData = localStorage.getItem("adinnOfferLetterData");
+
+//     if (!savedOfferData) return;
+
+//     const offerData = JSON.parse(savedOfferData);
+
+//     setData((prev) => ({
+//       ...prev,
+
+//       // Common employee details from offer letter
+//       employeeName: offerData.employeeName || prev.employeeName,
+//       letterDate: offerData.offerDate || prev.letterDate,
+//       addressLine1: offerData.addressLine1 || prev.addressLine1,
+//       addressLine2: offerData.addressLine2 || prev.addressLine2,
+//       addressLine3: offerData.addressLine3 || prev.addressLine3,
+//       designation: offerData.designation || prev.designation,
+//       department: offerData.department || prev.department,
+//       branch: offerData.branch || prev.branch,
+//       reportingTo: offerData.reportingTo || prev.reportingTo,
+//       dateOfJoining: offerData.dateOfJoining || prev.dateOfJoining,
+//       employmentType: offerData.employmentType || prev.employmentType,
+//       hrName: offerData.hrName || prev.hrName,
+
+//       // Appointment specific fields remain separate
+//       confirmationDate: prev.confirmationDate,
+//       effectiveDateText: prev.effectiveDateText,
+//       employeeId: prev.employeeId,
+//       salaryType: prev.salaryType,
+//       monthlyCTC: prev.monthlyCTC,
+//       variablePay: prev.variablePay,
+//     }));
+//   }, []);
+
+//   const getCleanEmployeeName = () => {
+//     return data.employeeName
+//       .replaceAll("Mr.", "")
+//       .replaceAll("Ms.", "")
+//       .replaceAll("Mrs.", "")
+//       .replaceAll(".", "")
+//       .trim()
+//       .toLowerCase()
+//       .replace(/\s+/g, "-");
+//   };
+
+//   const waitForImages = async () => {
+//     const images = Array.from(document.images);
+
+//     await Promise.all(
+//       images.map((img) => {
+//         if (img.complete) return Promise.resolve();
+
+//         return new Promise((resolve) => {
+//           img.onload = resolve;
+//           img.onerror = resolve;
+//         });
+//       })
+//     );
+//   };
+
+//   const waitForDomPaint = async () => {
+//     await new Promise((resolve) => {
+//       requestAnimationFrame(() => {
+//         requestAnimationFrame(resolve);
+//       });
+//     });
+//   };
+
+//   const openChromePrintPreview = async () => {
+//     flushSync(() => {
+//       setCurrentStep(5);
+//     });
+
+//     await waitForDomPaint();
+
+//     if (document.fonts) {
+//       await document.fonts.ready;
+//     }
+
+//     await waitForImages();
+
+//     setTimeout(() => {
+//       window.print();
+//     }, 300);
+//   };
+
+//   const downloadPDF = async () => {
+//     try {
+//       setIsPdfDownloading(true);
+
+//       flushSync(() => {
+//         setCurrentStep(5);
+//       });
+
+//       await waitForDomPaint();
+
+//       if (document.fonts) {
+//         await document.fonts.ready;
+//       }
+
+//       await waitForImages();
+
+//       if (!pdfRef.current) {
+//         alert("PDF content not found. Please open preview and try again.");
+//         return;
+//       }
+
+//       const html2pdfModule = await import("html2pdf.js");
+//       const html2pdf = html2pdfModule.default || html2pdfModule;
+
+//       const fileName = `appointment-letter-${getCleanEmployeeName()}.pdf`;
+
+//       const options = {
+//         margin: 0,
+//         filename: fileName,
+//         image: {
+//           type: "jpeg",
+//           quality: 0.98,
+//         },
+//         html2canvas: {
+//           scale: 2,
+//           useCORS: true,
+//           letterRendering: true,
+//           scrollX: 0,
+//           scrollY: 0,
+//           windowWidth: 794,
+//           backgroundColor: "#ffffff",
+//         },
+//         jsPDF: {
+//           unit: "mm",
+//           format: "a4",
+//           orientation: "portrait",
+//         },
+//         pagebreak: {
+//           mode: ["css", "legacy"],
+//         },
+//       };
+
+//       await html2pdf().set(options).from(pdfRef.current).save();
+//     } catch (error) {
+//       console.error("Appointment PDF download failed:", error);
+//       alert("PDF download failed. Please check browser console.");
+//     } finally {
+//       setIsPdfDownloading(false);
+//     }
+//   };
+
+//   return (
+//     <div className={isPdfDownloading ? "appointment-pdf-downloading" : ""}>
+//       {currentStep === 0 && <AppointmentPage1 data={data} setData={setData} />}
+//       {currentStep === 1 && <AppointmentPage2 data={data} setData={setData} />}
+//       {currentStep === 2 && <AppointmentPage3 data={data} setData={setData} />}
+//       {currentStep === 3 && <AppointmentPage4 data={data} setData={setData} />}
+//       {currentStep === 4 && <AppointmentPage5 data={data} setData={setData} />}
+
+//       {currentStep === 5 && (
+//         <div ref={pdfRef} className="appointment-print-preview-pages">
+//           <AppointmentPage1 data={data} setData={setData} />
+//           <AppointmentPage2 data={data} setData={setData} />
+//           <AppointmentPage3 data={data} setData={setData} />
+//           <AppointmentPage4 data={data} setData={setData} />
+//           <AppointmentPage5 data={data} setData={setData} />
+//         </div>
+//       )}
+
+//       <div className="step-wizard appointment-step-wizard">
+//         <button
+//           className="step-btn"
+//           onClick={() => setCurrentStep((s) => Math.max(0, s - 1))}
+//           disabled={currentStep === 0 || isPdfDownloading}
+//         >
+//           ← Back
+//         </button>
+
+//         {STEPS.map((label, i) => (
+//           <button
+//             key={i}
+//             className={`step-btn ${currentStep === i ? "active" : ""}`}
+//             onClick={() => setCurrentStep(i)}
+//             disabled={isPdfDownloading}
+//           >
+//             {i + 1}. {label}
+//           </button>
+//         ))}
+
+//         <button
+//           className="step-btn"
+//           onClick={() =>
+//             setCurrentStep((s) => Math.min(STEPS.length - 1, s + 1))
+//           }
+//           disabled={currentStep === STEPS.length - 1 || isPdfDownloading}
+//         >
+//           Next →
+//         </button>
+
+//         <button
+//           className="appointment-print-btn"
+//           onClick={openChromePrintPreview}
+//           disabled={isPdfDownloading}
+//         >
+//           Chrome Preview / Save PDF
+//         </button>
+
+//         <button
+//           className="step-btn-download"
+//           onClick={downloadPDF}
+//           disabled={isPdfDownloading}
+//         >
+//           {isPdfDownloading ? "Preparing PDF..." : "Download PDF"}
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default AppointmentPagesMain;
+
+
+
+
+
+
+
+
+
+
+
 /* eslint-disable */
 // @ts-nocheck
 "use client";
@@ -59,33 +342,35 @@ function AppointmentPagesMain() {
 
     if (!savedOfferData) return;
 
-    const offerData = JSON.parse(savedOfferData);
+    try {
+      const offerData = JSON.parse(savedOfferData);
 
-    setData((prev) => ({
-      ...prev,
+      setData((prev) => ({
+        ...prev,
 
-      // Common employee details from offer letter
-      employeeName: offerData.employeeName || prev.employeeName,
-      letterDate: offerData.offerDate || prev.letterDate,
-      addressLine1: offerData.addressLine1 || prev.addressLine1,
-      addressLine2: offerData.addressLine2 || prev.addressLine2,
-      addressLine3: offerData.addressLine3 || prev.addressLine3,
-      designation: offerData.designation || prev.designation,
-      department: offerData.department || prev.department,
-      branch: offerData.branch || prev.branch,
-      reportingTo: offerData.reportingTo || prev.reportingTo,
-      dateOfJoining: offerData.dateOfJoining || prev.dateOfJoining,
-      employmentType: offerData.employmentType || prev.employmentType,
-      hrName: offerData.hrName || prev.hrName,
+        employeeName: offerData.employeeName || prev.employeeName,
+        letterDate: offerData.offerDate || prev.letterDate,
+        addressLine1: offerData.addressLine1 || prev.addressLine1,
+        addressLine2: offerData.addressLine2 || prev.addressLine2,
+        addressLine3: offerData.addressLine3 || prev.addressLine3,
+        designation: offerData.designation || prev.designation,
+        department: offerData.department || prev.department,
+        branch: offerData.branch || prev.branch,
+        reportingTo: offerData.reportingTo || prev.reportingTo,
+        dateOfJoining: offerData.dateOfJoining || prev.dateOfJoining,
+        employmentType: offerData.employmentType || prev.employmentType,
+        hrName: offerData.hrName || prev.hrName,
 
-      // Appointment specific fields remain separate
-      confirmationDate: prev.confirmationDate,
-      effectiveDateText: prev.effectiveDateText,
-      employeeId: prev.employeeId,
-      salaryType: prev.salaryType,
-      monthlyCTC: prev.monthlyCTC,
-      variablePay: prev.variablePay,
-    }));
+        confirmationDate: prev.confirmationDate,
+        effectiveDateText: prev.effectiveDateText,
+        employeeId: prev.employeeId,
+        salaryType: prev.salaryType,
+        monthlyCTC: prev.monthlyCTC,
+        variablePay: prev.variablePay,
+      }));
+    } catch (error) {
+      console.error("Invalid offer letter data in localStorage:", error);
+    }
   }, []);
 
   const getCleanEmployeeName = () => {
@@ -99,12 +384,22 @@ function AppointmentPagesMain() {
       .replace(/\s+/g, "-");
   };
 
-  const waitForImages = async () => {
-    const images = Array.from(document.images);
+  const waitForNextPaint = async () => {
+    await new Promise((resolve) => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(resolve);
+      });
+    });
+  };
+
+  const waitForImages = async (root = document) => {
+    const images = Array.from(root.querySelectorAll("img"));
 
     await Promise.all(
       images.map((img) => {
-        if (img.complete) return Promise.resolve();
+        if (img.complete && img.naturalWidth !== 0) {
+          return Promise.resolve();
+        }
 
         return new Promise((resolve) => {
           img.onload = resolve;
@@ -114,95 +409,142 @@ function AppointmentPagesMain() {
     );
   };
 
-  const waitForDomPaint = async () => {
-    await new Promise((resolve) => {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(resolve);
-      });
-    });
-  };
-
-  const openChromePrintPreview = async () => {
+  const renderAllPagesBeforeExport = async (type?: "pdf") => {
     flushSync(() => {
       setCurrentStep(5);
+
+      if (type === "pdf") {
+        setIsPdfDownloading(true);
+      }
     });
 
-    await waitForDomPaint();
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+
+    await waitForNextPaint();
 
     if (document.fonts) {
       await document.fonts.ready;
     }
 
-    await waitForImages();
+    await waitForImages(pdfRef.current || document);
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+  };
+
+  const createA4PdfBlob = async (rootElement) => {
+    const html2canvasModule = await import("html2canvas");
+    const jsPdfModule = await import("jspdf");
+
+    const html2canvas = html2canvasModule.default;
+    const { jsPDF } = jsPdfModule;
+
+    const pages = Array.from(rootElement.querySelectorAll(".a4-page"));
+
+    if (!pages.length) {
+      throw new Error("No A4 pages found for PDF export.");
+    }
+
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+      compress: true,
+    });
+
+    for (let index = 0; index < pages.length; index++) {
+      const page = pages[index] as HTMLElement;
+
+      const canvas = await html2canvas(page, {
+        scale: 2.5,
+        useCORS: true,
+        allowTaint: false,
+        backgroundColor: "#ffffff",
+        logging: false,
+
+        width: page.offsetWidth,
+        height: page.offsetHeight,
+
+        scrollX: 0,
+        scrollY: 0,
+
+        windowWidth: page.offsetWidth,
+        windowHeight: page.offsetHeight,
+      });
+
+      const imageData = canvas.toDataURL("image/png");
+
+      if (index > 0) {
+        pdf.addPage("a4", "portrait");
+      }
+
+      pdf.addImage(imageData, "PNG", 0, 0, 210, 297, undefined, "FAST");
+    }
+
+    return pdf.output("blob");
+  };
+
+  const triggerBlobDownload = (blob, fileName) => {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const openChromePrintPreview = async () => {
+    if (isPdfDownloading) return;
+
+    await renderAllPagesBeforeExport();
 
     setTimeout(() => {
       window.print();
-    }, 300);
+    }, 250);
   };
 
   const downloadPDF = async () => {
+    if (isPdfDownloading) return;
+
     try {
-      setIsPdfDownloading(true);
-
-      flushSync(() => {
-        setCurrentStep(5);
-      });
-
-      await waitForDomPaint();
-
-      if (document.fonts) {
-        await document.fonts.ready;
-      }
-
-      await waitForImages();
+      await renderAllPagesBeforeExport("pdf");
 
       if (!pdfRef.current) {
-        alert("PDF content not found. Please open preview and try again.");
+        alert("PDF content not found. Please try again.");
         return;
       }
 
-      const html2pdfModule = await import("html2pdf.js");
-      const html2pdf = html2pdfModule.default || html2pdfModule;
-
       const fileName = `appointment-letter-${getCleanEmployeeName()}.pdf`;
+      const pdfBlob = await createA4PdfBlob(pdfRef.current);
 
-      const options = {
-        margin: 0,
-        filename: fileName,
-        image: {
-          type: "jpeg",
-          quality: 0.98,
-        },
-        html2canvas: {
-          scale: 2,
-          useCORS: true,
-          letterRendering: true,
-          scrollX: 0,
-          scrollY: 0,
-          windowWidth: 794,
-          backgroundColor: "#ffffff",
-        },
-        jsPDF: {
-          unit: "mm",
-          format: "a4",
-          orientation: "portrait",
-        },
-        pagebreak: {
-          mode: ["css", "legacy"],
-        },
-      };
-
-      await html2pdf().set(options).from(pdfRef.current).save();
+      triggerBlobDownload(pdfBlob, fileName);
     } catch (error) {
       console.error("Appointment PDF download failed:", error);
-      alert("PDF download failed. Please check browser console.");
+      alert(
+        error instanceof Error
+          ? `PDF download failed: ${error.message}`
+          : "PDF download failed. Please check console."
+      );
     } finally {
       setIsPdfDownloading(false);
     }
   };
 
+  const isExporting = isPdfDownloading;
+
   return (
-    <div className={isPdfDownloading ? "appointment-pdf-downloading" : ""}>
+    <div
+      className={
+        isExporting
+          ? "appointment-exporting appointment-pdf-downloading offer-pdf-downloading"
+          : ""
+      }
+    >
       {currentStep === 0 && <AppointmentPage1 data={data} setData={setData} />}
       {currentStep === 1 && <AppointmentPage2 data={data} setData={setData} />}
       {currentStep === 2 && <AppointmentPage3 data={data} setData={setData} />}
@@ -210,7 +552,7 @@ function AppointmentPagesMain() {
       {currentStep === 4 && <AppointmentPage5 data={data} setData={setData} />}
 
       {currentStep === 5 && (
-        <div ref={pdfRef} className="appointment-print-preview-pages">
+        <div ref={pdfRef} className="appointment-print-preview-pages print-preview-pages">
           <AppointmentPage1 data={data} setData={setData} />
           <AppointmentPage2 data={data} setData={setData} />
           <AppointmentPage3 data={data} setData={setData} />

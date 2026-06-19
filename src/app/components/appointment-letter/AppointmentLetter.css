@@ -12,8 +12,17 @@
   width: 100%;
   flex-shrink: 0;
 }
+
+/* page 1 css */
 .offerPagePersonContentsAppPg1 {
-    margin: 2% 0;
+    margin: 3% 0px;
+}
+.offerDateSectionAppPg1{
+  text-align: right;
+ margin: 2% auto 1%;
+}
+.offerPage1SubjectAppPg1 {
+    margin: 4% 0;
 }
 
 .appointmentFooterFull > div {
@@ -301,5 +310,98 @@
 @media print {
   .no-print {
     display: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.appointment-print-preview-pages,
+.print-preview-pages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.appointment-exporting .step-wizard,
+.appointment-pdf-downloading .step-wizard,
+.offer-pdf-downloading .step-wizard {
+  display: none !important;
+}
+
+.appointment-exporting,
+.appointment-pdf-downloading {
+  background: #ffffff !important;
+}
+
+.appointment-exporting .appointment-print-preview-pages,
+.appointment-pdf-downloading .appointment-print-preview-pages {
+  gap: 0 !important;
+  background: #ffffff !important;
+}
+
+.appointment-exporting .a4-page,
+.appointment-pdf-downloading .a4-page {
+  width: 794px !important;
+  height: 1123px !important;
+  min-height: 1123px !important;
+  max-height: 1123px !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  page-break-after: always;
+  break-after: page;
+}
+
+@media print {
+  .appointment-step-wizard,
+  .step-wizard {
+    display: none !important;
+  }
+
+  .appointment-print-preview-pages,
+  .print-preview-pages {
+    gap: 0 !important;
+  }
+
+  .a4-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  body {
+    margin: 0 !important;
+    background: #ffffff !important;
   }
 }

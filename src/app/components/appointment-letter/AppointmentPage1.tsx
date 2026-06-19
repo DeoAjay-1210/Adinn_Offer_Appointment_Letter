@@ -8,15 +8,19 @@ import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
 // import EditableField from "../appointment-letter/AppointmentEditableField";
 import EditableField from "../EditableField";
+import OfferPageLayout from "../../components/OfferPageLayout";
 
 function AppointmentPage1({ data, setData }) {
     const update = (field, value) =>
         setData((prev) => ({ ...prev, [field]: value }));
 
     return (
-        <div className="a4-page appointment-a4-page">
-            <OfferHeader />
-            <div className="" style={{ flex: 1 }}>
+        // <div className="a4-page appointment-a4-page">
+        //     <OfferHeader />
+        //     <div className="" style={{ flex: 1 }}>
+
+            <OfferPageLayout>
+
                 {/* <div className=""> */}
                     {/* <h1 className="offerBoldLetters OfferMainHeading">
                         APPOINTMENT LETTER -{" "}
@@ -27,7 +31,7 @@ function AppointmentPage1({ data, setData }) {
                         />
                     </h1> */}
 
-                    <div className="offerDateSection">
+                    <div className="offerDateSectionAppPg1">
                         <span className="offerBoldLetters">Date: </span>
                         <EditableField
                             value={data.letterDate}
@@ -69,7 +73,7 @@ function AppointmentPage1({ data, setData }) {
                         </div>
                     </div>
 
-                    <div className="offerBoldLetters offerPage1Subject">
+                    <div className="offerBoldLetters offerPage1SubjectAppPg1">
                         Subject: Appointment as{" "}
                         <EditableField
                             value={data.designation}
@@ -128,7 +132,7 @@ function AppointmentPage1({ data, setData }) {
                         </div>
                     </div>
 
-                    <div className="offerPagePersonContents">
+                    <div className="offerPagePersonContentsAppPg1">
                         <table>
                             <tbody>
                                 {[
@@ -156,11 +160,8 @@ function AppointmentPage1({ data, setData }) {
                             </tbody>
                         </table>
                     </div>
-                </div>
-            {/* </div> */}
-            {/* <div className="offerPageFooterMain appointmentFooterFull"> */}
-            <div> <OfferFooter /> </div>
-        </div>
+                    </OfferPageLayout>
+
     );
 }
 
