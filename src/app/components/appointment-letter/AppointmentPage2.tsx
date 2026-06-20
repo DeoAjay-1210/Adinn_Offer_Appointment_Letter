@@ -9,14 +9,17 @@ import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
 // import EditableField from "../appointment-letter/AppointmentEditableField";
 import EditableField from "../EditableField";
+import OfferPageLayout from "../../components/OfferPageLayout";
 
 
-function AppointmentPage2() {
+function AppointmentPage2({ data, setData, showLetterhead = true }) {
   return (
-    <div className="a4-page appointment-a4-page">
-      <OfferHeader />
+    // <div className="a4-page appointment-a4-page">
+    //   <OfferHeader />
 
-      <div className="" style={{ flex: 1 }}>
+    //   <div className="" style={{ flex: 1 }}>
+
+    <OfferPageLayout showLetterhead={showLetterhead}>
         <div className="pageSideHeadingsMain">
           <div className="offerBoldLetters pagesSideHeading">
             Terms of Employment
@@ -98,13 +101,14 @@ function AppointmentPage2() {
             reserves the right to initiate disciplinary action,
           </div>
         </div>
-      </div>
+      {/* </div> */}
 
-      {/* <div className="offerPageFooterMain appointmentFooterFull"> */}
-      <div>
-        <OfferFooter />
-      </div>
-    </div>
+    {/* //   <div>
+    //     <OfferFooter />
+    //   </div>
+    </div> */}
+
+    </OfferPageLayout>
   );
 }
 

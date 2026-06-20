@@ -8,6 +8,7 @@ import OfferHeader from '../components/OfferHead';
 import OfferFooter from '../components/OfferFooter';
 import EditableField from '../components/EditableField';
 import "../components/appointment-letter/AppointmentLetter.css";
+import OfferPageLayout from "../components/OfferPageLayout";
 
 const toNumber = (value) => {
   return Number(String(value || "0").replace(/,/g, "")) || 0;
@@ -246,20 +247,18 @@ function buildSalaryRows(data) {
 }
 
 
-function Page4({ data, setData }) {
+function Page4({ data, setData, showLetterhead = true }) {
   const update = (field, value) => setData(prev => ({ ...prev, [field]: value }));
   const salaryRows = buildSalaryRows(data);
 
   return (
-    // Second A4 page — gets page-break-after in print
-    <div className="a4-page">
+    // // Second A4 page — gets page-break-after in print
+    // <div className="a4-page">
 
-      {/* ── HEADER ─────────────────────────────────────── */}
-      <OfferHeader />
+    //   <OfferHeader />
 
-      {/* ── MAIN CONTENT ────────────────────────────────── */}
-      <div className="offer-page-body offerPage4Body">
-        {/* ── MAIN CONTENT ───────────────────────── */}
+    //   <div className="offer-page-body offerPage4Body">
+     <OfferPageLayout showLetterhead={showLetterhead}>
         <div className="offerPage1OverallMain">
 
           {/* Title — "Mr." is static, name is editable */}
@@ -392,48 +391,6 @@ function Page4({ data, setData }) {
           )}
         </div>
 
-        {/* <table className="appointmentSalaryTable">
-            
-          <thead>
-            <tr>
-              <th>SALARY COMPONENTS</th>
-              <th>PERCENTAGE / RULE BASIS</th>
-              <th>MONTHLY AMOUNT (₹)</th>
-              <th>ANNUAL AMOUNT (₹)</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {salaryRows.map((row, index) => {
-              if (row.rowType === "section") {
-                return (
-                  <tr key={index} className="salaryHeadingRow">
-                    <td colSpan={4}>{row.label}</td>
-                  </tr>
-                );
-              }
-
-              return (
-                <tr
-                  key={index}
-                  className={
-                    row.rowType === "net"
-                      ? "salaryNetRow"
-                      : row.rowType === "total"
-                      ? "salaryTotalRow"
-                      : ""
-                  }
-                >
-                  <td>{row.label}</td>
-                  <td className="salaryRuleCell">{row.rule}</td>
-                  <td>{formatINR(row.monthly)}</td>
-                  <td>{formatINR(row.annual)}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table> */}
-
 
         <table className="appointmentSalaryTable">
           <colgroup>
@@ -483,12 +440,12 @@ function Page4({ data, setData }) {
           </tbody>
         </table>
 
-
-
-      </div>
+ {/* </div>
 
       <OfferFooter />
-    </div>
+    </div> */}
+</OfferPageLayout>
+     
   );
 }
 

@@ -7,17 +7,18 @@ import "./Page1.css";
 import OfferHeader from "../components/OfferHead";
 import OfferFooter from "../components/OfferFooter";
 import EditableField from "../components/EditableField";
-
-function Page5({ data, setData }) {
+import OfferPageLayout from "../components/OfferPageLayout";
+function Page5({ data, setData, showLetterhead = true }) {
   const update = (field, value) =>
     setData((prev) => ({ ...prev, [field]: value }));
 
   return (
-    <div className="a4-page">
-      <OfferHeader />
+    // <div className="a4-page">
+    //   <OfferHeader />
 
-      <div className="offer-page-body offerPage5Body">
+    //   <div className="offer-page-body offerPage5Body">
 
+     <OfferPageLayout showLetterhead={showLetterhead}>
 
   
         <div className="offerPage4TCMain">
@@ -83,10 +84,11 @@ function Page5({ data, setData }) {
             </tbody>
           </table>
         </div>
-      </div>
-
-      <OfferFooter />
-    </div>
+      {/* </div> */}
+{/* 
+    //   <OfferFooter />
+    // </div> */}
+    </OfferPageLayout>
   );
 }
 

@@ -7,52 +7,52 @@ import './Page1.css'; // shared CSS
 import OfferHeader from '../components/OfferHead';
 import OfferFooter from '../components/OfferFooter';
 import EditableField from '../components/EditableField';
+import OfferPageLayout from "../components/OfferPageLayout";
 
-function Page3({ data, setData }) {
+function Page3({ data, setData, showLetterhead = true }) {
     // Helper to update one field in shared data
     const update = (field, value) => setData(prev => ({ ...prev, [field]: value }));
     return (
-        // Second A4 page — gets page-break-after in print
-        <div className="a4-page">
+        //         // Second A4 page — gets page-break-after in print
+        //         <div className="a4-page">
 
-            {/* ── HEADER ─────────────────────────────────────── */}
-            <OfferHeader />
+        //             {/* <OfferHeader /> */}
 
-            {/* ── MAIN CONTENT ────────────────────────────────── */}
-            <div style={{ flex: 1 }}>
-                {/* ── Probation Period ──────────────────────────── */}
-                <div className="pageSideHeadingsMain">
-                    <div className="offerBoldLetters pagesSideHeading">Acceptance of Offer</div>
+        // \            <div style={{ flex: 1 }}>
+        <OfferPageLayout showLetterhead={showLetterhead}>
+            {/* ── Probation Period ──────────────────────────── */}
+            <div className="pageSideHeadingsMain">
+                <div className="offerBoldLetters pagesSideHeading">Acceptance of Offer</div>
 
-                    <div className="pagesParaContent">
-                        Please sign and return a copy of this letter as a token of your acceptance of the offer and agreement to abide by the Company's terms, conditions, policies, rules, and regulations.
-                    </div>
-                    <div className="pagesParaContent">
-                        We look forward to welcoming you to <span className="offerBoldLetters">Adinn Advertising Services Limited</span> and wish you a successful career with us.
-                    </div>
-
-
-
+                <div className="pagesParaContent">
+                    Please sign and return a copy of this letter as a token of your acceptance of the offer and agreement to abide by the Company's terms, conditions, policies, rules, and regulations.
+                </div>
+                <div className="pagesParaContent">
+                    We look forward to welcoming you to <span className="offerBoldLetters">Adinn Advertising Services Limited</span> and wish you a successful career with us.
                 </div>
 
 
 
-                <div className='offerPage3CmpyName'>For Adinn Advertising Services Limited</div>
+            </div>
 
-                <div className='offerPage3HrDetails'>
-                    <div className='offerPage3HrDetailsContent1 offerBoldLetters'>
-                        <EditableField
-                            value={data.hrName}
-                            onChange={(val) => update('hrName', val)}
-                        />
-                    </div>
-                    <div className='offerPage3HrDetailsContent1'>HR Manager</div>
+
+
+            <div className='offerPage3CmpyName'>For Adinn Advertising Services Limited</div>
+
+            <div className='offerPage3HrDetails'>
+                <div className='offerPage3HrDetailsContent1 offerBoldLetters'>
+                    <EditableField
+                        value={data.hrName}
+                        onChange={(val) => update('hrName', val)}
+                    />
                 </div>
+                <div className='offerPage3HrDetailsContent1'>HR Manager</div>
+            </div>
 
 
-                <div className='offerPage3Acceptance1Main'>
-                    <div className='offerBoldLetters offerPage3Acceptance1Main'>Employee Acceptance</div>
-                    {/* <div>
+            <div className='offerPage3Acceptance1Main'>
+                <div className='offerBoldLetters offerPage3Acceptance1Main'>Employee Acceptance</div>
+                {/* <div>
                         <span className="offerBoldLetters"> I, Mr./Ms. &nbsp; </span>
 <span className="offerPage3Acceptance1">&nbsp;</span>, &nbsp;
                         hereby accept the offer of employment with <span className='offerBoldLetters'> Adinn Advertising Services Limited </span>
@@ -60,60 +60,61 @@ function Page3({ data, setData }) {
 
                     </div> */}
 
-                    {/* <span className="offerPage3AcceptanceBlankLine"></span>,  */}
-                    <div className="offerAcceptancePara">
+                {/* <span className="offerPage3AcceptanceBlankLine"></span>,  */}
+                <div className="offerAcceptancePara">
 
-                        I, <span className="offerBoldLetters">Mr./Ms. </span> &nbsp;
-                        ____________________________________________, &nbsp;
-                        hereby accept the offer of employment with{" "}
-                        <span className="offerBoldLetters">
-                            Adinn Advertising Services Limited
-                        </span>{" "}
-                        and agree to comply with all Company policies, rules, regulations, terms, and
-                        conditions applicable from time to time.
-                    </div>
+                    I, <span className="offerBoldLetters">Mr./Ms. </span> &nbsp;
+                    ____________________________________________, &nbsp;
+                    hereby accept the offer of employment with{" "}
+                    <span className="offerBoldLetters">
+                        Adinn Advertising Services Limited
+                    </span>{" "}
+                    and agree to comply with all Company policies, rules, regulations, terms, and
+                    conditions applicable from time to time.
                 </div>
-
-
-                {/* ── EMPLOYMENT DETAILS TABLE ─────────── */}
-                <div className="offerPagePersonContents">
-
-
-                    <table>
-                        <tbody>
-
-                            <tr className="offerPageEmployeeDetailsContentPg35">
-                                <td className="offerBoldLetters">Employee Name</td>
-                                <td>:</td>
-                                <td>
-
-                                </td>
-                            </tr>
-
-                            <tr className="offerPageEmployeeDetailsContentPg35">
-                                <td className="offerBoldLetters">Signature</td>
-                                <td>:</td>
-                                <td>
-
-                                </td>
-                            </tr>
-
-                            <tr className="offerPageEmployeeDetailsContentPg35">
-                                <td className="offerBoldLetters">Date</td>
-                                <td>:</td>
-                                <td>
-
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-
             </div>
 
-            <OfferFooter />
-        </div>
+
+            {/* ── EMPLOYMENT DETAILS TABLE ─────────── */}
+            <div className="offerPagePersonContents">
+
+
+                <table>
+                    <tbody>
+
+                        <tr className="offerPageEmployeeDetailsContentPg35">
+                            <td className="offerBoldLetters">Employee Name</td>
+                            <td>:</td>
+                            <td>
+
+                            </td>
+                        </tr>
+
+                        <tr className="offerPageEmployeeDetailsContentPg35">
+                            <td className="offerBoldLetters">Signature</td>
+                            <td>:</td>
+                            <td>
+
+                            </td>
+                        </tr>
+
+                        <tr className="offerPageEmployeeDetailsContentPg35">
+                            <td className="offerBoldLetters">Date</td>
+                            <td>:</td>
+                            <td>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        {/* </div>
+
+            // {/* <OfferFooter /> */ }
+        {/* </div > */} 
+        </OfferPageLayout>
     );
 }
 

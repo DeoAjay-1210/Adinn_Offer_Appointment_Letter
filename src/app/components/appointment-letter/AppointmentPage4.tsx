@@ -7,6 +7,7 @@ import "../../pages/Page1.css";
 import "../appointment-letter/AppointmentLetter.css";
 import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
+import OfferPageLayout from "../../components/OfferPageLayout";
 
 /*
   IMPORTANT:
@@ -251,16 +252,16 @@ function buildSalaryRows(data) {
   return rows;
 }
 
-function AppointmentPage4({ data, setData }) {
+function AppointmentPage4({ data, setData, showLetterhead={includeLetterhead} }) {
   const update = (field, value) =>
     setData((prev) => ({ ...prev, [field]: value }));
 
   const salaryRows = buildSalaryRows(data);
 
   return (
-    <div className="a4-page appointment-a4-page">
-      <OfferHeader />
-
+    // <div className="a4-page appointment-a4-page">
+    //   <OfferHeader />
+<OfferPageLayout showLetterhead={showLetterhead}>
       <div className="">
         <h1 className="offerBoldLetters OfferMainHeadingAppPg4">
           REVISED SALARY ANNEXURE
@@ -417,11 +418,12 @@ function AppointmentPage4({ data, setData }) {
         </table>
       </div>
 
-      {/* <div className="offerPageFooterMain appointmentFooterFull"> */}
-      <div>
-        <OfferFooter />
-      </div>
-    </div>
+      {/* // <div>
+      //   <OfferFooter />
+      // </div>
+    // </div> */}
+
+    </OfferPageLayout>
   );
 }
 

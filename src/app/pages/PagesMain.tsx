@@ -47,6 +47,9 @@ const STEPS = [
   "Preview",
 ];
 
+
+
+
 function PagesMain() {
   const router = useRouter();
 
@@ -63,6 +66,28 @@ function PagesMain() {
 
 
   const pdfRef = useRef(null);
+// WITH AND WITHOUT HEADER 
+
+
+
+const LETTERHEAD_KEY = "adinn_offer_pdf_letterhead";
+
+const [includeLetterhead, setIncludeLetterhead] = useState(true);
+
+useEffect(() => {
+  const saved = localStorage.getItem(LETTERHEAD_KEY);
+
+  if (saved !== null) {
+    setIncludeLetterhead(saved === "true");
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(LETTERHEAD_KEY, String(includeLetterhead));
+}, [includeLetterhead]);
+
+
+//WITH AND WITHOUT HEADER
 
   useEffect(() => {
     localStorage.setItem("adinnOfferLetterData", JSON.stringify(data));
@@ -294,7 +319,8 @@ function PagesMain() {
         return;
       }
 
-      const fileName = `offer-letter-${getCleanEmployeeName()}.pdf`;
+      // const fileName = `offer-letter-${getCleanEmployeeName()}.pdf`;
+      const fileName = `offer-letter-${getCleanEmployeeName()}-${includeLetterhead ? "with-letterhead" : "without-letterhead" }.pdf`;
       const pdfBlob = await createA4PdfBlob(pdfRef.current);
 
       triggerBlobDownload(pdfBlob, fileName);
@@ -822,26 +848,41 @@ function PagesMain() {
 
   return (
     <div className={isBusy ? "letter-ui-busy" : ""}>
-       <PrintBlockedToast />
-      {currentStep === 0 && <Page1 data={data} setData={setData} />}
-      {currentStep === 1 && <Page2 data={data} setData={setData} />}
-      {currentStep === 2 && <Page3 data={data} setData={setData} />}
-      {currentStep === 3 && <Page4 data={data} setData={setData} />}
-      {currentStep === 4 && <Page5 data={data} setData={setData} />}
+      <PrintBlockedToast />
+     {currentStep === 0 && (
+  <Page1 data={data} setData={setData} showLetterhead={includeLetterhead} />
+)}
 
-      {currentStep === 5 && (
-        <div
-          ref={pdfRef}
-          className={`print-preview-pages ${isPdfExportMode ? "pdf-export-content offer-pdf-export-content" : ""
-            }`}
-        >
-          <Page1 data={data} setData={setData} />
-          <Page2 data={data} setData={setData} />
-          <Page3 data={data} setData={setData} />
-          <Page4 data={data} setData={setData} />
-          <Page5 data={data} setData={setData} />
-        </div>
-      )}
+{currentStep === 1 && (
+  <Page2 data={data} setData={setData} showLetterhead={includeLetterhead} />
+)}
+
+{currentStep === 2 && (
+  <Page3 data={data} setData={setData} showLetterhead={includeLetterhead} />
+)}
+
+{currentStep === 3 && (
+  <Page4 data={data} setData={setData} showLetterhead={includeLetterhead} />
+)}
+
+{currentStep === 4 && (
+  <Page5 data={data} setData={setData} showLetterhead={includeLetterhead} />
+)}
+
+{currentStep === 5 && (
+  <div
+    ref={pdfRef}
+    className={`print-preview-pages ${
+      isPdfExportMode ? "pdf-export-content offer-pdf-export-content" : ""
+    }`}
+  >
+    <Page1 data={data} setData={setData} showLetterhead={includeLetterhead} />
+    <Page2 data={data} setData={setData} showLetterhead={includeLetterhead} />
+    <Page3 data={data} setData={setData} showLetterhead={includeLetterhead} />
+    <Page4 data={data} setData={setData} showLetterhead={includeLetterhead} />
+    <Page5 data={data} setData={setData} showLetterhead={includeLetterhead} />
+  </div>
+)}
 
       <div className="step-wizard">
         <button
@@ -872,6 +913,17 @@ function PagesMain() {
         >
           Next
         </button>
+
+
+<button
+  type="button"
+  className={`step-btn-letterhead ${includeLetterhead ? "active" : ""}`}
+  onClick={() => setIncludeLetterhead((prev) => !prev)}
+  disabled={isBusy}
+>
+  {includeLetterhead ? "Letterhead: ON" : "Letterhead: OFF"}
+</button>
+
 
         <button
           className={`step-btn-download ${isPdfDownloading ? "is-loading" : ""}`}

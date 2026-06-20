@@ -321,93 +321,35 @@ function AppointmentPagesMain() {
   };
 
 
-  // const isExporting = isPdfDownloading;
-
-  // return (
-  //   <div
-  //     className={
-  //       isExporting
-  //         ? "appointment-exporting appointment-pdf-downloading offer-pdf-downloading"
-  //         : ""
-  //     }
-  //   >
-  //     {currentStep === 0 && <AppointmentPage1 data={data} setData={setData} />}
-  //     {currentStep === 1 && <AppointmentPage2 data={data} setData={setData} />}
-  //     {currentStep === 2 && <AppointmentPage3 data={data} setData={setData} />}
-  //     {currentStep === 3 && <AppointmentPage4 data={data} setData={setData} />}
-  //     {currentStep === 4 && <AppointmentPage5 data={data} setData={setData} />}
-
-  //     {currentStep === 5 && (
-  //       <div ref={pdfRef} className="appointment-print-preview-pages print-preview-pages">
-  //         <AppointmentPage1 data={data} setData={setData} />
-  //         <AppointmentPage2 data={data} setData={setData} />
-  //         <AppointmentPage3 data={data} setData={setData} />
-  //         <AppointmentPage4 data={data} setData={setData} />
-  //         <AppointmentPage5 data={data} setData={setData} />
-  //       </div>
-  //     )}
-
-  //     <div className="step-wizard appointment-step-wizard">
-  //       <button
-  //         className="step-btn"
-  //         onClick={() => setCurrentStep((s) => Math.max(0, s - 1))}
-  //         disabled={currentStep === 0 || isPdfDownloading}
-  //       >
-  //         ← Back
-  //       </button>
-
-  //       {STEPS.map((label, i) => (
-  //         <button
-  //           key={i}
-  //           className={`step-btn ${currentStep === i ? "active" : ""}`}
-  //           onClick={() => setCurrentStep(i)}
-  //           disabled={isPdfDownloading}
-  //         >
-  //           {i + 1}. {label}
-  //         </button>
-  //       ))}
-
-  //       <button
-  //         className="step-btn"
-  //         onClick={() =>
-  //           setCurrentStep((s) => Math.min(STEPS.length - 1, s + 1))
-  //         }
-  //         disabled={currentStep === STEPS.length - 1 || isPdfDownloading}
-  //       >
-  //         Next →
-  //       </button>
-
-  //       {/* <button
-  //         className="appointment-print-btn"
-  //         onClick={openChromePrintPreview}
-  //         disabled={isPdfDownloading}
-  //       >
-  //         Chrome Preview / Save PDF
-  //       </button> */}
-
-  //       <button
-  //         className="step-btn-download"
-  //         onClick={downloadPDF}
-  //         disabled={isPdfDownloading}
-  //       >
-  //         {isPdfDownloading ? "Preparing PDF..." : "Download PDF"}
-  //       </button>
-  //     </div>
-  //   </div>
-  // );
-
-
 
   const isBusy = isPdfDownloading;
 
+
+
+  const LETTERHEAD_KEY = "adinn_offer_pdf_letterhead";
+
+  const [includeLetterhead, setIncludeLetterhead] = useState(true);
+
+  useEffect(() => {
+    const saved = localStorage.getItem(LETTERHEAD_KEY);
+
+    if (saved !== null) {
+      setIncludeLetterhead(saved === "true");
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LETTERHEAD_KEY, String(includeLetterhead));
+  }, [includeLetterhead]);
+
   return (
     <div className={isBusy ? "letter-ui-busy" : ""}>
-         <PrintBlockedToast />
-      {currentStep === 0 && <AppointmentPage1 data={data} setData={setData} />}
-      {currentStep === 1 && <AppointmentPage2 data={data} setData={setData} />}
-      {currentStep === 2 && <AppointmentPage3 data={data} setData={setData} />}
-      {currentStep === 3 && <AppointmentPage4 data={data} setData={setData} />}
-      {currentStep === 4 && <AppointmentPage5 data={data} setData={setData} />}
+      <PrintBlockedToast />
+      {currentStep === 0 && <AppointmentPage1 data={data} setData={setData} showLetterhead={includeLetterhead} />}
+      {currentStep === 1 && <AppointmentPage2 data={data} setData={setData} showLetterhead={includeLetterhead} />}
+      {currentStep === 2 && <AppointmentPage3 data={data} setData={setData} showLetterhead={includeLetterhead} />}
+      {currentStep === 3 && <AppointmentPage4 data={data} setData={setData} showLetterhead={includeLetterhead} />}
+      {currentStep === 4 && <AppointmentPage5 data={data} setData={setData} showLetterhead={includeLetterhead} />}
 
       {currentStep === 5 && (
         <div
@@ -415,11 +357,11 @@ function AppointmentPagesMain() {
           className={`appointment-print-preview-pages print-preview-pages ${isPdfExportMode ? "pdf-export-content appointment-pdf-export-content" : ""
             }`}
         >
-          <AppointmentPage1 data={data} setData={setData} />
-          <AppointmentPage2 data={data} setData={setData} />
-          <AppointmentPage3 data={data} setData={setData} />
-          <AppointmentPage4 data={data} setData={setData} />
-          <AppointmentPage5 data={data} setData={setData} />
+          <AppointmentPage1 data={data} setData={setData} showLetterhead={includeLetterhead} />
+          <AppointmentPage2 data={data} setData={setData} showLetterhead={includeLetterhead} />
+          <AppointmentPage3 data={data} setData={setData} showLetterhead={includeLetterhead} />
+          <AppointmentPage4 data={data} setData={setData} showLetterhead={includeLetterhead} />
+          <AppointmentPage5 data={data} setData={setData} showLetterhead={includeLetterhead} />
         </div>
       )}
 
@@ -451,6 +393,16 @@ function AppointmentPagesMain() {
           disabled={currentStep === STEPS.length - 1 || isBusy}
         >
           Next →
+        </button>
+
+
+        <button
+          type="button"
+          className={`step-btn-letterhead ${includeLetterhead ? "active" : ""}`}
+          onClick={() => setIncludeLetterhead((prev) => !prev)}
+          disabled={isBusy}
+        >
+          {includeLetterhead ? "Letterhead: ON" : "Letterhead: OFF"}
         </button>
 
         <button

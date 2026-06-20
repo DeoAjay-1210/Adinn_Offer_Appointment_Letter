@@ -907,3 +907,59 @@ body {
     width: auto;
   }
 }
+
+
+
+
+
+
+
+/* Letterhead ON/OFF - keeps header/footer space */
+.letterhead-hidden .offer-letterhead-slot {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.letterhead-visible .offer-letterhead-slot {
+  visibility: visible !important;
+}
+
+/* Header/footer slots inside A4 grid */
+.offer-letterhead-header {
+  width: 100%;
+  height: 22mm;
+}
+
+.offer-letterhead-footer {
+  width: 100%;
+  height: 16mm;
+}
+
+/* Letterhead toggle button */
+.step-btn-letterhead {
+  padding: 7px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s;
+  border: 1.5px solid #4f46e5;
+  background: #ffffff;
+  color: #4f46e5;
+}
+
+.step-btn-letterhead.active {
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+.step-btn-letterhead:hover {
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+.step-btn-letterhead:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

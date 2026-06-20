@@ -9,15 +9,16 @@ import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
 // import EditableField from "../appointment-letter/AppointmentEditableField";
 import EditableField from "../EditableField";
+import OfferPageLayout from "../../components/OfferPageLayout";
 
-function AppointmentPage5({ data, setData }) {
+function AppointmentPage5({ data, setData, showLetterhead={includeLetterhead} }) {
   const update = (field, value) =>
     setData((prev) => ({ ...prev, [field]: value }));
 
   return (
-    <div className="a4-page appointment-a4-page">
-      <OfferHeader />
-
+    // <div className="a4-page appointment-a4-page">
+    //   <OfferHeader />
+<OfferPageLayout showLetterhead={showLetterhead}>
       <div className="">
         <div className="pageSideHeadingsMain">
           <div className="offerBoldLetters pagesSideHeading">
@@ -99,10 +100,12 @@ function AppointmentPage5({ data, setData }) {
       </div>
 
        {/* <div className="offerPageFooterMain appointmentFooterFull"> */}
-      <div>
+      {/* <div>
         <OfferFooter />
       </div>
-    </div>
+    </div> */}
+
+    </OfferPageLayout>
   );
 }
 

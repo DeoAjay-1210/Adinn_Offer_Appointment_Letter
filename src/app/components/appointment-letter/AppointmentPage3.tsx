@@ -9,17 +9,20 @@ import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
 // import EditableField from "../appointment-letter/AppointmentEditableField";
 import EditableField from "../EditableField";
+import OfferPageLayout from "../../components/OfferPageLayout";
 
 
-function AppointmentPage3({ data, setData }) {
+function AppointmentPage3({ data, setData, showLetterhead={includeLetterhead} }) {
   const update = (field, value) =>
     setData((prev) => ({ ...prev, [field]: value }));
 
   return (
-    <div className="a4-page appointment-a4-page">
-      <OfferHeader />
+    // <div className="a4-page appointment-a4-page">
+    //   <OfferHeader />
 
-      <div className="">
+    //   <div className="">
+
+    <OfferPageLayout showLetterhead={showLetterhead}>
         <div className="pageSideHeadingsMain">
           <div className=" pagesParaContentAppPg3">
             suspension, or termination in cases of misconduct, policy violation,
@@ -117,13 +120,16 @@ function AppointmentPage3({ data, setData }) {
             </tbody>
           </table>
         </div>
-      </div>
+      {/* </div> */}
 
   {/* <div className="offerPageFooterMain appointmentFooterFull"> */}
-      <div>
-        <OfferFooter />
-      </div>
-    </div>
+    {/* //   <div>
+    //     <OfferFooter />
+    //   </div>
+    // </div> */}
+
+
+    </OfferPageLayout>
   );
 }
 
