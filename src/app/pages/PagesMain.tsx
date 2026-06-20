@@ -29,6 +29,9 @@ const DEFAULT_DATA = {
   employmentType: "Full-Time",
   probationPeriod: "3 Months",
   hrName: "Gayathri S",
+  salaryType: "WITH_PF",
+  monthlyCTC: "31808",
+  variablePay: "0",
 };
 
 const STEPS = [

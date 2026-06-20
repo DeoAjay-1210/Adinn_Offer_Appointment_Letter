@@ -345,6 +345,7 @@ function AppointmentPage4({ data, setData }) {
               value={data.salaryType}
               onChange={(e) => update("salaryType", e.target.value)}
             >
+              {/* <option value="Select Type">Select Type</option> */}
               <option value="WITHOUT_PF">Without PF</option>
               <option value="WITH_PF">With PF</option>
               <option value="WITH_PF_ESI">With PF + ESI</option>
