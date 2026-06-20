@@ -247,115 +247,115 @@ function buildSalaryRows(data) {
 
 
 function Page4({ data, setData }) {
-    const update = (field, value) => setData(prev => ({ ...prev, [field]: value }));
+  const update = (field, value) => setData(prev => ({ ...prev, [field]: value }));
   const salaryRows = buildSalaryRows(data);
 
-    return (
-        // Second A4 page — gets page-break-after in print
-        <div className="a4-page">
+  return (
+    // Second A4 page — gets page-break-after in print
+    <div className="a4-page">
 
-            {/* ── HEADER ─────────────────────────────────────── */}
-            <OfferHeader />
+      {/* ── HEADER ─────────────────────────────────────── */}
+      <OfferHeader />
 
-            {/* ── MAIN CONTENT ────────────────────────────────── */}
+      {/* ── MAIN CONTENT ────────────────────────────────── */}
       <div className="offer-page-body offerPage4Body">
-                {/* ── MAIN CONTENT ───────────────────────── */}
-                <div className="offerPage1OverallMain">
+        {/* ── MAIN CONTENT ───────────────────────── */}
+        <div className="offerPage1OverallMain">
 
-                    {/* Title — "Mr." is static, name is editable */}
-                    <h1 className="offerBoldLetters OfferMainHeading">
-                        SALARY ANNEXTURE
-                    </h1>
+          {/* Title — "Mr." is static, name is editable */}
+          <h1 className="offerBoldLetters OfferMainHeading">
+            SALARY ANNEXTURE
+          </h1>
 
-                    {/* Date — right aligned */}
-                    <div className="offerDateSectionPg4">
-                        <span className="offerBoldLetters">Date: </span>
-                        <EditableField
-                            value={data.offerDate}
-                            onChange={(val) => update('offerDate', val)}
-                        />
-                    </div>
-                </div>
+          {/* Date — right aligned */}
+          <div className="offerDateSectionPg4">
+            <span className="offerBoldLetters">Date: </span>
+            <EditableField
+              value={data.offerDate}
+              onChange={(val) => update('offerDate', val)}
+            />
+          </div>
+        </div>
 
-                {/* ── EMPLOYMENT DETAILS TABLE ─────────── */}
-                <div className="offerPagePersonContentsPg4">
-                    <table>
-                        <tbody>
+        {/* ── EMPLOYMENT DETAILS TABLE ─────────── */}
+        <div className="offerPagePersonContentsPg4">
+          <table>
+            <tbody>
 
-                            <tr className="offerPageEmployeeDetailsContentPg4">
-                                <td className="offerBoldLetters">Employee Name</td>
-                                <td>:</td>
-                                <td>
-                                    <EditableField
-                                        value={data.employeeName}
-                                        onChange={(val) => update('employeeName', val)}
-                                    />
-                                </td>
-                            </tr>
+              <tr className="offerPageEmployeeDetailsContentPg4">
+                <td className="offerBoldLetters">Employee Name</td>
+                <td>:</td>
+                <td>
+                  <EditableField
+                    value={data.employeeName}
+                    onChange={(val) => update('employeeName', val)}
+                  />
+                </td>
+              </tr>
 
-                            <tr className="offerPageEmployeeDetailsContentPg4">
-                                <td className="offerBoldLetters">Designation</td>
-                                <td>:</td>
-                                <td>
-                                    <EditableField
-                                        value={data.designation}
-                                        onChange={(val) => update('designation', val)}
-                                    />
-                                </td>
-                            </tr>
+              <tr className="offerPageEmployeeDetailsContentPg4">
+                <td className="offerBoldLetters">Designation</td>
+                <td>:</td>
+                <td>
+                  <EditableField
+                    value={data.designation}
+                    onChange={(val) => update('designation', val)}
+                  />
+                </td>
+              </tr>
 
-                            <tr className="offerPageEmployeeDetailsContentPg4">
-                                <td className="offerBoldLetters">Department</td>
-                                <td>:</td>
-                                <td>
-                                    <EditableField
-                                        value={data.department}
-                                        onChange={(val) => update('department', val)}
-                                    />
-                                </td>
-                            </tr>
+              <tr className="offerPageEmployeeDetailsContentPg4">
+                <td className="offerBoldLetters">Department</td>
+                <td>:</td>
+                <td>
+                  <EditableField
+                    value={data.department}
+                    onChange={(val) => update('department', val)}
+                  />
+                </td>
+              </tr>
 
-                            <tr className="offerPageEmployeeDetailsContentPg4">
-                                <td className="offerBoldLetters">Branch / Location</td>
-                                <td>:</td>
-                                <td>
-                                    <EditableField
-                                        value={data.branch}
-                                        onChange={(val) => update('branch', val)}
-                                    />
-                                </td>
-                            </tr>
+              <tr className="offerPageEmployeeDetailsContentPg4">
+                <td className="offerBoldLetters">Branch / Location</td>
+                <td>:</td>
+                <td>
+                  <EditableField
+                    value={data.branch}
+                    onChange={(val) => update('branch', val)}
+                  />
+                </td>
+              </tr>
 
-                            <tr className="offerPageEmployeeDetailsContentPg4">
-                                <td className="offerBoldLetters">Reporting To</td>
-                                <td>:</td>
-                                <td>
-                                    <EditableField
-                                        value={data.reportingTo}
-                                        onChange={(val) => update('reportingTo', val)}
-                                    />
-                                </td>
-                            </tr>
+              <tr className="offerPageEmployeeDetailsContentPg4">
+                <td className="offerBoldLetters">Reporting To</td>
+                <td>:</td>
+                <td>
+                  <EditableField
+                    value={data.reportingTo}
+                    onChange={(val) => update('reportingTo', val)}
+                  />
+                </td>
+              </tr>
 
-                            <tr className="offerPageEmployeeDetailsContentPg4">
-                                <td className="offerBoldLetters">Date of Joining</td>
-                                <td>:</td>
-                                <td>
-                                    <EditableField
-                                        value={data.dateOfJoining}
-                                        onChange={(val) => update('dateOfJoining', val)}
-                                    />
-                                </td>
-                            </tr>
+              <tr className="offerPageEmployeeDetailsContentPg4">
+                <td className="offerBoldLetters">Date of Joining</td>
+                <td>:</td>
+                <td>
+                  <EditableField
+                    value={data.dateOfJoining}
+                    onChange={(val) => update('dateOfJoining', val)}
+                  />
+                </td>
+              </tr>
 
-                        </tbody>
-                    </table>
-                </div>
-
-
+            </tbody>
+          </table>
+        </div>
 
 
- {/* Salary input section - hidden in print/PDF */}
+
+
+        {/* Salary input section - hidden in print/PDF */}
         <div className="salaryInputPanel no-print">
           <div className="salaryInputGroup">
             <select
@@ -435,69 +435,61 @@ function Page4({ data, setData }) {
         </table> */}
 
 
-<table className="appointmentSalaryTable">
-  <colgroup>
-    <col style={{ width: "31%" }} />
-    <col style={{ width: "29%" }} />
-    <col style={{ width: "20%" }} />
-    <col style={{ width: "20%" }} />
-  </colgroup>
+        <table className="appointmentSalaryTable">
+          <colgroup>
+            <col style={{ width: "31%" }} />
+            <col style={{ width: "29%" }} />
+            <col style={{ width: "20%" }} />
+            <col style={{ width: "20%" }} />
+          </colgroup>
 
-  <thead>
-    <tr>
-      <th>SALARY COMPONENTS</th>
-      <th>PERCENTAGE / RULE BASIS</th>
-      <th>MONTHLY AMOUNT (₹)</th>
-      <th>ANNUAL AMOUNT (₹)</th>
-    </tr>
-  </thead>
+          <thead>
+            <tr>
+              <th>SALARY COMPONENTS</th>
+              <th>PERCENTAGE / RULE BASIS</th>
+              <th>MONTHLY AMOUNT (₹)</th>
+              <th>ANNUAL AMOUNT (₹)</th>
+            </tr>
+          </thead>
 
-  <tbody>
-    {salaryRows.map((row, index) => {
-      if (row.rowType === "section") {
-        return (
-          <tr key={index} className="salaryHeadingRow">
-            <td colSpan={4}>{row.label}</td>
-          </tr>
-        );
-      }
+          <tbody>
+            {salaryRows.map((row, index) => {
+              if (row.rowType === "section") {
+                return (
+                  <tr key={index} className="salaryHeadingRow">
+                    <td colSpan={4}>{row.label}</td>
+                  </tr>
+                );
+              }
 
-      return (
-        <tr
-          key={index}
-          className={
-            row.rowType === "net"
-              ? "salaryNetRow"
-              : row.rowType === "total"
-              ? "salaryTotalRow"
-              : ""
-          }
-        >
-          <td>{row.label}</td>
-          <td className="salaryRuleCell">{row.rule}</td>
-          <td>{formatINR(row.monthly)}</td>
-          <td>{formatINR(row.annual)}</td>
-        </tr>
-      );
-    })}
-  </tbody>
-</table>
+              return (
+                <tr
+                  key={index}
+                  className={
+                    row.rowType === "net"
+                      ? "salaryNetRow"
+                      : row.rowType === "total"
+                        ? "salaryTotalRow"
+                        : ""
+                  }
+                >
+                  <td>{row.label}</td>
+                  <td className="salaryRuleCell">{row.rule}</td>
+                  <td>{formatINR(row.monthly)}</td>
+                  <td>{formatINR(row.annual)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
 
 
-                <div className='offerPage4TCMain'>
-                    <div className="offerBoldLetters pagesSideHeading">Terms & Conditions</div>
 
-                    <ol className="offerTermsList" style={{ "--term-start": 0 }}>
-                        <li>Salary shall be paid on or before the scheduled salary disbursement date as per company policy.</li>
-                        {/* <li>Statutory deductions such as PF, ESI, Professional Tax, Income Tax, or any other applicable deductions shall be made as per prevailing laws.</li> */}
-                    </ol>
+      </div>
 
-                </div>
-            </div>
-
-            <OfferFooter />
-        </div>
-    );
+      <OfferFooter />
+    </div>
+  );
 }
 
 export default Page4;

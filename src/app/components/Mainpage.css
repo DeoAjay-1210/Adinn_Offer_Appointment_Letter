@@ -1,0 +1,524 @@
+* {
+  box-sizing: border-box;
+}
+
+.adinn-main-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(79, 70, 229, 0.14), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.08), transparent 38%),
+    linear-gradient(180deg, #fbfbff 0%, #eef2ff 100%);
+  color: #0f172a;
+  font-family: "Outfit", sans-serif;
+}
+
+/* NAV */
+.adinn-main-nav {
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    z-index: 20;
+    background: #ffffffe6;
+    border-bottom: 1px solid #0f172a12;
+    text-align: center;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: 103px;
+    align-items: right;
+    align-content: end;
+    padding: 0px 9%;
+    display: flex;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 10px 28px #0f172a14;
+} 
+
+.adinn-main-logo {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* CONTENT */
+.adinn-main-content {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 42px 22px 80px;
+  text-align: center;
+  transition: 0.25s ease;
+}
+
+.adinn-main-content.is-blurred {
+  filter: blur(7px);
+  transform: scale(0.995);
+  pointer-events: none;
+  user-select: none;
+}
+
+.adinn-eyebrow {
+  margin: 0 0 145px;
+  color: #4f46e5;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.adinn-hero h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(34px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: -1.2px;
+}
+
+.adinn-hero p {
+  max-width: 720px;
+  margin: 14px auto 0;
+  color: #475569;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* CARD GRID */
+.adinn-letter-grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 360px));
+  justify-content: center;
+  gap: 28px;
+}
+
+.adinn-letter-card {
+  border: 1px solid rgba(79, 70, 229, 0.14);
+  background: rgba(255, 255, 255, 0.84);
+  border-radius: 22px;
+  padding: 34px 28px 30px;
+  min-height: 255px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+  transition: 0.25s ease;
+  font-family: inherit;
+}
+
+.adinn-letter-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(79, 70, 229, 0.36);
+  box-shadow: 0 24px 52px rgba(15, 23, 42, 0.14);
+}
+
+.adinn-card-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  margin: 0 auto 22px;
+  background: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.adinn-letter-card h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.adinn-letter-card p {
+  min-height: 58px;
+  margin: 16px auto 22px;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.adinn-card-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(79, 70, 229, 0.24);
+}
+
+.adinn-letter-card:hover .adinn-card-action {
+  background: #4338ca;
+}
+
+/* POPUP */
+.adinn-access-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.32);
+  backdrop-filter: blur(2px);
+}
+
+.adinn-access-popup {
+  width: min(430px, 100%);
+  position: relative;
+  border-radius: 26px;
+  padding: 36px 32px 32px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(79, 70, 229, 0.18);
+  box-shadow: 0 30px 76px rgba(15, 23, 42, 0.24);
+  text-align: center;
+  animation: adinnPopupIn 0.22s ease;
+}
+
+@keyframes adinnPopupIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.adinn-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.adinn-popup-close:hover {
+  background: #e2e8f0;
+}
+
+.adinn-popup-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  background: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.adinn-access-popup h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.adinn-access-popup p {
+  margin: 12px 0 22px;
+  color: #475569;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+.adinn-secret-input {
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(79, 70, 229, 0.24);
+  background: #fbfbff;
+  padding: 0 16px;
+  color: #0f172a;
+  font-size: 15px;
+  outline: none;
+  font-family: inherit;
+}
+
+.adinn-secret-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+
+.adinn-error-message {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(244, 63, 94, 0.1);
+  color: #be123c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.adinn-unlock-btn {
+  width: 100%;
+  height: 48px;
+  margin-top: 18px;
+  border: none;
+  border-radius: 14px;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.2s ease;
+  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.26);
+}
+
+.adinn-unlock-btn:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* PROTECTED PAGE LOADER */
+.adinn-protected-loader {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.16), transparent 34%),
+    radial-gradient(circle at 80% 80%, rgba(15, 23, 42, 0.1), transparent 36%),
+    linear-gradient(180deg, #fbfbff 0%, #eef2ff 100%);
+  font-family: "Outfit", sans-serif;
+  overflow: hidden;
+}
+
+.adinn-loader-card {
+  width: min(390px, 100%);
+  min-height: 330px;
+  padding: 42px 34px 34px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  box-shadow:
+    0 30px 70px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(18px);
+  text-align: center;
+  position: relative;
+  animation: adinnLoaderCardIn 0.45s ease both;
+}
+
+@keyframes adinnLoaderCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.adinn-loader-ring {
+  width: 116px;
+  height: 116px;
+  margin: 0 auto 26px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adinn-loader-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(99, 102, 241, 0.15) 80deg,
+      #6366f1 160deg,
+      #312e81 230deg,
+      transparent 360deg
+    );
+  animation: adinnLoaderSpin 1.25s linear infinite;
+}
+
+.adinn-loader-ring::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.1);
+}
+
+@keyframes adinnLoaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.adinn-loader-orbit {
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  animation: adinnLoaderOrbit 1.8s linear infinite;
+  z-index: 3;
+}
+
+.adinn-loader-orbit span {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #312e81;
+  box-shadow: 0 0 18px rgba(49, 46, 129, 0.55);
+  transform: translateX(-50%);
+}
+
+@keyframes adinnLoaderOrbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.adinn-loader-center {
+  width: 70px;
+  height: 70px;
+  border-radius: 22px;
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(145deg, #ffffff 0%, #eef2ff 100%);
+  color: #4f46e5;
+  font-size: 26px;
+  box-shadow:
+    0 16px 34px rgba(79, 70, 229, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  animation: adinnLoaderPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes adinnLoaderPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 16px 34px rgba(79, 70, 229, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow:
+      0 22px 44px rgba(79, 70, 229, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+}
+
+.adinn-loader-card h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.adinn-loader-card p {
+  margin: 10px 0 26px;
+  color: #64748b;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+.adinn-loader-progress {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.12);
+  overflow: hidden;
+  position: relative;
+}
+
+.adinn-loader-progress span {
+  position: absolute;
+  top: 0;
+  left: -45%;
+  width: 45%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #312e81, #6366f1, #818cf8);
+  animation: adinnLoaderProgress 1.35s ease-in-out infinite;
+}
+
+@keyframes adinnLoaderProgress {
+  0% {
+    left: -45%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .adinn-loader-card {
+    min-height: 310px;
+    padding: 36px 24px 30px;
+    border-radius: 24px;
+  }
+
+  .adinn-loader-ring {
+    width: 104px;
+    height: 104px;
+  }
+
+  .adinn-loader-center {
+    width: 64px;
+    height: 64px;
+    font-size: 24px;
+  }
+
+  .adinn-loader-card h2 {
+    font-size: 22px;
+  }
+} 
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .adinn-main-nav {
+    padding: 0 22px;
+  }
+
+  .adinn-eyebrow {
+    margin-bottom: 90px;
+    font-size: 18px;
+  }
+
+  .adinn-letter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .adinn-letter-card {
+    min-height: auto;
+  }
+}

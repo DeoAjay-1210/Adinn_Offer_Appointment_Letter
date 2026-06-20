@@ -60,17 +60,18 @@ function Page3({ data, setData }) {
 
                     </div> */}
 
-
+                    {/* <span className="offerPage3AcceptanceBlankLine"></span>,  */}
                     <div className="offerAcceptancePara">
-  I, Mr./Ms.
-  <span className="offerPage3AcceptanceBlankLine"></span>
-  , hereby accept the offer of employment with{" "}
-  <span className="offerBoldLetters">
-    Adinn Advertising Services Limited
-  </span>{" "}
-  and agree to comply with all Company policies, rules, regulations, terms, and
-  conditions applicable from time to time.
-</div>
+
+                        I, <span className="offerBoldLetters">Mr./Ms. </span> &nbsp;
+                        ____________________________________________, &nbsp;
+                        hereby accept the offer of employment with{" "}
+                        <span className="offerBoldLetters">
+                            Adinn Advertising Services Limited
+                        </span>{" "}
+                        and agree to comply with all Company policies, rules, regulations, terms, and
+                        conditions applicable from time to time.
+                    </div>
                 </div>
 
 

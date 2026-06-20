@@ -4,6 +4,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import UseBlockBrowserPrint from "../components/utils/useBlockBrowserPrint.tsx";
+import PrintBlockedToast from "../components/utils/PrintBlockedToast.tsx";
+
 import { flushSync } from "react-dom";
 
 import Page1 from "./Page1";
@@ -44,10 +48,19 @@ const STEPS = [
 ];
 
 function PagesMain() {
+  const router = useRouter();
+
+  // Normal chrome print blocked 
+  UseBlockBrowserPrint(
+    "Normal Chrome print is disabled for Offer Letter. Please use the Download PDF button."
+  );
+
   const [data, setData] = useState(DEFAULT_DATA);
   const [currentStep, setCurrentStep] = useState(0);
   const [isPdfDownloading, setIsPdfDownloading] = useState(false);
   const [isDocxDownloading, setIsDocxDownloading] = useState(false);
+  const [isPdfExportMode, setIsPdfExportMode] = useState(false);
+
 
   const pdfRef = useRef(null);
 
@@ -92,12 +105,43 @@ function PagesMain() {
   };
 
 
+  // const renderAllPagesBeforeExport = async (type?: "pdf" | "docx") => {
+  //   flushSync(() => {
+  //     setCurrentStep(5);
+
+  //     if (type === "pdf") {
+  //       setIsPdfDownloading(true);
+  //     }
+
+  //     if (type === "docx") {
+  //       setIsDocxDownloading(true);
+  //     }
+  //   });
+
+  //   if (document.activeElement instanceof HTMLElement) {
+  //     document.activeElement.blur();
+  //   }
+
+  //   await waitForNextPaint();
+
+  //   if (document.fonts) {
+  //     await document.fonts.ready;
+  //   }
+
+  //   await waitForImages(pdfRef.current || document);
+
+  //   await new Promise((resolve) => setTimeout(resolve, 300));
+  // };
+
+
+
   const renderAllPagesBeforeExport = async (type?: "pdf" | "docx") => {
     flushSync(() => {
       setCurrentStep(5);
 
       if (type === "pdf") {
         setIsPdfDownloading(true);
+        setIsPdfExportMode(true);
       }
 
       if (type === "docx") {
@@ -119,56 +163,6 @@ function PagesMain() {
 
     await new Promise((resolve) => setTimeout(resolve, 300));
   };
-
-
-
-  // const createA4PdfBlob = async (rootElement) => {
-  //   const html2canvasModule = await import("html2canvas");
-  //   const jsPdfModule = await import("jspdf");
-
-  //   const html2canvas = html2canvasModule.default;
-  //   const { jsPDF } = jsPdfModule;
-
-  //   const pages = Array.from(rootElement.querySelectorAll(".a4-page"));
-
-  //   if (!pages.length) {
-  //     throw new Error("No A4 pages found for PDF export.");
-  //   }
-
-  //   const pdf = new jsPDF({
-  //     orientation: "portrait",
-  //     unit: "mm",
-  //     format: "a4",
-  //     compress: true,
-  //   });
-
-  //   for (let index = 0; index < pages.length; index++) {
-  //     const page = pages[index];
-
-  //     const canvas = await html2canvas(page, {
-  //       scale: 2,
-  //       useCORS: true,
-  //       allowTaint: false,
-  //       backgroundColor: "#ffffff",
-  //       scrollX: 0,
-  //       scrollY: 0,
-  //       windowWidth: page.scrollWidth,
-  //       windowHeight: page.scrollHeight,
-  //       width: page.offsetWidth,
-  //       height: page.offsetHeight,
-  //     });
-
-  //     const imageData = canvas.toDataURL("image/jpeg", 0.98);
-
-  //     if (index > 0) {
-  //       pdf.addPage("a4", "portrait");
-  //     }
-
-  //     pdf.addImage(imageData, "JPEG", 0, 0, 210, 297, undefined, "FAST");
-  //   }
-
-  //   return pdf.output("blob");
-  // };
 
   const createA4PdfBlob = async (rootElement) => {
     const html2canvasModule = await import("html2canvas");
@@ -257,12 +251,42 @@ function PagesMain() {
     }, 250);
   };
 
+  // const downloadPDF = async () => {
+  //   if (isPdfDownloading || isDocxDownloading) return;
+
+  //   try {
+  //     // setIsPdfDownloading(true);
+  //     // await renderAllPagesBeforeExport();
+  //     await renderAllPagesBeforeExport("pdf");
+
+  //     if (!pdfRef.current) {
+  //       alert("PDF content not found. Please try again.");
+  //       return;
+  //     }
+
+  //     const fileName = `offer-letter-${getCleanEmployeeName()}.pdf`;
+  //     const pdfBlob = await createA4PdfBlob(pdfRef.current);
+
+  //     triggerBlobDownload(pdfBlob, fileName);
+  //   } catch (error) {
+  //     console.error("Offer PDF download failed:", error);
+  //     alert(
+  //       error instanceof Error
+  //         ? `PDF download failed: ${error.message}`
+  //         : "PDF download failed. Please check console."
+  //     );
+  //   } finally {
+  //     setIsPdfDownloading(false);
+  //   }
+  // };
+
+
+
+
   const downloadPDF = async () => {
     if (isPdfDownloading || isDocxDownloading) return;
 
     try {
-      // setIsPdfDownloading(true);
-      // await renderAllPagesBeforeExport();
       await renderAllPagesBeforeExport("pdf");
 
       if (!pdfRef.current) {
@@ -283,8 +307,11 @@ function PagesMain() {
       );
     } finally {
       setIsPdfDownloading(false);
+      setIsPdfExportMode(false);
     }
   };
+
+
 
   const downloadDOCX = async () => {
     if (isPdfDownloading || isDocxDownloading) return;
@@ -697,17 +724,105 @@ function PagesMain() {
   //   }
   // };
 
-  const isExporting = isPdfDownloading || isDocxDownloading;
+  // const isExporting = isPdfDownloading || isDocxDownloading;
+
+  // return (
+  //   // <div className={isPdfDownloading ? "offer-pdf-downloading" : ""}>
+  //   <div
+  //     className={
+  //       isExporting
+  //         ? "offer-exporting offer-pdf-downloading appointment-pdf-downloading"
+  //         : ""
+  //     }
+  //   >
+  //     {currentStep === 0 && <Page1 data={data} setData={setData} />}
+  //     {currentStep === 1 && <Page2 data={data} setData={setData} />}
+  //     {currentStep === 2 && <Page3 data={data} setData={setData} />}
+  //     {currentStep === 3 && <Page4 data={data} setData={setData} />}
+  //     {currentStep === 4 && <Page5 data={data} setData={setData} />}
+
+  //     {currentStep === 5 && (
+  //       <div ref={pdfRef} className="print-preview-pages">
+  //         <Page1 data={data} setData={setData} />
+  //         <Page2 data={data} setData={setData} />
+  //         <Page3 data={data} setData={setData} />
+  //         <Page4 data={data} setData={setData} />
+  //         <Page5 data={data} setData={setData} />
+  //       </div>
+  //     )}
+
+  //     <div className="step-wizard">
+  //       <button
+  //         className="step-btn"
+  //         onClick={() => setCurrentStep((s) => Math.max(0, s - 1))}
+  //         disabled={currentStep === 0 || isPdfDownloading || isDocxDownloading}
+  //       >
+  //         Back
+  //       </button>
+
+  //       {STEPS.map((label, index) => (
+  //         <button
+  //           key={index}
+  //           className={`step-btn ${currentStep === index ? "active" : ""}`}
+  //           onClick={() => setCurrentStep(index)}
+  //           disabled={isPdfDownloading || isDocxDownloading}
+  //         >
+  //           {index + 1}. {label}
+  //         </button>
+  //       ))}
+
+  //       <button
+  //         className="step-btn"
+  //         onClick={() =>
+  //           setCurrentStep((s) => Math.min(STEPS.length - 1, s + 1))
+  //         }
+  //         disabled={
+  //           currentStep === STEPS.length - 1 ||
+  //           isPdfDownloading ||
+  //           isDocxDownloading
+  //         }
+  //       >
+  //         Next
+  //       </button>
+
+  //       {/* <button
+  //         className="step-btn-download"
+  //         onClick={openChromePrintPreview}
+  //         disabled={isPdfDownloading || isDocxDownloading}
+  //       >
+  //         Chrome Preview / Save PDF
+  //       </button> */}
+
+  //       <button
+  //         className="step-btn-download"
+  //         onClick={downloadPDF}
+  //         disabled={isPdfDownloading || isDocxDownloading}
+  //       >
+  //         {isPdfDownloading ? "Preparing PDF..." : "Download PDF"}
+  //       </button>
+
+
+  //        <button className="step-btn-download" > Home </button>
+
+  //       {/* <button
+  //         // className="step-btn-download"
+  //         // onClick={downloadDOCX}
+  //         // disabled={isPdfDownloading || isDocxDownloading}
+  //         className="step-btn-download"
+  //         disabled={isPdfDownloading || isDocxDownloading}
+  //         onClick={() => generateOfferDocx(data)}
+  //       >
+  //         {isDocxDownloading ? "Preparing DOCX..." : "Download DOCX"}
+  //       </button> */}
+  //     </div>
+  //   </div>
+  // );
+
+  const isBusy = isPdfDownloading || isDocxDownloading;
 
   return (
-    // <div className={isPdfDownloading ? "offer-pdf-downloading" : ""}>
-    <div
-      className={
-        isExporting
-          ? "offer-exporting offer-pdf-downloading appointment-pdf-downloading"
-          : ""
-      }
-    >
+    <div className={isBusy ? "letter-ui-busy" : ""}>
+       <PrintBlockedToast />
       {currentStep === 0 && <Page1 data={data} setData={setData} />}
       {currentStep === 1 && <Page2 data={data} setData={setData} />}
       {currentStep === 2 && <Page3 data={data} setData={setData} />}
@@ -715,7 +830,11 @@ function PagesMain() {
       {currentStep === 4 && <Page5 data={data} setData={setData} />}
 
       {currentStep === 5 && (
-        <div ref={pdfRef} className="print-preview-pages">
+        <div
+          ref={pdfRef}
+          className={`print-preview-pages ${isPdfExportMode ? "pdf-export-content offer-pdf-export-content" : ""
+            }`}
+        >
           <Page1 data={data} setData={setData} />
           <Page2 data={data} setData={setData} />
           <Page3 data={data} setData={setData} />
@@ -728,7 +847,7 @@ function PagesMain() {
         <button
           className="step-btn"
           onClick={() => setCurrentStep((s) => Math.max(0, s - 1))}
-          disabled={currentStep === 0 || isPdfDownloading || isDocxDownloading}
+          disabled={currentStep === 0 || isBusy}
         >
           Back
         </button>
@@ -738,7 +857,7 @@ function PagesMain() {
             key={index}
             className={`step-btn ${currentStep === index ? "active" : ""}`}
             onClick={() => setCurrentStep(index)}
-            disabled={isPdfDownloading || isDocxDownloading}
+            disabled={isBusy}
           >
             {index + 1}. {label}
           </button>
@@ -749,44 +868,45 @@ function PagesMain() {
           onClick={() =>
             setCurrentStep((s) => Math.min(STEPS.length - 1, s + 1))
           }
-          disabled={
-            currentStep === STEPS.length - 1 ||
-            isPdfDownloading ||
-            isDocxDownloading
-          }
+          disabled={currentStep === STEPS.length - 1 || isBusy}
         >
           Next
         </button>
 
-        {/* <button
-          className="step-btn-download"
-          onClick={openChromePrintPreview}
-          disabled={isPdfDownloading || isDocxDownloading}
-        >
-          Chrome Preview / Save PDF
-        </button> */}
-
         <button
-          className="step-btn-download"
+          className={`step-btn-download ${isPdfDownloading ? "is-loading" : ""}`}
           onClick={downloadPDF}
-          disabled={isPdfDownloading || isDocxDownloading}
+          disabled={isBusy}
         >
-          {isPdfDownloading ? "Preparing PDF..." : "Download PDF"}
+          {isPdfDownloading && <span className="btn-spinner"></span>}
+          <span>{isPdfDownloading ? "Preparing PDF..." : "Download PDF"}</span>
         </button>
 
-        {/* <button
-          // className="step-btn-download"
-          // onClick={downloadDOCX}
-          // disabled={isPdfDownloading || isDocxDownloading}
-          className="step-btn-download"
-          disabled={isPdfDownloading || isDocxDownloading}
-          onClick={() => generateOfferDocx(data)}
+        <button
+          type="button"
+          className="step-btn-home"
+          onClick={() => router.push("/")}
+          disabled={isBusy}
         >
-          {isDocxDownloading ? "Preparing DOCX..." : "Download DOCX"}
-        </button> */}
+          Home
+        </button>
+
+        {/* DOCX button if needed later */}
+        {/* 
+      <button
+        className={`step-btn-download ${isDocxDownloading ? "is-loading" : ""}`}
+        disabled={isBusy}
+        onClick={() => generateOfferDocx(data)}
+      >
+        {isDocxDownloading && <span className="btn-spinner"></span>}
+        <span>{isDocxDownloading ? "Preparing DOCX..." : "Download DOCX"}</span>
+      </button>
+      */}
       </div>
     </div>
   );
+
+
 }
 
 export default PagesMain;

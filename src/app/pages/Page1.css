@@ -137,10 +137,10 @@ body {
   border-bottom: none !important;
   background: transparent !important;
 }
-
+/* 
 .offer-pdf-downloading .step-wizard {
   display: none !important;
-}
+} */
 
 /* Common text */
 .offerBoldLetters {
@@ -237,7 +237,7 @@ body {
 
 /* Page 3 */
 .offerPage3CmpyName {
-  margin-top: 8%;
+  margin-top: 6%;
 }
 
 .offerPage3HrDetails {
@@ -348,7 +348,7 @@ body {
 }
 /* Page 5 */
 .offerPage5HrDetails {
-  margin: 26% 0 22% auto;
+  margin: 21% 0 17% auto;
 }
 
 .offerPage5Acceptance1Main {
@@ -476,9 +476,9 @@ body {
 
 
 /* Export cleanup */
-.offer-exporting .step-wizard {
+/* .offer-exporting .step-wizard {
   display: none !important;
-}
+} */
 
 .offer-exporting .editable-field,
 .offer-exporting .editable-field:hover {
@@ -685,4 +685,225 @@ body {
   font-weight: 900 !important;
   border-top: 2px solid #65b38a !important;
   border-bottom: 2px solid #65b38a !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- UI loading state ---------- */
+
+.letter-ui-busy .step-wizard {
+  pointer-events: auto;
+}
+
+.step-btn-download,
+.step-btn-home {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.step-btn-download.is-loading {
+  min-width: 150px;
+  opacity: 1 !important;
+  cursor: wait;
+}
+
+.step-btn-download:disabled.is-loading {
+  opacity: 1 !important;
+}
+
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #ffffff;
+  animation: btnSpin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes btnSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.step-btn-home {
+  padding: 7px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s;
+  border: 1.5px solid #334155;
+  background: #ffffff;
+  color: #334155;
+}
+
+.step-btn-home:hover {
+  background: #334155;
+  color: #ffffff;
+}
+
+.step-btn-home:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- Only PDF content cleanup, not UI buttons ---------- */
+
+.pdf-export-content {
+  gap: 0 !important;
+  background: #ffffff !important;
+}
+
+.pdf-export-content .a4-page {
+  width: 794px !important;
+  height: 1123px !important;
+  min-height: 1123px !important;
+  max-height: 1123px !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  page-break-after: always;
+  break-after: page;
+}
+
+.pdf-export-content .a4-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+.pdf-export-content .editable-field,
+.pdf-export-content .editable-field:hover {
+  border-bottom: none !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+.pdf-export-content .no-print {
+  display: none !important;
+}
+
+/* Keep print behavior same */
+@media print {
+  .step-wizard,
+  .appointment-step-wizard {
+    display: none !important;
+  }
+}
+
+
+
+
+/* ---------- Print blocked notification ---------- */
+
+.adinn-print-toast {
+  position: fixed;
+  top: 86px;
+  right: 24px;
+  z-index: 99999;
+  width: min(390px, calc(100vw - 32px));
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.96);
+  color: #ffffff;
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.3);
+  animation: adinnPrintToastIn 0.25s ease both;
+}
+
+@keyframes adinnPrintToastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.adinn-print-toast-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(129, 140, 248, 0.2);
+  color: #c7d2fe;
+  font-size: 18px;
+}
+
+.adinn-print-toast h4 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.adinn-print-toast p {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #cbd5e1;
+}
+
+/* ---------- Browser print restriction ---------- */
+
+.adinn-print-restricted::before {
+  content: "Printing is restricted. Please use the Download PDF button inside the application.";
+  display: none;
+}
+
+@media print {
+  body.adinn-print-restricted * {
+    visibility: hidden !important;
+  }
+
+  body.adinn-print-restricted::before {
+    display: flex !important;
+    visibility: visible !important;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    background: #ffffff;
+    color: #111827;
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 600px) {
+  .adinn-print-toast {
+    top: 76px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+  }
 }

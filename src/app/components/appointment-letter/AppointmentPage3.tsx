@@ -80,7 +80,7 @@ function AppointmentPage3({ data, setData }) {
           </div>
 
           <div className="pagesParaContent">
-            I, <span className="offerBoldLetters">Mr./Ms.</span>{" "}
+            I, <span className="offerBoldLetters"> Mr./Ms. </span>{" "}
             ____________________________________________, acknowledge receipt of
             this Appointment Letter and accept the terms and conditions of
             employment with{" "}

@@ -106,13 +106,17 @@
   margin-top: 6%;
 }
 /* Page 4 css  */
-
+.OfferMainHeadingAppPg4 {
+    text-align: center;
+    margin: -8px auto;
+    font-size: 15px;
+}
   .offerDateSectionAppPg4 {
     text-align: right;
     margin: 0px auto 0px;
 }
 .offerPagePersonContentsAppPg4{
-  margin: 1% 0px;
+  margin: 0% 0px;
 }
 
 .offerPageEmployeeDetailsContentAppPg4 td {
@@ -128,8 +132,7 @@
   padding: 3px 4mm;
 }
 .offerPage1SubjectAppPg4{
-  margin: 3% 0px;
-  margin-top: 3%;
+  margin: 2% 0px;
 }
 .offerPersonContentsNameAppPg4{
   margin: 1% auto;
@@ -145,7 +148,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
-  margin-top: 12px;
+  margin-top: 0px;
 }
 
 .appointmentSalaryTableAppPg4 th {
@@ -161,15 +164,11 @@
 }
 
 .appointmentSalaryTableAppPg4 td {
-  border: 1px solid #d5dce9;
-  padding: 5px 5px;
-  /* font-size: 10.5px; */
-  line-height: 1.25;
-}
-.appointmentSalaryTableAppPg4 td {
   border: 1px solid #d0d0d0;
-  padding: 4px 6px;
+  padding: 6px 5px;
   font-size: 10.5px;
+  line-height: 1.25;
+
 }
 
 
@@ -210,7 +209,7 @@
 
 .appointmentSalaryTable td {
   border: 1px solid #d0d0d0;
-  padding: 4px 6px;
+  /* padding: 4px 6px; */
   font-size: 10.5px;
 }
 
@@ -263,9 +262,9 @@
 }
 
 /* Direct PDF cleanup */
-.appointment-pdf-downloading .step-wizard {
+/* .appointment-pdf-downloading .step-wizard {
   display: none !important;
-}
+} */
 
 .appointment-pdf-downloading .editable-field,
 .appointment-pdf-downloading .editable-field:hover {
@@ -337,7 +336,7 @@
   align-items: end;
   gap: 10px;
   width: 100%;
-  margin: 8px 0 10px;
+  margin: 0px 0 0px;
   /* padding: 8px 10px; */
   display: flex;
 }
@@ -377,8 +376,8 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 10.5px;
-  margin: 20px auto;
-  margin-bottom: 20px;
+  margin: 0px auto;
+
 }
 
 .appointmentSalaryTable th {
@@ -395,7 +394,7 @@
 
 .appointmentSalaryTable td {
   border: 1px solid #d5dce9;
-  padding: 5px 5px;
+  padding: 9.2px 5px;
   /* font-size: 10.5px; */
   line-height: 1.25;
 }
@@ -470,12 +469,12 @@
   align-items: center;
   gap: 24px;
 }
-
+/* 
 .appointment-exporting .step-wizard,
 .appointment-pdf-downloading .step-wizard,
 .offer-pdf-downloading .step-wizard {
   display: none !important;
-}
+} */
 
 .appointment-exporting,
 .appointment-pdf-downloading {

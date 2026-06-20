@@ -262,7 +262,7 @@ function AppointmentPage4({ data, setData }) {
       <OfferHeader />
 
       <div className="">
-        <h1 className="offerBoldLetters OfferMainHeading">
+        <h1 className="offerBoldLetters OfferMainHeadingAppPg4">
           REVISED SALARY ANNEXURE
         </h1>
 
@@ -402,8 +402,8 @@ function AppointmentPage4({ data, setData }) {
                     row.rowType === "net"
                       ? "salaryNetRow"
                       : row.rowType === "total"
-                      ? "salaryTotalRow"
-                      : ""
+                        ? "salaryTotalRow"
+                        : ""
                   }
                 >
                   <td>{row.label}</td>
@@ -417,7 +417,7 @@ function AppointmentPage4({ data, setData }) {
         </table>
       </div>
 
-  {/* <div className="offerPageFooterMain appointmentFooterFull"> */}
+      {/* <div className="offerPageFooterMain appointmentFooterFull"> */}
       <div>
         <OfferFooter />
       </div>
