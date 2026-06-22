@@ -220,11 +220,41 @@ function buildSalaryRows(data) {
     Here monthly CTC = fixed CTC + variable pay.
     PF/ESI not applied in this simple variable-pay structure.
   */
-  if (salaryType === "VARIABLE_PAY") {
-    const fixedCTC = Math.max(0, monthlyCTC - variablePay);
+  // if (salaryType === "VARIABLE_PAY") {
+  //   const fixedCTC = Math.max(0, monthlyCTC - variablePay);
 
+  //   const basic = round(fixedCTC * 0.6);
+  //   const hra = round(basic * 0.24);
+  //   const otherAllowance = fixedCTC - basic - hra - childrenAllowance;
+
+  //   addSection("A. EARNINGS (FIXED SALARY COMPONENTS)");
+  //   addNormal("Basic", "60.00% of Fixed CTC", basic);
+  //   addNormal("House Rent Allowance (HRA)", "24.00% of Basic", hra);
+  //   addNormal("Children Education Allowance", "Fixed Allowance", childrenAllowance);
+  //   addNormal("Other Allowance", "Balancing Figure", otherAllowance);
+  //   addTotal("TOTAL FIXED GROSS SALARY", "Sum of Fixed Earnings", fixedCTC);
+
+  //   addSection("B. VARIABLE PAY");
+  //   addNormal("Variable Pay", "As per Company Policy", variablePay);
+
+  //   addTotal("TOTAL COST TO COMPANY (CTC)", "Fixed CTC + Variable Pay", monthlyCTC);
+  //   addNet("D. NET TAKE-HOME SALARY", "Fixed + Variable Pay", monthlyCTC);
+
+  //   return rows;
+  // }
+
+  
+  if (salaryType === "VARIABLE_PAY") {
+    // The monthlyCTC should be the TOTAL CTC (Fixed + Variable)
+    // So we need to separate fixed and variable
+    const totalCTC = monthlyCTC; // This is the total CTC (50,000)
+    const variablePayAmount = variablePay; // This is the variable pay (10,000)
+    const fixedCTC = Math.max(0, totalCTC - variablePayAmount); // Fixed CTC (40,000)
+
+    // Calculate components based on fixed CTC
     const basic = round(fixedCTC * 0.6);
     const hra = round(basic * 0.24);
+    const childrenAllowance = 200;
     const otherAllowance = fixedCTC - basic - hra - childrenAllowance;
 
     addSection("A. EARNINGS (FIXED SALARY COMPONENTS)");
@@ -235,13 +265,15 @@ function buildSalaryRows(data) {
     addTotal("TOTAL FIXED GROSS SALARY", "Sum of Fixed Earnings", fixedCTC);
 
     addSection("B. VARIABLE PAY");
-    addNormal("Variable Pay", "As per Company Policy", variablePay);
+    addTotal("TOTAL COST TO COMPANY (CTC)", "Fixed CTC + Variable Pay", totalCTC);
 
-    addTotal("TOTAL COST TO COMPANY (CTC)", "Fixed CTC + Variable Pay", monthlyCTC);
-    addNet("D. NET TAKE-HOME SALARY", "Fixed + Variable Pay", monthlyCTC);
+    addNormal("Variable Pay", "As per Company Policy", variablePayAmount);
+
+    addNet("D. NET TAKE-HOME SALARY", "Fixed CTC - Variable Pay", fixedCTC);
 
     return rows;
   }
+
 
   return rows;
 }
