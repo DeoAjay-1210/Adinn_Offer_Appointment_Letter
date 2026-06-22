@@ -16,6 +16,7 @@ function MainPage() {
   const [secretCode, setSecretCode] = useState("");
   const [error, setError] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // ✅ NEW: Toggle password visibility
 
   const typesOfLetter = [
     {
@@ -50,12 +51,14 @@ function MainPage() {
     setSelectedLetter(letter);
     setSecretCode("");
     setError("");
+    setShowPassword(false); // ✅ Reset password visibility when popup opens
   };
 
   const closePopup = () => {
     setSelectedLetter(null);
     setSecretCode("");
     setError("");
+    setShowPassword(false); // ✅ Reset password visibility when popup closes
   };
 
   const handleUnlock = (e) => {
@@ -147,17 +150,28 @@ function MainPage() {
               <strong>{selectedLetter.title}</strong>.
             </p>
 
-            <input
-              type="password"
-              value={secretCode}
-              onChange={(e) => {
-                setSecretCode(e.target.value);
-                setError("");
-              }}
-              placeholder="Enter secret code"
-              className="adinn-secret-input"
-              autoFocus
-            />
+            {/* ✅ UPDATED: Password input with eye toggle */}
+            <div className="adinn-password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={secretCode}
+                onChange={(e) => {
+                  setSecretCode(e.target.value);
+                  setError("");
+                }}
+                placeholder="Enter secret code"
+                className="adinn-secret-input"
+                autoFocus
+              />
+              <button
+                type="button"
+                className="adinn-eye-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                <i className={showPassword ? "fa-regular fa-eye" : "fa-regular fa-eye-slash"}></i>
+              </button>
+            </div>
 
             {error && <div className="adinn-error-message">{error}</div>}
 
