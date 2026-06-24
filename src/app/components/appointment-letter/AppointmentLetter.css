@@ -20,7 +20,7 @@
 
 .offerDateSectionAppPg1 {
   text-align: right;
-  margin: 2% auto 1%;
+  margin: 6% auto 3%;
 }
 
 .offerPage1SubjectAppPg1 {
@@ -66,7 +66,14 @@
   line-height: inherit;
 }
 
+.pagesSideHeadingAppPg2{
+    margin: 4mm 0;
 
+}
+.pagesSideHeadingAppPg5{
+    margin: 4mm 0;
+
+}
 /* Page 3 spacing */
 .pagesParaContentAppPg3 {
   text-align: justify;
@@ -75,7 +82,7 @@
 }
 
 .offerPage3CmpyNameAppPg3 {
-  margin-top: 4%;
+  margin-top: 3%;
 }
 
 .appointmentHrDetails {
@@ -83,7 +90,7 @@
 }
 
 .pagesSideHeadingAppPg3 {
-  margin-bottom: 18px;
+  margin-bottom: 30px;
 }
 
 
@@ -148,23 +155,27 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
-  margin-top: 0px;
+  margin-top: 4px;
 }
 
 .appointmentSalaryTableAppPg4 th {
-  background: #244898;
-  color: #ffffff;
+  /* background: #244898; */
+  /* color: #ffffff; */
+  color: black;
   text-align: left;
   align-items: center;
   align-content: center;
   padding: 8px 4px;
   font-size: 10.8px;
   font-weight: 800;
-  border: 1px solid #d5dce9;
+  /* border: 1px solid #d5dce9; */
+  border: 1px solid black;
+
 }
 
 .appointmentSalaryTableAppPg4 td {
-  border: 1px solid #d0d0d0;
+  /* border: 1px solid #d0d0d0; */
+  border: 1px solid black;
   padding: 6px 5px;
   font-size: 10.5px;
   line-height: 1.25;
@@ -198,7 +209,9 @@
 .appointmentSalaryAcceptanceMain {
   margin: 0% auto;
 }
-
+.pageSideHeadingsMainAppPg5 {
+  margin-top: 5mm;
+}
 /* Salary table only - keep this special because you said it looks good */
 .appointmentSalaryTable {
   width: 100%;
@@ -227,13 +240,15 @@
 }
 
 .salaryHeadingRow td {
-  background: #4c4c4c;
-  color: #ffffff;
+  /* background: #4c4c4c; */
+  /* color: #ffffff; */
+    color: black;
+
   font-weight: 700;
 }
 
 .salaryTotalRow td {
-  background: #e5e5e5;
+  /* background: #e5e5e5; */
   font-weight: 700;
 }
 
@@ -292,8 +307,8 @@
 
   .appointment-print-preview-pages .a4-page {
     width: 210mm !important;
-    height: 297mm !important;
-    min-height: 297mm !important;
+    height: 300m !important /*297mm !important */;
+    min-height: 300m !important /*297mm !important */;
     margin: 0 !important;
     box-shadow: none !important;
     page-break-after: always;
@@ -377,23 +392,26 @@
   border-collapse: collapse;
   font-size: 10.5px;
   margin: 0px auto;
+  margin-top: 45px;
 
 }
 
 .appointmentSalaryTable th {
-  background: #244898;
-  color: #ffffff;
+  /* background: #244898; */
+  /* color: #ffffff; */
+  color: black;
   text-align: left;
   align-items: center;
   align-content: center;
   padding: 8px 4px;
   font-size: 10.8px;
   font-weight: 800;
-  border: 1px solid #d5dce9;
+  border: 1px solid black;
 }
 
 .appointmentSalaryTable td {
-  border: 1px solid #d5dce9;
+  /* border: 1px solid #d5dce9; */
+  border: 1px solid black;
   padding: 9.2px 5px;
   /* font-size: 10.5px; */
   line-height: 1.25;
@@ -412,23 +430,29 @@
 }
 
 .salaryHeadingRow td {
-  background: #47586d;
-  color: #ffffff;
+  /* background: #47586d; */
+  /* color: #ffffff; */
+    color: black;
+
   font-weight: 800;
 }
 
 .salaryTotalRow td {
-  background: #eaf2ff;
+  /* background: #eaf2ff; */
   font-weight: 800;
-  color: #0f233d;
+  /* color: #0f233d; */
+    color: black;
+
 }
 
 .salaryNetRow td {
-  background: #d8f5e4;
-  color: #0a7a3b;
+  /* background: #d8f5e4; */
+  /* color: #0a7a3b; */
   font-weight: 900;
-  border-top: 2px solid #65b38a;
-  border-bottom: 2px solid #65b38a;
+  /* border-top: 2px solid #65b38a;
+  border-bottom: 2px solid #65b38a; */
+    border: 1px solid black;
+
 }
 
 /* Hide edit controls during direct PDF and Chrome print */
@@ -490,9 +514,9 @@
 .appointment-exporting .a4-page,
 .appointment-pdf-downloading .a4-page {
   width: 794px !important;
-  height: 1123px !important;
-  min-height: 1123px !important;
-  max-height: 1123px !important;
+  height: 1134px !important /*1123*/;
+  min-height: 1134px !important /*1123*/;
+  max-height: 1134px !important /*1123*/;
   margin: 0 !important;
   box-shadow: none !important;
   overflow: hidden !important;
@@ -515,9 +539,9 @@
 
   .a4-page {
     width: 210mm !important;
-    height: 297mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
+    height: 305mm /* 297mm*/;
+    min-height: 305mm /* 297mm*/;
+    /* max-height: 297mm !important; */
     margin: 0 !important;
     box-shadow: none !important;
     overflow: hidden !important;

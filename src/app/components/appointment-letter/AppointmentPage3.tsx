@@ -32,7 +32,7 @@ function AppointmentPage3({ data, setData, showLetterhead={includeLetterhead} })
         </div>
 
         <div className="pageSideHeadingsMain">
-          <div className="offerBoldLetters pagesSideHeading">
+          <div className="offerBoldLetters pagesSideHeadingAppPg2">
             Return of Company Property
           </div>
 
@@ -45,7 +45,7 @@ function AppointmentPage3({ data, setData, showLetterhead={includeLetterhead} })
         </div>
 
         <div className="pageSideHeadingsMain">
-          <div className="offerBoldLetters pagesSideHeading">Acceptance</div>
+          <div className="offerBoldLetters pagesSideHeadingAppPg2">Acceptance</div>
 
           <div className="pagesParaContent">
             Please sign and return a copy of this Appointment Letter as

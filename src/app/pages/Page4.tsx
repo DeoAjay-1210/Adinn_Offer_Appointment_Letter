@@ -210,7 +210,7 @@ function buildSalaryRows(data) {
       totalEmployeeDeductions
     );
 
-    addNet("D. NET TAKE-HOME SALARY (A - C)", "Gross Salary minus Deductions", netSalary);
+    addNet("D. NET TAKE-HOME SALARY (A - C)", "Gross Salary - Deductions", netSalary);
 
     return rows;
   }
@@ -426,8 +426,8 @@ function Page4({ data, setData, showLetterhead = true }) {
 
         <table className="appointmentSalaryTable">
           <colgroup>
-            <col style={{ width: "31%" }} />
-            <col style={{ width: "29%" }} />
+            <col style={{ width: "34%" }} />
+            <col style={{ width: "26%" }} />
             <col style={{ width: "20%" }} />
             <col style={{ width: "20%" }} />
           </colgroup>
