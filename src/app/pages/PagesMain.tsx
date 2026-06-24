@@ -320,7 +320,7 @@ useEffect(() => {
       }
 
       // const fileName = `offer-letter-${getCleanEmployeeName()}.pdf`;
-      const fileName = `offer-letter-${getCleanEmployeeName()}-${includeLetterhead ? "with-letterhead" : "without-letterhead" }.pdf`;
+      const fileName = `Offer-letter-${getCleanEmployeeName()}-${includeLetterhead ? "with-letterhead" : "without-letterhead" }.pdf`;
       const pdfBlob = await createA4PdfBlob(pdfRef.current);
 
       triggerBlobDownload(pdfBlob, fileName);
