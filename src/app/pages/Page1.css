@@ -19,13 +19,12 @@ body {
 /* Exact A4 page */
 .a4-page {
   width: 210mm;
-  height: 297mm;
-  min-height: 297mm;
+  height: 297mm /* 297mm*/ ;
+  min-height: 297mm /* 297mm*/ ;
   margin: 20px auto;
   padding: 8mm 16mm 6mm 16mm;
   background: #ffffff;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
-
   display: grid;
   grid-template-rows: 22mm 1fr 16mm;
 
@@ -150,13 +149,13 @@ body {
 .OfferMainHeading {
   text-align: center;
   margin: 0px auto;
+  margin-top: 18px;
   font-size: 15px;
 }
 
 .offerDateSection {
   text-align: right;
- margin: 3% auto;
- margin-bottom: 4%;
+ margin: 6% auto;
 }
 
 .offerPage1To {
@@ -176,7 +175,7 @@ body {
 }
 
 .offerPagePersonContents {
-  margin: 6% 0;
+  margin: 5% 0;
 }
 
 .offerPersonContentsName {
@@ -208,12 +207,12 @@ body {
 
 /* Page 2 */
 .pageSideHeadingsMain {
-  margin: 5mm 0;
+  margin: 4mm 0;
 }
 
 .pagesSideHeading {
   /* font-size: 14px; */
-  margin: 2mm 0;
+  margin: 4mm 0;
 }
 
 .pagesParaContent {
@@ -241,7 +240,7 @@ body {
 }
 
 .offerPage3HrDetails {
-    margin: 19% 0 18% auto;
+    margin: 28% 0 15% auto;
 }
 
 .offerPage3Acceptance1Main {
@@ -296,7 +295,7 @@ body {
   margin-bottom: 2%;
 }
 .offerPagePersonContentsPg4 {
-  margin: 10px 0;
+  /* margin: 10px 0; */
 }
 
 
@@ -348,7 +347,7 @@ body {
 }
 /* Page 5 */
 .offerPage5HrDetails {
-  margin: 21% 0 17% auto;
+  margin: 24% 0 10% auto;
 }
 
 .offerPage5Acceptance1Main {
@@ -435,7 +434,7 @@ body {
   .step-wizard {
     display: none !important;
   }
-
+/* 
   .a4-page {
     width: 210mm !important;
     height: 297mm !important;
@@ -451,7 +450,7 @@ body {
   .a4-page:last-child {
     page-break-after: auto;
     break-after: auto;
-  }
+  } */
 
   .editable-field,
   .editable-field:hover {
@@ -570,17 +569,20 @@ body {
 }
 
 .salaryTotalRow td {
-  background: #eaf2ff !important;
-  color: #0f233d !important;
+  /* background: #eaf2ff !important; */
+  /* color: #0f233d !important; */
+    color: black;
   font-weight: 800 !important;
 }
 
 .salaryNetRow td {
-  background: #d8f5e4 !important;
-  color: #0a7a3b !important;
+  /* background: #d8f5e4 !important; */
+  /* color: #0a7a3b !important; */
   font-weight: 900 !important;
-  border-top: 2px solid #65b38a !important;
-  border-bottom: 2px solid #65b38a !important;
+    color: black;
+
+  /* border-top: 2px solid #65b38a !important;
+  border-bottom: 2px solid #65b38a !important; */
 }
 /* Hide salary input panel properly during PDF/print */
 .offer-exporting .salaryInputPanel.no-print,

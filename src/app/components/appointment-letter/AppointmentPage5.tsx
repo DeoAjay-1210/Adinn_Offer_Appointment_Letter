@@ -20,7 +20,7 @@ function AppointmentPage5({ data, setData, showLetterhead={includeLetterhead} })
     //   <OfferHeader />
 <OfferPageLayout showLetterhead={showLetterhead}>
       <div className="">
-        <div className="pageSideHeadingsMain">
+        <div className="pageSideHeadingsMainAppPg5">
           <div className="offerBoldLetters pagesSideHeading">
             Terms & Conditions
           </div>
@@ -71,7 +71,7 @@ function AppointmentPage5({ data, setData, showLetterhead={includeLetterhead} })
         </div>
 
         <div className="appointmentSalaryAcceptanceMain">
-          <div className="offerBoldLetters pagesSideHeading">
+          <div className="offerBoldLetters pagesSideHeadingAppPg5">
             Employee Acceptance
           </div>
 

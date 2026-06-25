@@ -329,12 +329,12 @@ function AppointmentPage4({ data, setData, showLetterhead = { includeLetterhead 
             </span>
           </div>
 
-          <div className="offerPersonContentsParaAppPg4">
+          {/* <div className="offerPersonContentsParaAppPg4">
             We are pleased to inform you that upon successful completion of your
             probation period and confirmation of your employment with Adinn
             Advertising Services Limited, your compensation has been revised as
             detailed below.
-          </div>
+          </div> */}
 
           <div className="offerPersonContentsParaAppPg4">
             The revised compensation shall be effective from{" "}

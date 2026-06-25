@@ -21,7 +21,7 @@ function AppointmentPage2({ data, setData, showLetterhead = true }) {
 
     <OfferPageLayout showLetterhead={showLetterhead}>
         <div className="pageSideHeadingsMain">
-          <div className="offerBoldLetters pagesSideHeading">
+          <div className="offerBoldLetters pagesSideHeadingAppPg2">
             Terms of Employment
           </div>
 
@@ -56,7 +56,7 @@ function AppointmentPage2({ data, setData, showLetterhead = true }) {
         </div>
 
         <div className="pageSideHeadingsMain">
-          <div className="offerBoldLetters pagesSideHeading">Compensation</div>
+          <div className="offerBoldLetters pagesSideHeadingAppPg2">Compensation</div>
           <div className="pagesParaContent">
             Your compensation shall be governed by the salary structure
             communicated by the Company and may be revised, reviewed, or modified
@@ -68,7 +68,7 @@ function AppointmentPage2({ data, setData, showLetterhead = true }) {
         </div>
 
         <div className="pageSideHeadingsMain">
-          <div className="offerBoldLetters pagesSideHeading">
+          <div className="offerBoldLetters pagesSideHeadingAppPg2">
             Transfer & Assignment
           </div>
           <div className="pagesParaContent">
@@ -79,7 +79,7 @@ function AppointmentPage2({ data, setData, showLetterhead = true }) {
         </div>
 
         <div className="pageSideHeadingsMain">
-          <div className="offerBoldLetters pagesSideHeading">
+          <div className="offerBoldLetters pagesSideHeadingAppPg2">
             Company Policies
           </div>
           <div className="pagesParaContent">
@@ -91,7 +91,7 @@ function AppointmentPage2({ data, setData, showLetterhead = true }) {
         </div>
 
         <div className="pageSideHeadingsMain">
-          <div className="offerBoldLetters pagesSideHeading">
+          <div className="offerBoldLetters pagesSideHeadingAppPg2">
             Separation of Employment
           </div>
           <div className="pagesParaContent">

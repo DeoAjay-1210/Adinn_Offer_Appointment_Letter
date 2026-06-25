@@ -303,7 +303,9 @@ function AppointmentPagesMain() {
         return;
       }
 
-      const fileName = `appointment-letter-${getCleanEmployeeName()}.pdf`;
+      // const fileName = `appointment-letter-${getCleanEmployeeName()}.pdf`;
+      const fileName = `Appointment-letter-${getCleanEmployeeName()}-${includeLetterhead ? "with-letterhead" : "without-letterhead" }.pdf`;
+
       const pdfBlob = await createA4PdfBlob(pdfRef.current);
 
       triggerBlobDownload(pdfBlob, fileName);
