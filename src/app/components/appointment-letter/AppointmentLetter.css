@@ -307,8 +307,8 @@
 
   .appointment-print-preview-pages .a4-page {
     width: 210mm !important;
-    height: 300mm !important /*297mm !important */;
-    min-height: 300mm !important /*297mm !important */;
+    height: 300m !important /*297mm !important */;
+    min-height: 300m !important /*297mm !important */;
     margin: 0 !important;
     box-shadow: none !important;
     page-break-after: always;
