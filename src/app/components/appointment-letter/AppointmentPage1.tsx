@@ -3,6 +3,7 @@
 "use client";
 
 import React from "react";
+import '../../pages/Page1.css'
 import "../appointment-letter/AppointmentLetter.css";
 import OfferHeader from "../OfferHead";
 import OfferFooter from "../OfferFooter";
@@ -146,7 +147,7 @@ function AppointmentPage1({ data, setData, showLetterhead = true }) {
                             ["Confirmation Date", "confirmationDate"],
                             ["Employment Type", "employmentType"],
                         ].map(([label, field]) => (
-                            <tr className="offerPageEmployeeDetailsContent" key={field}>
+                            <tr className="offerPageEmployeeDetailsContentAppPg1" key={field}>
                                 <td className="offerBoldLetters">{label}</td>
                                 <td>:</td>
                                 <td>
