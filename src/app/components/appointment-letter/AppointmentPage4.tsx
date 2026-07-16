@@ -39,6 +39,20 @@ function buildSalaryRows(data) {
   const salaryType = data.salaryType || "WITH_PF";
   const monthlyCTC = round(toNumber(data.monthlyCTC));
   const variablePay = round(toNumber(data.variablePay));
+  const basicPercentage =
+    data.basicPercentage === undefined ||
+      data.basicPercentage === null ||
+      String(data.basicPercentage).trim() === ""
+      ? 60
+      : Math.min(
+        100,
+        Math.max(0, toNumber(data.basicPercentage))
+      );
+
+  const basicRate = basicPercentage / 100;
+
+  const basicPercentageLabel =
+    basicPercentage.toFixed(2);
 
   const childrenAllowance = 200;
   const professionalTax = 208;
@@ -86,7 +100,7 @@ function buildSalaryRows(data) {
     });
   };
 
-  /*
+   /*
     TYPE 1: WITHOUT PF
     Example:
     CTC 25,000
@@ -98,12 +112,14 @@ function buildSalaryRows(data) {
   */
   if (salaryType === "WITHOUT_PF") {
     const grossSalary = monthlyCTC;
-    const basic = round(monthlyCTC * 0.6);
+    // const basic = round(monthlyCTC * 0.6);
+    const basic = round(monthlyCTC * basicRate);
     const hra = round(basic * 0.24);
     const otherAllowance = grossSalary - basic - hra - childrenAllowance;
 
     addSection("A. EARNINGS (GROSS SALARY COMPONENTS)");
-    addNormal("Basic", "60.00% of CTC", basic);
+    // addNormal("Basic", "60.00% of CTC", basic);
+    addNormal("Basic", `${basicPercentageLabel}% of CTC`, basic);
     addNormal("House Rent Allowance (HRA)", "24.00% of Basic", hra);
     addNormal("Children Education Allowance", "Fixed Allowance", childrenAllowance);
     addNormal("Other Allowance", "Balancing Figure", otherAllowance);
@@ -128,7 +144,8 @@ function buildSalaryRows(data) {
     PT = 208
   */
   if (salaryType === "WITH_PF") {
-    const basic = round(monthlyCTC * 0.6);
+    // const basic = round(monthlyCTC * 0.6);
+    const basic = round(monthlyCTC * basicRate);
     const hra = round(basic * 0.24);
     const employerPF = round(Math.min(basic, pfLimit) * 0.12);
     const grossSalary = monthlyCTC - employerPF;
@@ -139,7 +156,8 @@ function buildSalaryRows(data) {
     const netSalary = grossSalary - totalDeductions;
 
     addSection("A. EARNINGS (GROSS SALARY COMPONENTS)");
-    addNormal("Basic", "60.00% of CTC", basic);
+    // addNormal("Basic", "60.00% of CTC", basic);
+    addNormal("Basic", `${basicPercentageLabel}% of CTC`, basic);
     addNormal("House Rent Allowance (HRA)", "24.00% of Basic", hra);
     addNormal("Children Education Allowance", "Fixed Allowance", childrenAllowance);
     addNormal("Other Allowance", "Balancing Figure (Gross Pool)", otherAllowance);
@@ -174,58 +192,146 @@ function buildSalaryRows(data) {
     PT = 208
   */
   if (salaryType === "WITH_PF_ESI") {
-    const basic = round(monthlyCTC * 0.6);
+    // const basic = round(monthlyCTC * 0.6);
+    const basic = round(monthlyCTC * basicRate);
     const hra = round(basic * 0.24);
-    const otherAllowance = 2500;
 
-    const grossSalary = basic + hra + childrenAllowance + otherAllowance;
-    const employerPF = round(Math.min(basic, pfLimit) * 0.12);
+    const employerPF = round(
+      Math.min(basic, pfLimit) * 0.12
+    );
 
-    const employerESI = Math.max(0, monthlyCTC - grossSalary - employerPF);
+    /*
+      CTC = Gross Salary + Employer PF + Employer ESI
+  
+      Employer ESI = 3.25% of ESI wages
+      Employee ESI = 0.75% of ESI wages
+  
+      Children Education Allowance is excluded
+      from ESI wages in this calculation.
+    */
+
+    let grossSalary = monthlyCTC - employerPF;
+    let employerESI = 0;
+
+    // Recalculate because gross salary and employer ESI
+    // depend on each other.
+    for (let i = 0; i < 5; i++) {
+      const esiWages = Math.max(
+        0,
+        grossSalary - childrenAllowance
+      );
+
+      employerESI = round(esiWages * 0.0325);
+
+      grossSalary =
+        monthlyCTC -
+        employerPF -
+        employerESI;
+    }
+
+    // Final ESI calculation
+    const esiWages = Math.max(
+      0,
+      grossSalary - childrenAllowance
+    );
+
+    employerESI = round(esiWages * 0.0325);
+
+    // Ensure total CTC exactly matches entered monthly CTC
+    grossSalary =
+      monthlyCTC -
+      employerPF -
+      employerESI;
+
+    const finalESIWages = Math.max(
+      0,
+      grossSalary - childrenAllowance
+    );
+
+    // Other allowance becomes balancing figure
+    const otherAllowance =
+      grossSalary -
+      basic -
+      hra -
+      childrenAllowance;
+
     const employeePF = employerPF;
-    const employeeESI = round(employerESI * (0.75 / 3.25));
+
+    const employeeESI = round(
+      finalESIWages * 0.0075
+    );
 
     const totalEmployeeDeductions =
-      employeePF + employeeESI + professionalTax;
+      employeePF +
+      employeeESI +
+      professionalTax;
 
-    const netSalary = grossSalary - totalEmployeeDeductions;
+    const netSalary =
+      grossSalary -
+      totalEmployeeDeductions;
 
     addSection("A. EARNINGS (GROSS SALARY COMPONENTS)");
-    addNormal("Basic", "60.00% of CTC", basic);
+
+    // addNormal( "Basic", "60.00% of CTC", basic);
+    addNormal("Basic", `${basicPercentageLabel}% of CTC`, basic);
+
+
     addNormal("House Rent Allowance", "24.00% of Basic", hra);
+
     addNormal("Children Education Allowance", "Fixed Allowance", childrenAllowance);
-    addNormal("Other Allowance", "Fixed / Balancing Allowance", otherAllowance);
+
+    addNormal("Other Allowance", "Balancing Figure", otherAllowance);
+
     addTotal("TOTAL GROSS SALARY (A)", "Sum of Earnings", grossSalary);
 
     addSection("B. EMPLOYER CONTRIBUTIONS");
+
     addNormal("EPF - Employer Contribution", "12.00% of Restricted PF Wages", employerPF);
+
     addNormal("ESI - Employer Contribution", "3.25% of ESI Wages", employerESI);
-    addTotal(
-      "TOTAL COST TO COMPANY (CTC) (A + B)",
-      "Gross + Employer Benefits",
-      grossSalary + employerPF + employerESI
-    );
+
+    addTotal("TOTAL COST TO COMPANY (CTC) (A + B)", "Gross + Employer Benefits", monthlyCTC);
 
     addSection("C. EMPLOYEE STATUTORY DEDUCTIONS");
+
     addNormal("EPF - Employee Contribution", "12.00% of Restricted PF Wages", employeePF);
+
     addNormal("ESI - Employee Contribution", "0.75% of ESI Wages", employeeESI);
+
     addNormal("Professional Tax (PT)", "Fixed Monthly Deduction", professionalTax);
-    addTotal(
-      "TOTAL EMPLOYEE DEDUCTIONS (C)",
-      "Sum of Deductions",
-      totalEmployeeDeductions
-    );
 
-    addNet("D. NET TAKE-HOME SALARY (A - C)", "Gross Salary minus Deductions", netSalary);
+    addTotal("TOTAL EMPLOYEE DEDUCTIONS (C)", "Sum of Deductions", totalEmployeeDeductions);
 
+    addNet("D. NET TAKE-HOME SALARY (A - C)", "Gross Salary - Deductions", netSalary);
     return rows;
   }
-
   /*
     TYPE 4: VARIABLE PAY
     Here monthly CTC = fixed CTC + variable pay.
     PF/ESI not applied in this simple variable-pay structure.
   */
+  // if (salaryType === "VARIABLE_PAY") {
+  //   const fixedCTC = Math.max(0, monthlyCTC - variablePay);
+
+  //   const basic = round(fixedCTC * 0.6);
+  //   const hra = round(basic * 0.24);
+  //   const otherAllowance = fixedCTC - basic - hra - childrenAllowance;
+
+  //   addSection("A. EARNINGS (FIXED SALARY COMPONENTS)");
+  //   addNormal("Basic", "60.00% of Fixed CTC", basic);
+  //   addNormal("House Rent Allowance (HRA)", "24.00% of Basic", hra);
+  //   addNormal("Children Education Allowance", "Fixed Allowance", childrenAllowance);
+  //   addNormal("Other Allowance", "Balancing Figure", otherAllowance);
+  //   addTotal("TOTAL FIXED GROSS SALARY", "Sum of Fixed Earnings", fixedCTC);
+
+  //   addSection("B. VARIABLE PAY");
+  //   addNormal("Variable Pay", "As per Company Policy", variablePay);
+
+  //   addTotal("TOTAL COST TO COMPANY (CTC)", "Fixed CTC + Variable Pay", monthlyCTC);
+  //   addNet("D. NET TAKE-HOME SALARY", "Fixed + Variable Pay", monthlyCTC);
+
+  //   return rows;
+  // }
 
 
   if (salaryType === "VARIABLE_PAY") {
@@ -236,13 +342,16 @@ function buildSalaryRows(data) {
     const fixedCTC = Math.max(0, totalCTC - variablePayAmount); // Fixed CTC (40,000)
 
     // Calculate components based on fixed CTC
-    const basic = round(fixedCTC * 0.6);
+    // const basic = round(fixedCTC * 0.6);
+    const basic = round(fixedCTC * basicRate);
     const hra = round(basic * 0.24);
     const childrenAllowance = 200;
     const otherAllowance = fixedCTC - basic - hra - childrenAllowance;
 
     addSection("A. EARNINGS (FIXED SALARY COMPONENTS)");
-    addNormal("Basic", "60.00% of Fixed CTC", basic);
+    // addNormal("Basic", "60.00% of Fixed CTC", basic);
+    addNormal("Basic", `${basicPercentageLabel}% of Fixed CTC`, basic);
+
     addNormal("House Rent Allowance (HRA)", "24.00% of Basic", hra);
     addNormal("Children Education Allowance", "Fixed Allowance", childrenAllowance);
     addNormal("Other Allowance", "Balancing Figure", otherAllowance);
@@ -349,41 +458,86 @@ function AppointmentPage4({ data, setData, showLetterhead = { includeLetterhead 
         </div>
 
         {/* Salary input section - hidden in print/PDF */}
-        <div className="salaryInputPanel no-print">
-          <div className="salaryInputGroup">
-            <select
-              value={data.salaryType}
-              onChange={(e) => update("salaryType", e.target.value)}
-            >
-              {/* <option value="Select Type">Select Type</option> */}
-              <option value="WITHOUT_PF">Without PF</option>
-              <option value="WITH_PF">With PF</option>
-              <option value="WITH_PF_ESI">With PF + ESI</option>
-              <option value="VARIABLE_PAY">Variable Pay</option>
-            </select>
-          </div>
+       <div className="salaryInputPanel no-print">
+        <div className="salaryInputGroup">
+          <select
+            value={data.salaryType}
+            onChange={(e) =>
+              update("salaryType", e.target.value)
+            }
+          >
+            <option value="WITHOUT_PF">
+              Without PF
+            </option>
 
-          <div className="salaryInputGroup">
+            <option value="WITH_PF">
+              With PF
+            </option>
+
+            <option value="WITH_PF_ESI">
+              With PF + ESI
+            </option>
+
+            <option value="VARIABLE_PAY">
+              Variable Pay
+            </option>
+          </select>
+        </div>
+
+        <div className="salaryInputGroup">
+          <div className="salaryPercentageInput">
+            <label>Monthly CTC: </label>
+
             <input
               type="number"
               value={data.monthlyCTC}
-              onChange={(e) => update("monthlyCTC", e.target.value)}
+              onChange={(e) =>
+                update("monthlyCTC", e.target.value)
+              }
               placeholder="Enter monthly CTC"
             />
           </div>
-
-          {data.salaryType === "VARIABLE_PAY" && (
-            <div className="salaryInputGroup">
-              <label>Variable Pay</label>
-              <input
-                type="number"
-                value={data.variablePay}
-                onChange={(e) => update("variablePay", e.target.value)}
-                placeholder="Enter variable pay"
-              />
-            </div>
-          )}
         </div>
+
+        <div className="salaryInputGroup">
+
+          <div className="salaryPercentageInput">
+            <label>Basic Percentage: </label>
+
+            <input
+              type="number"
+              min="0"
+              max="100"
+              step="0.01"
+              value={data.basicPercentage ?? "60"}
+              onChange={(e) =>
+                update(
+                  "basicPercentage",
+                  e.target.value
+                )
+              }
+              placeholder="Enter Basic %"
+            />
+
+            <span>%</span>
+          </div>
+        </div>
+
+        {data.salaryType === "VARIABLE_PAY" && (
+          <div className="salaryInputGroup">
+            <label>Variable Pay</label>
+
+            <input
+              type="number"
+              value={data.variablePay}
+              onChange={(e) =>
+                update("variablePay", e.target.value)
+              }
+              placeholder="Enter variable pay"
+            />
+          </div>
+        )}
+      </div>
 
         <table className="appointmentSalaryTableAppPg4">
           <thead>

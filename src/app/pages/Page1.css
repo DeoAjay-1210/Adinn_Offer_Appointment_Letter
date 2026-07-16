@@ -290,6 +290,25 @@ body {
 
 
 /* Page 4 */
+
+/* BASIC PAY DYNAMIC CSS  */
+.salaryPercentageInput {
+  /* display: flex; */
+  align-items: center;
+  gap: 6px;
+}
+
+.salaryPercentageInput input {
+  width: 110px;
+}
+
+.salaryPercentageInput span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+/* BASIC PAY DYNAMIC CSS  */
+
 .offerDateSectionPg4 {
   text-align: right;
   margin-bottom: 2%;

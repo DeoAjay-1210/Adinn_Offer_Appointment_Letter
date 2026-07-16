@@ -44,6 +44,7 @@ const DEFAULT_DATA = {
   hrName: "Gayathri S",
   salaryType: "WITH_PF",
   monthlyCTC: "31808",
+  basicPercentage: "60",
   variablePay: "0",
 };
 
