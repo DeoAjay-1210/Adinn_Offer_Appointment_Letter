@@ -1,0 +1,91 @@
+/* ============================================================
+   RelievingExperienceCertificate.css
+   Scoped styles for the Relieving cum Experience Certificate.
+   Page geometry (.a4-page, header/footer slots, wizard buttons)
+   comes from pages/Page1.css - this file only styles the body.
+   ============================================================ */
+
+.relievingCertificateMain {
+  width: 100%;
+  color: #1a1a1a;
+}
+
+/* ---------- Date line (top right) ---------- */
+
+.relievingDateSection {
+  text-align: right;
+  margin: 15mm 0 13mm;
+  font-size: 15px;
+}
+
+.relievingDateSection .editable-field {
+  font-size: 15px;
+}
+
+/* ---------- Headings ---------- */
+
+.relievingMainHeading {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin: 0 0 5mm;
+}
+
+.relievingSubHeading {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin: 0 0 10mm;
+}
+
+/* ---------- Body paragraphs ---------- */
+
+.relievingParaContent {
+  font-size: 15px;
+  line-height: 1.75;
+  text-align: justify;
+  margin: 0 0 5mm;
+}
+
+.relievingParaContent .editable-field {
+  font-size: 15px;
+}
+
+/* ---------- Signature block ---------- */
+
+.relievingSignOffCompany {
+  font-size: 15px;
+  margin: 12mm 0 32mm;
+}
+
+.relievingHrDetails {
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.relievingHrDetails .editable-field {
+  font-size: 15px;
+}
+
+.relievingHrName {
+  font-weight: 700;
+}
+
+/* ---------- Editable inputs inside this certificate ---------- */
+
+.relievingCertificateMain input {
+  font-size: 15px;
+}
+
+/* Page1.css has a global `* { font-size: 16px }`. Bold <span> wrappers
+   only set font-weight, so without this they render larger than the
+   paragraph text around them. Scoped to the text blocks so the
+   headings keep their own sizes. */
+.relievingDateSection span,
+.relievingParaContent span,
+.relievingSignOffCompany span,
+.relievingHrDetails span {
+  font-size: 15px;
+}

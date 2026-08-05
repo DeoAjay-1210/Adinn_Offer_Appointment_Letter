@@ -956,6 +956,12 @@ body {
   height: 16mm;
 }
 
+/* Do NOT reclaim the header/footer rows when the letterhead is off.
+   "Letterhead: OFF" is used to print onto pre-printed Adinn stationery,
+   which already carries the header and footer - the body still has to
+   clear them. That is why the slots above are `visibility: hidden` and
+   not `display: none`: ON and OFF must place the body identically. */
+
 /* Letterhead toggle button */
 .step-btn-letterhead {
   padding: 7px 16px;

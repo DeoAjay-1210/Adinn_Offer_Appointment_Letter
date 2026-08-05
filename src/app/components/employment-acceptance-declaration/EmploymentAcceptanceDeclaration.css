@@ -1,0 +1,236 @@
+/* ============================================================
+   EmploymentAcceptanceDeclaration.css
+   வேலை நியமன ஒப்புதல் மற்றும் உறுதிமொழி
+   (Employment Acceptance & Declaration)
+
+   Page geometry (.a4-page, header/footer slots, wizard buttons)
+   comes from pages/Page1.css - this file only styles the body.
+   ============================================================ */
+
+.tamilLetterMain {
+  width: 100%;
+  color: #1a1a1a;
+  font-family: "Noto Sans Tamil", "Nirmala UI", "Latha", Arial, sans-serif;
+}
+
+/* Tamil glyphs are taller than Latin, so everything in this letter
+   gets a little more leading than the English letters use. */
+.tamilLetterMain,
+.tamilLetterMain div,
+.tamilLetterMain span,
+.tamilLetterMain td,
+.tamilLetterMain li {
+  font-family: "Noto Sans Tamil", "Nirmala UI", "Latha", Arial, sans-serif;
+}
+
+/* ---------- Titles ----------
+
+   TOP-OF-PAGE GAP - this is the only knob.
+   The .a4-page already spends 8mm padding + a 22mm header row before
+   the body starts, whether the letterhead is drawn or not, because
+   these letters get printed onto pre-printed Adinn stationery. So:
+
+       8mm padding + 22mm header row + this margin-top
+
+   20mm here puts the title 50mm down the sheet. The pre-printed logo
+   ends around 25mm, leaving ~25mm of clear air under it. Raise or
+   lower this one value to change that gap - and change
+   .tamilSectionHeading1 below by the same amount so page 2 matches. */
+
+.tamilDocTitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  text-underline-offset: 4px;
+  line-height: 1.7;
+  margin: 30mm 0 5mm;
+}
+
+.tamilDocSubTitle {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  font-style: italic;
+  font-family: "Inter", Arial, sans-serif !important;
+  margin: 0 0 12mm;
+}
+
+/* ---------- Section headings ---------- */
+
+.tamilSectionHeading {
+  font-size: 15px;
+  font-weight: 700;
+  text-underline-offset: 4px;
+  line-height: 1.8;
+  margin: 0 0 6mm;
+}
+/* Page 2's first heading - keep this margin-top in step with
+   .tamilDocTitle above so both pages start at the same height. */
+.tamilSectionHeading1 {
+  font-size: 15px;
+  font-weight: 700;
+  text-underline-offset: 4px;
+  line-height: 1.8;
+  margin: 20mm 0 6mm;
+}
+/* ---------- Body text ---------- */
+
+.tamilParaContent {
+  font-size: 15px;
+  line-height: 2;
+  text-align: justify;
+  margin: 0 0 6mm;
+}
+
+.tamilParaContent span {
+  font-size: 15px;
+}
+
+.tamilBold {
+  font-weight: 700;
+}
+
+/* The company name stays in Latin inside Tamil sentences */
+.tamilInlineLatin {
+  font-family: "Inter", Arial, sans-serif !important;
+  font-weight: 700;
+}
+
+/* ---------- Numbered declaration list ---------- */
+
+/* list-style is off on purpose: html2canvas draws ::marker itself, at
+   li.top + line-height / 2 rather than on the first line's baseline, so
+   the numbers sat above their text in the PDF. The numbers are real
+   spans in the markup instead (see EmploymentAcceptancePage2.tsx) and
+   the row is a flex pair so number and text share the same baseline. */
+.tamilDeclarationList {
+  margin: 0 0 8mm;
+  padding-left: 0;
+  list-style: none;
+}
+
+.tamilDeclarationList li {
+  display: flex;
+  align-items: flex-start;
+  font-size: 15px;
+  line-height: 2;
+  margin: 0 0 4mm;
+}
+
+.tamilDeclarationList li span {
+  font-size: 14px;
+}
+
+.tamilDeclarationList .tamilDeclarationNo {
+  flex: 0 0 9mm;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.tamilDeclarationList .tamilDeclarationText {
+  flex: 1 1 auto;
+  font-size: 15px;
+  line-height: 2;
+  text-align: justify;
+}
+
+/* ---------- Detail rows ----------
+   Borderless "Name : கார்த்தியாயினி" rows, same shape as the
+   Employment Details block on Offer / Appointment page 1. There is
+   deliberately no box - the boxed table used here before did not match
+   the other letters. */
+
+.tamilDetailBlock {
+  margin: 15mm 0 9mm;
+}
+
+.tamilDetailBlock table {
+  border-collapse: collapse;
+}
+
+.tamilDetailRow td {
+  border: none;
+  padding: 2.2mm 0;
+  font-size: 15px;
+  line-height: 1.7;
+  vertical-align: top;
+}
+
+.tamilDetailRow td span {
+  font-size: 15px;
+}
+
+/* Labels are English on this Tamil document, so they keep the Latin face */
+.tamilDetailRow .tamilDetailLabel {
+  min-width: 45mm;
+  font-weight: 700;
+  font-family: "Inter", Arial, sans-serif !important;
+  white-space: nowrap;
+}
+
+/* Page 2's "Employee Signature / Thumb Impression" needs a wider column */
+.tamilDetailRow .tamilDetailLabelWide {
+  min-width: 75mm;
+}
+
+.tamilDetailRow .tamilDetailColon {
+  padding: 2.2mm 4mm;
+  width: 1mm;
+}
+
+.tamilDetailRow .tamilDetailValue {
+  font-family: "Noto Sans Tamil", "Nirmala UI", "Latha", Arial, sans-serif;
+}
+
+/* ---------- Signature block ---------- */
+
+.tamilSignOffCompany {
+  font-family: "Inter", Arial, sans-serif !important;
+  font-size: 16px;
+  margin: 14mm 0 43mm;
+}
+
+.tamilHrDetails {
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.tamilHrDetails span {
+  font-size: 16px;
+}
+
+.tamilHrName {
+  font-weight: 700;
+}
+
+/* ---------- Screen-only helper strip ---------- */
+
+.tamilTypingHelp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 6mm;
+  padding: 8px 12px;
+  border: 1px dashed #c7d2e0;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #64748b;
+  font-family: "Inter", Arial, sans-serif !important;
+  font-size: 11px !important;
+  line-height: 1.6;
+}
+
+.tamilTypingHelp strong {
+  font-size: 14px !important;
+  color: #c0392b;
+}
+
+.tamilTypingHelp code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #eef2f7;
+  color: #0f172a;
+  font-family: "Geist Mono", monospace !important;
+  font-size: 10.5px !important;
+}

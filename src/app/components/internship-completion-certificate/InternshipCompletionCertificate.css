@@ -1,0 +1,109 @@
+/* ============================================================
+   InternshipCompletionCertificate.css
+   Scoped styles for the Internship Completion Certificate only.
+   Page geometry (.a4-page, header/footer slots, wizard buttons)
+   comes from pages/Page1.css - this file only styles the body.
+   ============================================================ */
+
+.completionCertificateMain {
+  width: 100%;
+  color: #1a1a1a;
+}
+
+/* ---------- Certificate number + date row ---------- */
+
+.completionMetaRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10mm;
+  margin: 18mm 0 15mm;
+  font-size: 15px;
+}
+
+.completionMetaItem {
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.completionMetaItem .editable-field {
+  font-size: 15px;
+}
+
+.completionMetaDate {
+  text-align: right;
+}
+
+/* ---------- Headings ---------- */
+
+.completionMainHeading {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin: 0 0 6mm;
+}
+
+.completionSubHeading {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin: 0 0 10mm;
+}
+
+/* ---------- Body paragraphs ---------- */
+
+.completionParaContent {
+  font-size: 15px;
+  line-height: 1.75;
+  text-align: justify;
+  margin: 0 0 5mm;
+}
+
+.completionParaContent .editable-field {
+  font-size: 15px;
+}
+
+/* Company name is bold + italic on this certificate */
+.completionCompanyName {
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ---------- Signature block ---------- */
+
+.completionSignOffCompany {
+  font-size: 15px;
+  margin: 13mm 0 28mm;
+}
+
+.completionHrDetails {
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.completionHrDetails .editable-field {
+  font-size: 15px;
+}
+
+.completionHrName {
+  font-weight: 700;
+}
+
+/* ---------- Editable inputs inside this certificate ---------- */
+
+.completionCertificateMain input {
+  font-size: 15px;
+}
+
+/* Page1.css has a global `* { font-size: 16px }`. Bold <span> wrappers
+   only set font-weight, so without this they render larger than the
+   paragraph text around them. Scoped to the text blocks so the
+   headings keep their own sizes. */
+.completionMetaItem span,
+.completionParaContent span,
+.completionSignOffCompany span,
+.completionHrDetails span {
+  font-size: 15px;
+}

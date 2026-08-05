@@ -33,6 +33,38 @@ function MainPage() {
       icon: "fa-regular fa-file-lines",
       navigation: "/adinn-appointment-letter",
     },
+    {
+      id: 3,
+      title: "Internship Approval Letter",
+      description: "Issue internship approval letters addressed to the college.",
+      icon: "fa-regular fa-circle-check",
+      navigation: "/adinn-internship-approval-letter",
+    },
+    {
+      id: 4,
+      title: "Internship Completion Certificate",
+      description: "Generate internship completion certificates for students.",
+      icon: "fa-regular fa-star",
+      navigation: "/adinn-internship-completion-certificate",
+    },
+    {
+      id: 5,
+      title: "Relieving cum Experience Certificate",
+      description: "Create relieving and experience certificates on separation.",
+      icon: "fa-regular fa-id-badge",
+      navigation: "/adinn-relieving-experience-certificate",
+    },
+    {
+      id: 6,
+      title: "வேலை நியமன ஒப்புதல் மற்றும் உறுதிமொழி",
+      description:
+        "Employment Acceptance & Declaration in Tamil - type in Tanglish and pick Tamil suggestions.",
+      icon: "fa-regular fa-handshake",
+      navigation: "/adinn-employment-acceptance-declaration",
+      // Tamil glyphs are wider than Latin, so this title needs a
+      // smaller size to sit on the card the way the others do.
+      cardClass: "is-tamil",
+    },
   ];
 
   useEffect(() => {
@@ -109,7 +141,7 @@ function MainPage() {
             <button
               key={item.id}
               type="button"
-              className="adinn-letter-card"
+              className={`adinn-letter-card ${item.cardClass || ""}`}
               onClick={() => handleLetterClick(item)}
             >
               <div className="adinn-card-icon">

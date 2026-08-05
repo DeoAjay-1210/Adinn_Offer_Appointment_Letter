@@ -1,0 +1,116 @@
+/* ============================================================
+   InternshipApprovalLetter.css
+   Scoped styles for the Internship Approval Letter only.
+   Page geometry (.a4-page, header/footer slots, wizard buttons)
+   comes from pages/Page1.css - this file only styles the body.
+   ============================================================ */
+
+.approvalLetterMain {
+  width: 100%;
+  color: #1a1a1a;
+}
+
+/* ---------- Date line (top right) ---------- */
+
+.approvalDateSection {
+  text-align: right;
+  margin: 15mm 0 15mm;
+  font-size: 15px;
+}
+
+.approvalDateSection .editable-field {
+  font-size: 15px;
+}
+
+/* ---------- Addressee block ---------- */
+
+.approvalToBlock {
+  margin: 0 0 9mm;
+}
+
+.approvalToLabel {
+  font-size: 15px;
+  margin-bottom: 3.5mm;
+}
+
+.approvalToLine {
+  font-size: 15px;
+  margin: 3mm 0;
+}
+
+.approvalToLine .editable-field {
+  font-size: 15px;
+}
+
+/* ---------- Subject ---------- */
+
+.approvalSubject {
+  font-size: 15px;
+  margin: 0 0 9mm;
+}
+
+/* ---------- Salutation + body ---------- */
+
+.approvalSalutation {
+  font-size: 15px;
+  margin: 0 0 5mm;
+}
+
+.approvalParaContent {
+  font-size: 15px;
+  line-height: 1.75;
+  text-align: justify;
+  margin: 0 0 5mm;
+}
+
+.approvalParaContent .editable-field {
+  font-size: 15px;
+}
+
+.approvalThanks {
+  font-size: 15px;
+  margin: 0 0 12mm;
+}
+
+/* ---------- Signature block ---------- */
+
+.approvalSignOffCompany {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 14mm 0 35mm;
+}
+
+.approvalHrDetails {
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.approvalHrDetails .editable-field {
+  font-size: 15px;
+}
+
+.approvalHrDesignation {
+  font-weight: 700;
+}
+
+/* ---------- Editable inputs inside this letter ---------- */
+
+.approvalLetterMain input {
+  font-size: 15px;
+}
+
+/* Page1.css has a global `* { font-size: 16px }`. Bold <span> wrappers
+   only set font-weight, so without this they render larger than the
+   paragraph text around them. Scoped to the text blocks so the
+   headings above keep their own sizes. */
+.approvalDateSection span,
+.approvalToLabel span,
+.approvalToLine span,
+.approvalSubject span,
+.approvalSalutation span,
+.approvalParaContent span,
+.approvalThanks span,
+.approvalSignOffCompany span,
+.approvalHrDetails span {
+  font-size: 15px;
+}

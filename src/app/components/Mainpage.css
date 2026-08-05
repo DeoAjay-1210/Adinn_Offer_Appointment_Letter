@@ -81,11 +81,11 @@
 
 /* CARD GRID */
 .adinn-letter-grid {
-  margin-top: 48px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(260px, 360px));
-  justify-content: center;
-  gap: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 28px;
+    margin-top: 48px;
+    align-items: center;
 }
 
 .adinn-letter-card {
@@ -125,6 +125,13 @@
   color: #0f172a;
   font-size: 21px;
   font-weight: 700;
+}
+
+/* The Tamil card only - see cardClass in MainPage.tsx. Tamil glyphs
+   run wider than Latin, so its long title needs a smaller size than
+   the 21px the English cards use. */
+.adinn-letter-card.is-tamil h3 {
+  font-size: 19px;
 }
 
 .adinn-letter-card p {
@@ -573,4 +580,17 @@
   .adinn-letter-card {
     min-height: auto;
   }
+}
+
+.adinn-letter-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 48px;
+}
+
+.adinn-letter-card {
+    flex: 0 0 340px;
+    max-width: 399px;
 }

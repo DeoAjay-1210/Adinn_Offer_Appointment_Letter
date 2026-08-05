@@ -1,0 +1,145 @@
+/* ============================================================
+   TamilEditableField.css
+   The Tanglish -> Tamil input and its suggestion list.
+   Everything here is screen-only: the wrapper collapses to plain
+   text before the PDF screenshot is taken.
+   ============================================================ */
+
+.tamilFieldWrapper {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.tamilFieldInput {
+  border: none;
+  border-bottom: 1.5px solid #c0392b;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+/* ---------- தமிழ் / ABC toggle ---------- */
+
+.tamilModeChip {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  z-index: 60;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 10px !important;
+  font-weight: 700;
+  line-height: 1.5;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tamilModeChip.is-tamil {
+  border-color: #c0392b;
+  background: #c0392b;
+  color: #ffffff;
+}
+
+/* ---------- Suggestion list ---------- */
+
+.tamilSuggestBox {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 200;
+  display: block;
+  min-width: 210px;
+  max-width: 320px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #d8dee9;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
+  text-align: left;
+}
+
+.tamilSuggestBox.is-dropUp {
+  top: auto;
+  bottom: calc(100% + 6px);
+}
+
+.tamilSuggestHint {
+  display: block;
+  padding: 2px 8px 6px;
+  color: #94a3b8;
+  font-size: 10px !important;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.tamilSuggestItem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #0f172a;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tamilSuggestItem.is-active {
+  background: #fdecea;
+}
+
+.tamilSuggestIndex {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: #eef2f7;
+  color: #64748b;
+  font-size: 10px !important;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+.tamilSuggestItem.is-active .tamilSuggestIndex {
+  background: #c0392b;
+  color: #ffffff;
+}
+
+.tamilSuggestText {
+  flex: 1;
+  font-family: "Noto Sans Tamil", "Nirmala UI", "Latha", sans-serif;
+  font-size: 15px !important;
+  line-height: 1.6;
+}
+
+.tamilSuggestTag {
+  flex-shrink: 0;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #94a3b8;
+  font-size: 9px !important;
+  font-weight: 700;
+}
+
+/* ---------- Never let the IME reach the PDF ---------- */
+
+.pdf-export-content .tamilModeChip,
+.pdf-export-content .tamilSuggestBox {
+  display: none !important;
+}
+
+.pdf-export-content .tamilFieldInput {
+  border-bottom: none !important;
+}
