@@ -24,17 +24,12 @@ function EmploymentAcceptancePage1({ data, setData, showLetterhead = true }) {
   return (
     <OfferPageLayout showLetterhead={showLetterhead}>
       <div className="tamilLetterMain">
-        {/* ── SCREEN ONLY TYPING HINT ──────────── */}
-        <div className="tamilTypingHelp no-print">
-          <strong>Tanglish typing:</strong>
-          <span>
-            click any field and type in English letters -
-            e.g. <code>paniyalar</code> gives பணியாளர். Pick with
-            <code>Space</code>, <code>Enter</code> or <code>1-9</code>.
-            <code>Esc</code> keeps the English spelling, and the
-            <code>தமிழ் / ABC</code> chip turns it off.
-          </span>
-        </div>
+        {/* The Tanglish typing hint used to sit here. It is rendered by
+            EmploymentAcceptanceMain now, outside pdfRef - see the note
+            on TamilTypingHelp there. Nothing screen-only belongs in
+            this body: .a4-page is a fixed height with overflow hidden,
+            so anything that takes space here pushes real letter content
+            off the page. */}
 
         {/* ── TITLE ────────────────────────────── */}
         <h1 className="tamilDocTitle">

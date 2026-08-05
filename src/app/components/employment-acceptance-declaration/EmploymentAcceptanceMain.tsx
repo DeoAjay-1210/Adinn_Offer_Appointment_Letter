@@ -60,6 +60,83 @@ const DEFAULT_ACCEPTANCE_DATA = {
   declarationDate: "13-12-2026",
 };
 
+// Screen-only Tanglish guide, opened from the "Tamil Typing Guide"
+// button in the step wizard.
+//
+// This started as a block at the top of page 1's body. .a4-page is a
+// fixed 297mm with overflow: hidden, so the space it took pushed the HR
+// name and designation off the bottom of the sheet - they could not be
+// clicked or edited on screen, yet reappeared in the PDF, which drops
+// .no-print and gave that space back. It lives outside pdfRef now and
+// is a centred overlay, so the letter body has identical geometry on
+// screen and in the export, and nothing sits over the page uninvited.
+function TamilTypingGuide({ onClose }) {
+  // Esc closes, same as the × and a click on the backdrop
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  return (
+    <div className="tamilGuideBackdrop no-print" onClick={onClose}>
+      <div
+        className="tamilGuidePanel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Tamil Typing Guide"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          className="tamilGuideClose"
+          onClick={onClose}
+          aria-label="Close guide"
+        >
+          ×
+        </button>
+
+        <h2 className="tamilGuideTitle">Tamil Typing Guide</h2>
+
+        <p className="tamilGuideText">
+          Click on any input field and start typing using English letters
+          (Tanglish). The text will be automatically converted into Tamil as
+          you type.
+        </p>
+
+        <div className="tamilGuideExample">
+          <span className="tamilGuideExampleLabel">Example</span>
+          <span className="tamilGuideExampleRow">
+            <code>paniyalar</code>
+            <span className="tamilGuideArrow">→</span>
+            <span className="tamilGuideTamilWord">பணியாளர்</span>
+          </span>
+        </div>
+
+        <h3 className="tamilGuideSubTitle">How to Use</h3>
+
+        <ul className="tamilGuideList">
+          <li>
+            <code>Space</code>, <code>Enter</code>, or <code>1-9</code> - select
+            the suggested Tamil word.
+          </li>
+          <li>
+            <code>Esc</code> - keep the English spelling without converting it
+            to Tamil.
+          </li>
+          <li>
+            Click the <code>தமிழ் / ABC</code> toggle to switch Tamil typing On
+            or Off at any time.
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 function EmploymentAcceptanceMain() {
   const router = useRouter();
 
@@ -73,6 +150,7 @@ function EmploymentAcceptanceMain() {
   const [isPdfDownloading, setIsPdfDownloading] = useState(false);
   const [isPdfExportMode, setIsPdfExportMode] = useState(false);
   const [includeLetterhead, setIncludeLetterhead] = useState(true);
+  const [showTypingGuide, setShowTypingGuide] = useState(false);
 
   const pdfRef = useRef(null);
 
@@ -167,8 +245,25 @@ function EmploymentAcceptanceMain() {
   const isBusy = isPdfDownloading;
 
   return (
-    <div className={isBusy ? "letter-ui-busy" : ""}>
+    <div className={`tamilLetterShell ${isBusy ? "letter-ui-busy" : ""}`}>
       <PrintBlockedToast />
+
+      {/* Fixed strip above the sheet - the shell reserves its height so
+          it never covers the letterhead. */}
+      <div className="tamilGuideBar no-print">
+        <button
+          type="button"
+          className="step-btn-guide"
+          onClick={() => setShowTypingGuide(true)}
+          disabled={isBusy}
+        >
+          Tamil Typing Guide
+        </button>
+      </div>
+
+      {showTypingGuide && (
+        <TamilTypingGuide onClose={() => setShowTypingGuide(false)} />
+      )}
 
       {currentStep === 0 && (
         <EmploymentAcceptancePage1
