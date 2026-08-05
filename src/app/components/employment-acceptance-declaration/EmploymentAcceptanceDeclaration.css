@@ -48,9 +48,9 @@
 
 .tamilDocSubTitle {
   text-align: center;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
-  font-style: italic;
+  /* font-style: italic; */
   font-family: "Inter", Arial, sans-serif !important;
   margin: 0 0 12mm;
 }
@@ -151,7 +151,7 @@
 .tamilDetailRow td {
   border: none;
   padding: 2.2mm 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   vertical-align: top;
 }
