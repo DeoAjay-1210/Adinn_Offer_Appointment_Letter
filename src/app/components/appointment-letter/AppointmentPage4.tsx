@@ -56,7 +56,8 @@ function buildSalaryRows(data) {
 
   const childrenAllowance = 200;
   const professionalTax = 208;
-  const pfLimit = 15000;
+  // EPFO revised PF wage ceiling: 12% of min(Basic, 25,000) → max 3,000 each for employer & employee
+  const pfLimit = 25000;
 
   const rows = [];
 
@@ -137,7 +138,7 @@ function buildSalaryRows(data) {
     CTC 31,808
     Basic = 60% of CTC
     HRA = 24% of Basic
-    Employer PF = 12% restricted to 15,000 PF wage cap = 1,800
+    Employer PF = 12% restricted to 25,000 PF wage cap = 3,000
     Gross = CTC - Employer PF
     Other = balance
     Employee PF = Employer PF

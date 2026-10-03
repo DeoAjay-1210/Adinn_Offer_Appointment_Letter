@@ -211,7 +211,7 @@ function buildSalaryRows(data) {
   const variablePay     = round(toNumber(data.variablePay));
   const childrenAllow   = 200;
   const professionalTax = 208;
-  const pfLimit         = 15000;
+  const pfLimit         = 25000;
 
   const rows = [];
   const sec  = (l)         => ({ t: "section", label: l });
