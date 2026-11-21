@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "./Mainpage.css";
 
-const SECRET_CODE = "ADINN_OfferLetter$Nov2026"; // Change your secret code here
+const SECRET_CODE = "ADINN_OfficialLetters$Nov2026"; // Change your secret code here
 const LETTER_ACCESS_KEY = "adinn_letter_access";
 
 function MainPage() {
