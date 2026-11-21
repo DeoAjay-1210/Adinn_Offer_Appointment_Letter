@@ -15,6 +15,7 @@ import { flushSync } from "react-dom";
 
 import useBlockBrowserPrint from "../utils/useBlockBrowserPrint";
 import PrintBlockedToast from "../utils/PrintBlockedToast";
+import BlankLetterheadMenu from "../utils/BlankLetterheadMenu";
 import {
   waitForNextPaint,
   waitForImages,
@@ -211,6 +212,8 @@ function RelievingExperienceMain() {
           {isPdfDownloading && <span className="btn-spinner"></span>}
           <span>{isPdfDownloading ? "Preparing PDF..." : "Download PDF"}</span>
         </button>
+
+        <BlankLetterheadMenu disabled={isBusy} />
 
         <button
           type="button"

@@ -65,6 +65,14 @@ function MainPage() {
       // smaller size to sit on the card the way the others do.
       cardClass: "is-tamil",
     },
+    {
+      id: 7,
+      title: "Letterhead Template",
+      description:
+        "Blank A4 page with Adinn header & footer - download as DOCX template, PDF, or both.",
+      icon: "fa-regular fa-file",
+      navigation: "/adinn-letterhead-template",
+    },
   ];
 
   useEffect(() => {

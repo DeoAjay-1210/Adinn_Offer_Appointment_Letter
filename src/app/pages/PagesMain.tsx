@@ -18,6 +18,7 @@ import Page5 from "./Page5";
 
 import "./Page1.css";
 import { generateOfferDocx } from "../components/utils/generateOfferDocx";
+import BlankLetterheadMenu from "../components/utils/BlankLetterheadMenu";
 //GET TODAY DATE 
 const getTodayDate = () => {
   const today = new Date();
@@ -942,6 +943,8 @@ function PagesMain() {
           {isPdfDownloading && <span className="btn-spinner"></span>}
           <span>{isPdfDownloading ? "Preparing PDF..." : "Download PDF"}</span>
         </button>
+
+        <BlankLetterheadMenu disabled={isBusy} />
 
         <button
           type="button"

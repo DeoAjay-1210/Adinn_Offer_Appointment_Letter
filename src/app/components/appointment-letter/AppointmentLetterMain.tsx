@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 // import PrintBlockedToast from "../components/utils/PrintBlockedToast";
 import useBlockBrowserPrint from "../utils/useBlockBrowserPrint";
 import PrintBlockedToast from "../utils/PrintBlockedToast";
-
+import BlankLetterheadMenu from "../utils/BlankLetterheadMenu";
 import { flushSync } from "react-dom";
 
 import AppointmentPage1 from "./AppointmentPage1";
@@ -415,6 +415,8 @@ function AppointmentPagesMain() {
           {isPdfDownloading && <span className="btn-spinner"></span>}
           <span>{isPdfDownloading ? "Preparing PDF..." : "Download PDF"}</span>
         </button>
+
+        <BlankLetterheadMenu disabled={isBusy} />
 
         <button
           type="button"

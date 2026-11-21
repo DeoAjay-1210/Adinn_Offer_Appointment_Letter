@@ -1,0 +1,68 @@
+.lh-panel {
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.lh-panel h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+.lh-panel p {
+  margin: 0 auto 16px;
+  max-width: 600px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #444;
+}
+
+.lh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.lh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: 6px;
+  border: 1.5px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.lh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lh-btn-docx { background: #2b579a; color: #fff; }
+.lh-btn-docx:hover:not(:disabled) { background: #22457c; }
+
+.lh-btn-pdf { background: #c0392b; color: #fff; }
+.lh-btn-pdf:hover:not(:disabled) { background: #a33024; }
+
+.lh-btn-both { background: #27ae60; color: #fff; }
+.lh-btn-both:hover:not(:disabled) { background: #219a52; }
+
+.lh-btn-home { background: #fff; color: #333; border-color: #ccc; }
+
+.lh-message {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e7e34;
+}
+
+.lh-empty-body {
+  min-height: 100%;
+}

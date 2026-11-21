@@ -114,8 +114,12 @@ function buildFooter(footerImages) {
   // We'll lay this out as a table: [logos] | [divider col] | [address]
   // because Word doesn't support true inline-block flow like CSS
 
-  const FOOTER_W   = CONTENT_W;
-  const LOGO_COL   = 1600;  // ~logos area
+  // Footer table is wider than the text area (extends ~6mm into each side
+  // margin) so both address lines fit on ONE line each, like the PDF.
+  const FOOTER_EXTRA = 600;                       // DXA taken from each margin
+  const FOOTER_TRIM  = 500;                       // trims the empty space after the address
+  const FOOTER_W   = CONTENT_W + FOOTER_EXTRA * 2 - FOOTER_TRIM;
+  const LOGO_COL   = 2300;  // 4 smaller logos in ONE row (like the PDF)
   const DIV_COL    = 120;   // thin divider
   const ADDR_COL   = FOOTER_W - LOGO_COL - DIV_COL;
 
@@ -135,16 +139,30 @@ function buildFooter(footerImages) {
     }
   };
 
-  addImg("ins",     50, 38);
-  addImg("rural",   50, 29);
-  addImg("outdoor", 58, 38);
-  addImg("m3",      28, 23);
+  addImg("ins",     36, 27);
+  addImg("rural",   36, 21);
+  addImg("outdoor", 42, 27);
+  addImg("m3",      20, 16);
+
+  // small gap between logos, like the 3px flex gap in the PDF footer
+  const spacedLogos = [];
+  logoImages.forEach((img, i) => {
+    if (i > 0) spacedLogos.push(run(" ", { size: 8 }));
+    spacedLogos.push(img);
+  });
 
   const logoPara = new Paragraph({
     alignment: AlignmentType.LEFT,
     spacing: { before: 0, after: 0 },
-    children: logoImages.length > 0 ? logoImages : [run("")],
+    keepNext: true,
+    children: spacedLogos.length > 0 ? spacedLogos : [run("")],
   });
+
+  // Explicitly bold + black so labels render bold in Word and WPS
+  const labelRun = (text) =>
+    new TextRun({ text, font: "Arial", size: 15, bold: true, boldComplexScript: true, color: "000000" });
+  const addrRun = (text) =>
+    new TextRun({ text, font: "Arial", size: 15, bold: false, color: "000000" });
 
   const dividerCell = new TableCell({
     width:   { size: DIV_COL, type: WidthType.DXA },
@@ -160,6 +178,7 @@ function buildFooter(footerImages) {
 
   const footerTable = new Table({
     width: { size: FOOTER_W, type: WidthType.DXA },
+    alignment: AlignmentType.CENTER,   // equal left & right page gap
     columnWidths: [LOGO_COL, DIV_COL, ADDR_COL],
     borders: {
       top:           { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
@@ -174,7 +193,7 @@ function buildFooter(footerImages) {
         children: [
           new TableCell({
             width:   { size: LOGO_COL, type: WidthType.DXA },
-            margins: { top: 0, bottom: 0, left: 0, right: 60 },
+            margins: { top: 0, bottom: 0, left: 0, right: 120 },
             borders: noBorder(),
             verticalAlign: VerticalAlign.BOTTOM,
             children: [logoPara],
@@ -184,15 +203,15 @@ function buildFooter(footerImages) {
             width:   { size: ADDR_COL, type: WidthType.DXA },
             margins: { top: 0, bottom: 0, left: 100, right: 0 },
             borders: noBorder(),
-            verticalAlign: VerticalAlign.BOTTOM,
+            verticalAlign: VerticalAlign.CENTER,
             children: [
               para([
-                bold("REGISTERED OFFICE : ", { size: 16 }),
-                run("29, 1st Cross street, Vanamamalai nagar, Bypass road, Madurai - 625016.", { size: 16 }),
+                labelRun("REGISTERED OFFICE : "),
+                addrRun("29, 1st Cross street, Vanamamalai nagar, Bypass road, Madurai - 625016."),
               ], { spacing: { after: 30 } }),
               para([
-                bold("BRANCH OFFICE : ", { size: 16 }),
-                run("Chennai | Bengaluru | Kerala | Tel: 91 452 4344800 - 801. Email: info@adinn.co.in. www.adinn.com", { size: 16 }),
+                labelRun("BRANCH OFFICE : "),
+                addrRun("Chennai | Bengaluru | Kerala | Tel: 91 452 4344800 - 801. Email: info@adinn.co.in. www.adinn.com"),
               ], { spacing: { after: 0 } }),
             ],
           }),
@@ -577,6 +596,61 @@ function buildPage5(d) {
       { label: "Date",      value: "" },
     ]),
   ];
+}
+
+// ─── Letterhead-only export: A4 pages with header + footer, empty body ───────
+// Word repeats the header/footer on every page, so any page the user adds
+// while typing also carries the letterhead.
+export async function generateLetterheadDocx(fileName = "Adinn_Letterhead", pages = 1) {
+  const [logoBuffer, insBuffer, ruralBuffer, outdoorBuffer, m3Buffer] = await Promise.all([
+    fetchImageBuffer("/Images/AdinnLogo.png"),
+    fetchImageBuffer("/Images/Adinn_INSLogo1.png"),
+    fetchImageBuffer("/Images/Adinn_RuralLogo1.png"),
+    fetchImageBuffer("/Images/Adinn_IndianOutdoorLogo1.jpg"),
+    fetchImageBuffer("/Images/Adinn_3mLogo1.png"),
+  ]);
+
+  const header = buildHeader(logoBuffer, "png");
+  const footer = buildFooter({
+    ins:     insBuffer     ? { buffer: insBuffer,     type: "png" } : null,
+    rural:   ruralBuffer   ? { buffer: ruralBuffer,   type: "png" } : null,
+    outdoor: outdoorBuffer ? { buffer: outdoorBuffer, type: "jpg" } : null,
+    m3:      m3Buffer      ? { buffer: m3Buffer,      type: "png" } : null,
+  });
+
+  // One empty paragraph per page; pages 2..n start with a page break.
+  const body = Array.from({ length: Math.max(1, pages) }, (_, i) =>
+    new Paragraph({ pageBreakBefore: i > 0, children: [run("")] })
+  );
+
+  const doc = new Document({
+    styles: { default: { document: { run: { font: "Arial", size: 23 } } } },
+    sections: [{
+      properties: {
+        page: {
+          size:   { width: PAGE_W, height: PAGE_H },
+          margin: {
+            top: MARGIN_TOP, bottom: MARGIN_BOTTOM,
+            left: MARGIN_LR, right: MARGIN_LR,
+            header: HEADER_H, footer: FOOTER_H,
+          },
+        },
+      },
+      headers: { default: header },
+      footers: { default: footer },
+      children: body,
+    }],
+  });
+
+  const blob = await Packer.toBlob(doc);
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href     = url;
+  a.download = `${fileName}.docx`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 // ─── Main export ──────────────────────────────────────────────────────────────
