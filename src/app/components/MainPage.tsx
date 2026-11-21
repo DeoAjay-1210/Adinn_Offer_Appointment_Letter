@@ -6,8 +6,12 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import "./Mainpage.css";
 
-const SECRET_CODE = "ADINN_OfficialLetters$Nov2026"; // Change your secret code here
-const LETTER_ACCESS_KEY = "adinn_letter_access";
+import {
+  SECRET_CODE,
+  LETTER_ACCESS_KEY,
+  getAccessToken,
+  hasValidAccess,
+} from "./utils/accessConfig"; // change the code in accessConfig.ts
 
 function MainPage() {
   const router = useRouter();
@@ -76,14 +80,11 @@ function MainPage() {
   ];
 
   useEffect(() => {
-    const access = localStorage.getItem(LETTER_ACCESS_KEY);
-    setIsUnlocked(access === "true");
+    setIsUnlocked(hasValidAccess());
   }, []);
 
   const handleLetterClick = (letter) => {
-    const access = localStorage.getItem(LETTER_ACCESS_KEY);
-
-    if (access === "true") {
+    if (hasValidAccess()) {
       router.push(letter.navigation);
       return;
     }
@@ -107,7 +108,7 @@ function MainPage() {
     if (!selectedLetter) return;
 
     if (secretCode.trim() === SECRET_CODE) {
-      localStorage.setItem(LETTER_ACCESS_KEY, "true");
+      localStorage.setItem(LETTER_ACCESS_KEY, getAccessToken());
       localStorage.setItem("adinn_selected_letter", selectedLetter.title);
       localStorage.setItem("adinn_letter_unlocked_at", new Date().toISOString());
 
@@ -201,6 +202,13 @@ function MainPage() {
                 }}
                 placeholder="Enter secret code"
                 className="adinn-secret-input"
+                name="adinn-access-code"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                data-lpignore="true"
+                data-1p-ignore="true"
                 autoFocus
               />
               <button

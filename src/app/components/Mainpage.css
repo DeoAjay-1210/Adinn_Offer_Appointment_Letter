@@ -511,6 +511,29 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
+/* Hide the browser's own reveal / clear icons (Edge, IE) so only our eye shows */
+.adinn-secret-input::-ms-reveal,
+.adinn-secret-input::-ms-clear {
+  display: none;
+}
+
+/* Hide Chromium's saved-password key / autofill badge inside the field */
+.adinn-secret-input::-webkit-credentials-auto-fill-button,
+.adinn-secret-input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+}
+
+/* Keep the field white even if the browser autofills it (no blue tint) */
+.adinn-secret-input:-webkit-autofill,
+.adinn-secret-input:-webkit-autofill:hover,
+.adinn-secret-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+  -webkit-text-fill-color: #0f172a;
+  caret-color: #0f172a;
+}
+
 /* Eye toggle button - positioned inside the input */
 .adinn-eye-toggle {
   position: absolute;

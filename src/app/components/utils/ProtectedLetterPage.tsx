@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import '../Mainpage.css'
 
-const LETTER_ACCESS_KEY = "adinn_letter_access";
+import { hasValidAccess } from "./accessConfig";
 
 export function ProtectedLetterPage({ children }) {
   const router = useRouter();
@@ -15,9 +15,7 @@ export function ProtectedLetterPage({ children }) {
   const [allowed, setAllowed] = useState(false);
 
   useEffect(() => {
-    const access = localStorage.getItem(LETTER_ACCESS_KEY);
-
-    if (access !== "true") {
+    if (!hasValidAccess()) {
       setAllowed(false);
       setChecking(false);
       router.replace("/");
